@@ -1,9 +1,9 @@
 # gitconfig
 [user]
-    name = Nick Nisi
-    email = nick@nisi.org
+    name = Ruto Collins
+    email = borecollins@gmail.com
 [github]
-    user = nicknisi
+    user = borenho
 [init]
     templatedir = ~/.dotfiles/git/templates
 [alias]
@@ -35,8 +35,7 @@
     review = "!git log --no-merges --pretty=%an | head -n 100 | sort | uniq -c | sort -nr"
 
     # order files by number of commits, ascending
-    # Written by Corey Haines
-    # Scriptified by Gary Bernhardt
+
     # Show churn for a time range:
     #   $ git churn --since='1 month ago'
     churn = "!f() { git log --all -M -C --name-only --format='format:' \"$@\" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print \"count\tfile\"} {print $1 \"\t\" $2}' | sort -g; }; f"
@@ -167,3 +166,6 @@
 [pager]
     diff = "diff-so-fancy | less --tabs=4 -RFX"
     show = "diff-so-fancy | less --tabs=4 -RFX"
+
+# Written by Corey Haines
+# Scriptified by Gary Bernhardt
