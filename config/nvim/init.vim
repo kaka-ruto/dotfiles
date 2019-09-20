@@ -167,25 +167,33 @@ call plug#begin('~/.config/nvim/plugged')
 " }}}
 
 " General Mappings {{{
-    " set a map leader for more key combos
-    let mapleader = ','
+    " set a map leader for more key combos, spacebar
+    let mapleader = ' '
 
     " remap esc
     inoremap jk <esc>
 
-    " shortcut to save
-    nmap <leader>, :w<cr>
+    " Shortcut to save, both in normal and insert mode
+    " :update only saves when there are new changes, unlike :write
+    nnoremap <leader>s :update <cr>
+    inoremap <leader>s <C-c> :update <cr>
+
+    " Source init.vim
+    nmap <leader>so :source $INITVIM<cr>
+
+    " Exit vim
+    nmap <leader>q :q <cr>
 
     " set paste toggle
     set pastetoggle=<leader>v
 
-    " edit ~/.config/nvim/init.vim
-    map <leader>ev :e! ~/.config/nvim/init.vim<cr>
+    " Split edit this file
+    map <leader>ev :sp $INITVIM <cr>
     " edit gitconfig
     map <leader>eg :e! ~/.gitconfig<cr>
 
     " clear highlighted search
-    noremap <space> :set hlsearch! hlsearch?<cr>
+    noremap <silent> <Esc> <Esc>:noh<cr>
 
     " activate spell-checking alternatives
     nmap ;s :set invspell spelllang=en<cr>
@@ -279,6 +287,12 @@ call plug#begin('~/.config/nvim/plugged')
     nmap <leader>4 <Plug>HiInterestingWord4
     nmap <leader>5 <Plug>HiInterestingWord5
     nmap <leader>6 <Plug>HiInterestingWord6
+
+    " Get off my lawn
+    nnoremap <Left> :echoe "Use h"<CR>
+    nnoremap <Right> :echoe "Use l"<CR>
+    nnoremap <Up> :echoe "Use k"<CR>
+    nnoremap <Down> :echoe "Use j"<CR>
 " }}}
 
 " AutoGroups {{{
@@ -416,7 +430,7 @@ call plug#begin('~/.config/nvim/plugged')
         " toggle nerd tree
         nmap <silent> <leader>k :call ToggleNerdTree()<cr>
         " find the current file in nerdtree without needing to reload the drawer
-        nmap <silent> <leader>y :NERDTreeFind<cr>
+        nmap <silent> <leader>f :NERDTreeFind<cr>
 
         let NERDTreeShowHidden=1
         " let NERDTreeDirArrowExpandable = '▷'
@@ -448,7 +462,7 @@ call plug#begin('~/.config/nvim/plugged')
             nmap <silent> <leader>t :FZF<cr>
         endif
 
-        nmap <silent> <leader>s :GFiles?<cr>
+        nmap <silent> <leader>y :GFiles?<cr>
 
         nmap <silent> <leader>r :Buffers<cr>
         nmap <silent> <leader>e :FZF<cr>
@@ -646,6 +660,13 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'timcharper/textile.vim', { 'for': 'textile' }
     Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
     Plug 'ekalinin/Dockerfile.vim'
+
+    " VueJS {{{
+        Plug 'posva/vim-vue'
+
+        " Detect the pre-processors used in a file on enter, for speed
+        let g:vue_pre_processors = 'detect_on_enter'
+    " }}}
 " }}}
 
 call plug#end()

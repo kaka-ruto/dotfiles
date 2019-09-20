@@ -1,5 +1,6 @@
 export DOTFILES=$HOME/.dotfiles
 export CACHEDIR="$HOME/.local/share"
+export INITVIM="$DOTFILES/config/nvim/init.vim"
 
 [[ -d "$CACHEDIR" ]] || mkdir -p "$CACHEDIR"
 

@@ -11,6 +11,9 @@ fi
 # Set the timezone
 export LC_ALL=en_US.UTF-8
 
+# Set the theme, using base16 https://github.com/chriskempson/base16-vim
+export THEME=base16-solarized-dark
+
 COLOR_BLACK="\e[0;30m"
 COLOR_BLUE="\e[0;34m"
 COLOR_GREEN="\e[0;32m"
