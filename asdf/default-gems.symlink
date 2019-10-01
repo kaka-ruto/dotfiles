@@ -1,0 +1,3 @@
+# Automatically install a set of default gems right after installing a Ruby version, in asdf
+bundler
+pry

@@ -89,6 +89,7 @@ call plug#begin('~/.config/nvim/plugged')
     set foldnestmax=10 " deepest fold is 10 levels
     set nofoldenable " don't fold by default
     set foldlevel=1
+    set foldcolumn=1
 
     " toggle invisible characters
     set list

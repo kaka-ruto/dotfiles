@@ -1,0 +1,2 @@
+# Read from .ruby_version if exists
+legacy_version_file = yes
