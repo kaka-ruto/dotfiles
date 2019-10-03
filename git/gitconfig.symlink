@@ -22,6 +22,9 @@
     addnw = "!sh -c 'git diff -U0 -w --no-color \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero -'"
     cane = commit --amend --no-edit
 
+    # git add only modified files
+    mod = "git ls-files --modified | xargs git add"
+
     # rebase commands
     cont = rebase --continue
     conf = "!git s | grep ^U"
