@@ -19,6 +19,7 @@ alias p="cd ~/projects"
 alias ga="git add"
 alias gs="g s"
 alias gp="g push"
+alias gc="g commit"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -107,8 +108,8 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 done
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias shutup="osascript -e 'setolume output muted true'"
-alias pumpitup="osascript -e 'setolume outputolume 100'"
+alias shutup="osascript -e 'set volume output muted true'"
+alias pumpitup="osascript -e 'set volume output volume 100'"
 
 # Kill all the tabs in Chrome to free up memory
 # [C] explained:

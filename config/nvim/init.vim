@@ -536,7 +536,10 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'coc-vimlsp',
         \ 'coc-emmet',
         \ 'coc-prettier',
-        \ 'coc-ultisnips'
+        \ 'coc-ultisnips',
+        \ 'coc-solargraph',
+        \ 'coc-tailwindcss',
+        \ 'coc-vetur'
         \ ]
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -562,7 +565,7 @@ call plug#begin('~/.config/nvim/plugged')
         nmap <silent> [c <Plug>(coc-diagnostic-prev)
         nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-        " rename
+        " rename current word
         nmap <silent> <leader>rn <Plug>(coc-rename)
 
         " Remap for format selected region
