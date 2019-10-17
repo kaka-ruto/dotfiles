@@ -168,19 +168,23 @@ call plug#begin('~/.config/nvim/plugged')
 " }}}
 
 " General Mappings {{{
-    " set a map leader for more key combos, spacebar
-    let mapleader = ' '
+    " set a map leader for more key combos, comma
+    let mapleader = ','
 
     " remap esc
     inoremap jk <esc>
 
-    " Shortcut to save, both in normal and insert mode
+    " Shortcut to save file in normal insert, or visual modes
     " :update only saves when there are new changes, unlike :write
+    " Normal mode
     nnoremap <leader>s :update <cr>
-    inoremap <leader>s <C-c> :update <cr>
+    " Insert mode: escape to normal mode, update, then switch back to insert mode by pressing 'i'
+    inoremap <leader>s <ESC> :update <cr>i
+    " Visual mode
+    vnoremap <leader>s :update <cr>
 
     " Source init.vim
-    nmap <leader>so :source $INITVIM<cr>
+    nmap <leader>so :source $INITVIM <cr>
 
     " Exit vim
     nmap <leader>q :q <cr>
