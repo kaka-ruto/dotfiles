@@ -172,14 +172,14 @@ call plug#begin('~/.config/nvim/plugged')
     let mapleader = ','
 
     " remap esc
-    inoremap jk <esc>
+    inoremap ii <ESC>
 
     " Shortcut to save file in normal insert, or visual modes
     " :update only saves when there are new changes, unlike :write
     " Normal mode
     nnoremap <leader>s :update <cr>
-    " Insert mode: escape to normal mode, update, then switch back to insert mode by pressing 'i'
-    inoremap <leader>s <ESC> :update <cr>i
+    " Insert mode: escape to normal mode and update
+    inoremap <leader>s <ESC> :update <cr>
     " Visual mode
     vnoremap <leader>s :update <cr>
 

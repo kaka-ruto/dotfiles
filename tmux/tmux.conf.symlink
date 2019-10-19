@@ -9,13 +9,12 @@ set -g history-limit 20000
 # automatically renumber tmux windows
 set -g renumber-windows on
 
-# unbind default prefix and set it to Ctrl+a
+# unbind default prefix and set it to ` (backtick)
 unbind C-b
-set -g prefix C-a
-bind C-a send-prefix
+set -g prefix `
 
-# for nested tmux sessions
-bind-key a send-prefix
+# Allow to type ` for other purposes
+bind-key ` send-prefix
 
 # Activity Monitoring
 setw -g monitor-activity off
