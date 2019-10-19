@@ -192,7 +192,7 @@ call plug#begin('~/.config/nvim/plugged')
     " set paste toggle
     set pastetoggle=<leader>v
 
-    " Split edit this file
+    " Split edit the vimrc/initvim
     map <leader>ev :sp $INITVIM <cr>
     " edit gitconfig
     map <leader>eg :e! ~/.gitconfig<cr>
@@ -360,8 +360,37 @@ call plug#begin('~/.config/nvim/plugged')
     " mappings to easily delete, change and add such surroundings in pairs, such as quotes, parens, etc.
     Plug 'tpope/vim-surround'
 
-    " tmux integration for vim
-    Plug 'benmills/vimux'
+    " {{{ Tmux integration for vim
+        Plug 'benmills/vimux'
+        " Zoom the tmux runner page
+        " Use tmux bind-key z to restore
+        map <Leader>vz :VimuxZoomRunner <CR>
+
+        " Close vimux runner
+        map <Leader>vq :VimuxCloseRunner <CR>
+
+        " Prompt for a command to run map
+        map <Leader>vp :VimuxPromptCommand <CR>
+
+        " Run last command executed by VimuxRunCommand
+        map <Leader>vl :VimuxRunLastCommand <CR>
+
+        " Change the height of the runner, percentage
+        " let g:VimuxHeight = "40" # Default = 20
+    " }}}
+
+    " {{{ Run your tests at the speed of thought
+        Plug 'janko/vim-test'
+        
+        nmap <silent> t <C-n> :TestNearest <CR>
+        nmap <silent> t <C-f> :TestFile <CR>
+        nmap <silent> t <C-s> :TestSuite <CR>
+        nmap <silent> t <C-l> :TestLast <CR>
+        nmap <silent> t <C-g> :TestVisit <CR>
+
+        " Execute tests using vimux.vim
+        let test#strategy = "vimux"
+    " }}}
 
     " enables repeating other supported plugins with the . command
     Plug 'tpope/vim-repeat'
