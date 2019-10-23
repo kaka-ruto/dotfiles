@@ -6,3 +6,7 @@ let g:javascript_plugin_jsdoc = 1
 let javaScript_fold=1
 
 nmap <leader>x :VimuxRunCommand('npm test')<cr>
+
+" Linting
+let b:ale_linters = ['eslint']
+let b:ale_fixers = ['eslint']

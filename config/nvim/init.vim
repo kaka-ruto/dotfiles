@@ -573,6 +573,16 @@ call plug#begin('~/.config/nvim/plugged')
         let g:UltiSnipsJumpForwardTrigger="<C-j>"
         let g:UltiSnipsJumpBackwardTrigger="<C-k>"
     " }}}
+    
+    " Linting {{{
+        Plug 'dense-analysis/ale'
+
+        " Only run linters named in ale_linters settings in /ftplugin/
+        let g:ale_linters_explicit = 1
+
+        " Show the error sign always
+        let g:ale_sign_column_always = 1
+    " }}}
 
     " coc {{{
         Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
