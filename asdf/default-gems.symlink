@@ -4,3 +4,6 @@ pry
 
 # Intellisense for Ruby
 solargraph
+
+# Beautiful terminal output
+awesome_print
