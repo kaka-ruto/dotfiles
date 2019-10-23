@@ -1,6 +1,6 @@
 # gitconfig
 [user]
-    name = Ruto Collins
+    name = borenho
     email = borecollins@gmail.com
 [github]
     user = borenho
@@ -32,7 +32,7 @@
     l = log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
     # show what I did today
-    day = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
+    daytoday = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
 
     # show the committers in the last 100 commits, sorted by who has commited the most
     review = "!git log --no-merges --pretty=%an | head -n 100 | sort | uniq -c | sort -nr"
