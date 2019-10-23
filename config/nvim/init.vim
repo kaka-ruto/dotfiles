@@ -376,20 +376,20 @@ call plug#begin('~/.config/nvim/plugged')
         map <Leader>vl :VimuxRunLastCommand <CR>
 
         " Change the height of the runner, percentage
-        " let g:VimuxHeight = "40" # Default = 20
+        " let g:VimuxHeight = '40' # Default = 20
     " }}}
 
     " {{{ Run your tests at the speed of thought
         Plug 'janko/vim-test'
         
-        nmap <silent> t <C-n> :TestNearest <CR>
-        nmap <silent> t <C-f> :TestFile <CR>
-        nmap <silent> t <C-s> :TestSuite <CR>
-        nmap <silent> t <C-l> :TestLast <CR>
-        nmap <silent> t <C-g> :TestVisit <CR>
+        nmap <silent> <C-n> :TestNearest <CR>
+        nmap <silent> <C-f> :TestFile <CR>
+        nmap <silent> <C-s> :TestSuite <CR>
+        nmap <silent> <C-l> :TestLast <CR>
+        nmap <silent> <C-g> :TestVisit <CR>
 
         " Execute tests using vimux.vim
-        let test#strategy = "vimux"
+        let test#strategy = "basic"
     " }}}
 
     " enables repeating other supported plugins with the . command
