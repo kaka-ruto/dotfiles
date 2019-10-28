@@ -345,8 +345,18 @@ call plug#begin('~/.config/nvim/plugged')
     " substitute, search, and abbreviate multiple variants of a word
     Plug 'tpope/vim-abolish'
 
-    " search inside files using ripgrep. This plugin provides an Ack command.
-    Plug 'wincent/ferret'
+    " {{{ search inside files using ripgrep. This plugin provides an Ack command.
+        Plug 'wincent/ferret'
+
+        " Default ferret mappings
+        " <leader>a - triggers the :Ack command, to which you can pass arguments for search
+        " <leader>l - triggers the :Lack command
+        " <leader>s - search for the word under the cursor, mine is changed to <leader>x below
+        " <leader>r - replace the last searched word
+
+        " Search for the word under the cursor
+        nmap <leader>x <Plug>(FerretAckWord)
+    " }}}
 
     " easy commenting motions
     Plug 'tpope/vim-commentary'
