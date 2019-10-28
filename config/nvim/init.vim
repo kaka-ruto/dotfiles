@@ -693,6 +693,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 		" nunjucks support
         Plug 'niftylettuce/vim-jinja', { 'for': 'njk' }
+
+        " Slim templating syntax highlighting
+        Plug 'slim-template/vim-slim'
     " }}}
 
     " JavaScript {{{
