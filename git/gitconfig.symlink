@@ -23,7 +23,7 @@
     cane = commit --amend --no-edit
 
     # git add only modified files
-    mod = "git ls-files --modified | xargs git add"
+    addmod = "git ls-files --modified | xargs git add"
 
     # rebase commands
     cont = rebase --continue
@@ -62,6 +62,8 @@
 
     undo = reset --soft HEAD~1
     amend = commit -a --amend
+    # Add changes to a particular commit, eg git amend-to SHA51
+    amend-to = "!f() { SHA=`git rev-parse "$1"`; git commit --fixup "$SHA" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash "$SHA^"; }; f"
 
     cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
 
