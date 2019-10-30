@@ -698,6 +698,14 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'slim-template/vim-slim'
     " }}}
 
+    " {{{ Ruby and RoR
+        " Translations
+        Plug 'stefanoverna/vim-i18n'
+        " Select a string and hit either of the following
+        vmap <Leader>ts :call I18nTranslateString()<CR>
+        vmap <Leader>dt :call I18nDisplayTranslation()<CR>
+    " }}}
+
     " JavaScript {{{
         Plug 'othree/yajs.vim', { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
         " Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
