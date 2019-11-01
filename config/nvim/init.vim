@@ -183,6 +183,10 @@ call plug#begin('~/.config/nvim/plugged')
     " Visual mode
     vnoremap <leader>s :update <cr>
 
+    " Add blank lines in normal mode using Enter and Shift-Enter(below and above resp.)
+    map <Enter> o <ESC>
+    map <S-Enter> O <ESC>
+
     " Source init.vim
     nmap <leader>so :source $INITVIM <cr>
 
@@ -512,6 +516,11 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'Ignored'   : '☒',
         \ "Unknown"   : "?"
         \ }
+    " }}}
+    
+    " Denite {{{
+    " Unite all (neo)vim interfaces
+        Plug 'Shougo/denite.nvim'
     " }}}
 
     " FZF {{{
