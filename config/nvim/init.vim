@@ -469,6 +469,13 @@ call plug#begin('~/.config/nvim/plugged')
     " context-aware pasting
     Plug 'sickill/vim-pasta'
 
+    " File type icons
+    Plug 'ryanoasis/vim-devicons'
+    let g:WebDevIconsOS = 'Darwin'
+    let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+    let g:DevIconsEnableFoldersOpenClose = 1
+    let g:DevIconsEnableFolderExtensionPatternMatching = 1
+
     " Ranger {{{
         " Use ranger for file exploration (install with 'brew install ranger')
         " ranger.vim and bclose.vim are wrappers for ranger integration with vim, and to avoid using the default netrw
