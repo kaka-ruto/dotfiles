@@ -469,6 +469,9 @@ call plug#begin('~/.config/nvim/plugged')
     " context-aware pasting
     Plug 'sickill/vim-pasta'
 
+    " Highlight copied text
+    Plug 'machakann/vim-highlightedyank'
+
     " File type icons
     Plug 'ryanoasis/vim-devicons'
     let g:WebDevIconsOS = 'Darwin'
