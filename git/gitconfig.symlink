@@ -35,6 +35,7 @@
 
     # show what I did today
     daytoday = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
+    standup = "!git log --all --no-merges --graph --date=relative --committer=$(git config --get user.email) --pretty=format:'%C(cyan) %ad %C(yellow)%h %Creset %s %Cgreen%d' --since=$(if [[ Mon == $(date +%a) ]]; then echo last friday; else echo yesterday; fi)"
 
     # show the committers in the last 100 commits, sorted by who has commited the most
     review = "!git log --no-merges --pretty=%an | head -n 100 | sort | uniq -c | sort -nr"
@@ -47,6 +48,9 @@
 
     # show all deleted files in the repo
     deleted = "!git log --diff-filter=D --summary | grep delete"
+    showconflicted = "!git ls-files --unmerged | cut -f2 | sort -u"
+    editconflicted = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; $EDITOR `f`"
+    unmerged = "!git ls-files --unmerged | cut -f2 | sort -u"
 
     # create an empty commit
     empty = commit --allow-empty
@@ -174,5 +178,5 @@
     diff = "diff-so-fancy | less --tabs=4 -RFX"
     show = "diff-so-fancy | less --tabs=4 -RFX"
 
-# Written by Corey Haines
+# Written by Corey Haines, Bore Collins
 # Scriptified by Gary Bernhardt
