@@ -14,6 +14,7 @@
     d = "!git diff --ignore-space-at-eol -b -w --ignore-blank-lines -- ':!**/package-lock.json' ':!**/yarn.lock'"
     cnv = commit --no-verify
     pnv = push --no-verify
+    pf = push --force-with-lease
     co = checkout
     cob = checkout -b
     s = status --short
@@ -23,7 +24,8 @@
     cane = commit --amend --no-edit
 
     # git add only modified files
-    addmod = "git ls-files --modified | xargs git add"
+    amod = "!git ls-files --modified | xargs git add"
+    mod = "!git ls-files --modified"
 
     # rebase commands
     cont = rebase --continue
