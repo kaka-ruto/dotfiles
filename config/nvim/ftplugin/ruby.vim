@@ -1,5 +1,8 @@
-setlocal ts=2 sts=2 sw=2 expandtab
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
 
 " Ale Linting
-let b:ale_linters = ['rubocop']
-let b:ale_fixers = ['rubocop']
+" let b:ale_linters = ['rubocop']
+" let b:ale_fixers = ['rubocop']

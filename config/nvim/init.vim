@@ -76,12 +76,15 @@ call plug#begin('~/.config/nvim/plugged')
     set signcolumn=yes
     set shortmess+=c
 
-    " Tab control
-    set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-    set tabstop=2 " the visible width of tabs
-    set softtabstop=2 " edit as if the tabs are 2 characters wide
-    set shiftwidth=2 " number of spaces to use for indent and unindent
-    set shiftround " round indent to a multiple of 'shiftwidth'
+    " Set fefault tabs ans spaces control (file specific configurations in config/nvim/ftplugin/)
+    setlocal tabstop=2 " the visible width of tabs
+    setlocal softtabstop=2 " edit as if the tabs are 2 characters wide
+    setlocal shiftwidth=2 " number of spaces to use for indent and unindent
+    setlocal expandtab
+     
+    " Upon opening a file of type xyz, source the file ~/.vim/ftplugin/xyz.vim
+    filetype plugin indent on
+
 
     " code folding settings
     set foldmethod=syntax " fold based on indent
@@ -93,7 +96,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " toggle invisible characters
     set list
-    set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+    set listchars=tab:\|\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
     set showbreak=↪
 
     set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
@@ -775,7 +778,7 @@ call plug#end()
         colorscheme onedark
     endif
     syntax on
-    filetype plugin indent on
+
     " make the highlighting of tabs and other non-text less annoying
     highlight SpecialKey ctermfg=19 guifg=#333333
     highlight NonText ctermfg=19 guifg=#333333
