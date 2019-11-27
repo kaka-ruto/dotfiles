@@ -764,6 +764,10 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 " }}}
 
+  " Show indentation lines {{{
+    Plug 'Yggdroot/indentLine'
+  " }}}
+
 call plug#end()
 
 " Colorscheme and final setup {{{
