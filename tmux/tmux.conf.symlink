@@ -58,6 +58,9 @@ bind - split-window -v -c "#{pane_current_path}"
 
 # synchronize all panes in a window
 bind y setw synchronize-panes
+ 
+# Kill all panes except the current one
+bind k kill-pane -a
 
 # Smart pane switching with awareness of Vim splits
 bind -n C-h run "(tmux display-message -p '#{pane_title}' | grep -iq vim && tmux send-keys C-h) || tmux select-pane -L"
