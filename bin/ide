@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Creates 5 panes for me
+tmux split-window -v -p 30          # Split horizontally
+tmux split-window -h -p 66          # In the new pane, split vertically
+tmux split-window -h -p 50          # In the new pane, split into two halves vertically
+
+tmux select-pane -t 1               # Go to the first pane
+tmux split-window -h -p 50 'nvim'   # Split into two halves vertically and run 'nvim'
