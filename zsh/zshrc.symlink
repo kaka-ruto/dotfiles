@@ -116,11 +116,9 @@ export ZPLUGDIR="$CACHEDIR/zsh/plugins"
 typeset -A plugins
 
 zfetch $ZPLUGDIR zsh-users/zsh-syntax-highlighting
-source $ZPLUGDIR/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 zfetch $ZPLUGDIR zsh-users/zsh-autosuggestions
-source $ZPLUGDIR/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 zfetch $ZPLUGDIR chriskempson/base16-shell
-source $ZPLUGDIR/chriskempson/base16-shell/base16-shell.plugin.zsh
+zfetch $ZPLUGDIR lukechilds/zsh-nvm
 
 
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
