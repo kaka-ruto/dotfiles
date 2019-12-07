@@ -174,9 +174,6 @@ call plug#begin('~/.config/nvim/plugged')
     " set a map leader for more key combos, comma
     let mapleader = ','
 
-    " remap esc
-    inoremap ii <ESC>
-
     " Shortcut to save file in normal insert, or visual modes
     " :update only saves when there are new changes, unlike :write
     " Normal mode
@@ -190,7 +187,7 @@ call plug#begin('~/.config/nvim/plugged')
     map <Enter> o <ESC>
     map <S-Enter> O <ESC>
 
-    " Source init.vim
+    " Source init.vim 
     nmap <leader>so :source $INITVIM <cr>
 
     " Exit vim
@@ -205,7 +202,7 @@ call plug#begin('~/.config/nvim/plugged')
     map <leader>eg :e! ~/.gitconfig<cr>
 
     " clear highlighted search
-    noremap <silent> <Esc> <Esc>:noh<cr>
+    noremap <silent> <Esc> <Esc>:let @/ =""<cr>
 
     " activate spell-checking alternatives
     nmap ;s :set invspell spelllang=en<cr>
@@ -352,19 +349,6 @@ call plug#begin('~/.config/nvim/plugged')
     " substitute, search, and abbreviate multiple variants of a word
     Plug 'tpope/vim-abolish'
 
-    " {{{ search inside files using ripgrep. This plugin provides an Ack command.
-        Plug 'wincent/ferret'
-
-        " Default ferret mappings
-        " <leader>a - triggers the :Ack command, to which you can pass arguments for search
-        " <leader>l - triggers the :Lack command
-        " <leader>s - search for the word under the cursor, mine is changed to <leader>x below
-        " <leader>r - replace the last searched word
-
-        " Search for the word under the cursor
-        nmap <leader>x <Plug>(FerretAckWord)
-    " }}}
-
     " easy commenting motions
     Plug 'tpope/vim-commentary'
 
@@ -424,6 +408,9 @@ call plug#begin('~/.config/nvim/plugged')
     " detect indent style (tabs vs. spaces)
     Plug 'tpope/vim-sleuth'
 
+    " Indentation text objects, useful for navigating blocks of code in the same level of indent
+    Plug 'michaeljsmith/vim-indent-object'
+
     " Startify: Fancy startup screen for vim {{{
         Plug 'mhinz/vim-startify'
 
@@ -461,13 +448,6 @@ call plug#begin('~/.config/nvim/plugged')
     " Close buffers but keep splits
     Plug 'moll/vim-bbye'
     nmap <leader>b :Bdelete<cr>
-
-    " Writing in vim {{{{
-        Plug 'junegunn/goyo.vim'
-
-        autocmd! User GoyoEnter nested call helpers#goyo#enter()
-        autocmd! User GoyoLeave nested call helpers#goyo#leave()
-    " }}}
 
     " context-aware pasting
     Plug 'sickill/vim-pasta'
@@ -611,7 +591,6 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'coc-eslint',
         \ 'coc-tslint-plugin',
         \ 'coc-pairs',
-        \ 'coc-emoji',
         \ 'coc-sh',
         \ 'coc-vimlsp',
         \ 'coc-emmet',
@@ -752,8 +731,6 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 
     Plug 'fatih/vim-go', { 'for': 'go' }
-    Plug 'timcharper/textile.vim', { 'for': 'textile' }
-    Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
     Plug 'ekalinin/Dockerfile.vim'
 
     " VueJS {{{
