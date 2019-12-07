@@ -34,7 +34,8 @@
     l = log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
     # show what I did today
-    daytoday = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
+    daytoday = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday\" --author=\"`git config --get user.name`\"'"
+    today = "!git l --after='yesterday'" 
     standup = "!git log --all --no-merges --graph --date=relative --committer=$(git config --get user.email) --pretty=format:'%C(cyan) %ad %C(yellow)%h %Creset %s %Cgreen%d' --since=$(if [[ Mon == $(date +%a) ]]; then echo last friday; else echo yesterday; fi)"
 
     # show the committers in the last 100 commits, sorted by who has commited the most
