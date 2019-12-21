@@ -351,6 +351,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     " easy commenting motions
     Plug 'tpope/vim-commentary'
+    xmap \\ <Plug>Commentary
+    nmap \\ <Plug>Commentary
 
     " mappings which are simply short normal mode aliases for commonly used ex commands
     Plug 'tpope/vim-unimpaired'
