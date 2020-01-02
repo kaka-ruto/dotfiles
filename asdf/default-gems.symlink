@@ -7,3 +7,6 @@ solargraph
 
 # Beautiful terminal output
 awesome_print
+
+# Automatic ctags generation on gem install
+gem-ctags

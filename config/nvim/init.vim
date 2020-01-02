@@ -685,7 +685,10 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'slim-template/vim-slim'
     " }}}
 
-    " {{{ Ruby and RoR
+    " {{{ Ruby and RoR  
+        Plug 'vim-ruby/vim-ruby'
+        Plug 'tpope/vim-rails'
+        Plug 'tpope/vim-bundler'
         " Translations
         Plug 'stefanoverna/vim-i18n'
         " Select a string and hit either of the following
