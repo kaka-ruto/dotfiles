@@ -559,6 +559,8 @@ call plug#begin('~/.config/nvim/plugged')
         nmap <leader>ge :Gedit<cr>
         nmap <silent><leader>gr :Gread<cr>
         nmap <silent><leader>gb :Gblame<cr>
+        " Auto-clean fugitive buffers
+        autocmd BufReadPost fugitive://* set bufhidden=delete
 
         Plug 'tpope/vim-rhubarb' " hub extension for fugitive
         Plug 'junegunn/gv.vim'
