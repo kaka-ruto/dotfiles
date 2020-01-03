@@ -388,8 +388,8 @@ call plug#begin('~/.config/nvim/plugged')
         nmap <silent> <C-n> :TestNearest <CR>
         nmap <silent> <C-f> :TestFile <CR>
         nmap <silent> <C-s> :TestSuite <CR>
-        nmap <silent> <C-l> :TestLast <CR>
-        nmap <silent> <C-g> :TestVisit <CR>
+        nmap <silent> <C-g> :TestLast <CR>
+        " nmap <silent> <C-g> :TestVisit <CR>
 
         " Execute tests using vimux.vim
         let test#strategy = "basic"
