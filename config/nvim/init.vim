@@ -568,9 +568,11 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <space>gm :Gmove<Space>
         nnoremap <space>gb :Git branch<Space>
         nnoremap <space>go :Git checkout<Space>
-        nnoremap <space>gps :Dispatch! git push<CR>
-        nnoremap <space>gpl :Dispatch! git pull<CR>
+        nnoremap <space>gp :Git push<CR>
+        nnoremap <space>gu :Git pull<CR>
         nnoremap <space>gb :Gblame<CR>
+        nnoremap <space>g- :Silent Git stash<CR>:e<CR>
+        nnoremap <space>g+ :Silent Git stash pop<CR>:e<CR>
         " Auto-clean fugitive buffers
         autocmd BufReadPost fugitive://* set bufhidden=delete
 
