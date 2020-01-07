@@ -771,6 +771,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 call plug#end()
 
+" Example of how to set the ruby host to a particualr Ruby version using asdf
+" let g:ruby_host_prog = '~/.asdf/shims/neovim-ruby-host'
+
 " Colorscheme and final setup {{{
     " This call must happen after the plug#end() call to ensure
     " that the colorschemes have been loaded
