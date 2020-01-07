@@ -413,6 +413,9 @@ call plug#begin('~/.config/nvim/plugged')
     " Indentation text objects, useful for navigating blocks of code in the same level of indent
     Plug 'michaeljsmith/vim-indent-object'
 
+    " Vim sugar for the UNIX shell commands that need it the most, eg rename file
+    Plug 'tpope/vim-eunuch'
+
     " Startify: Fancy startup screen for vim {{{
         Plug 'mhinz/vim-startify'
 
