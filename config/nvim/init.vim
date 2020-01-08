@@ -195,6 +195,12 @@ call plug#begin('~/.config/nvim/plugged')
 
     " set paste toggle
     set pastetoggle=<leader>v
+     
+    " Delete without copying to clipboard
+    nnoremap <leader>dw "_dw
+    nnoremap <leader>dd "_dd
+    xnoremap <leader>dw "_dw
+    xnoremap <leader>dd "_dd
 
     " Split edit the vimrc/initvim
     map <leader>ev :sp $INITVIM <cr>
