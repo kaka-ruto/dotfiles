@@ -560,8 +560,8 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <space>gm :Gmove<Space>
         nnoremap <space>gb :Git branch<Space>
         nnoremap <space>go :Git checkout<Space>
-        nnoremap <space>gp :Git push<CR>
-        nnoremap <space>gu :Git pull<CR>
+        nnoremap <space>gp :Dispatch! Git push<CR>
+        nnoremap <space>gu :Dispatch! Git pull<CR>
         nnoremap <space>gb :Gblame<CR>
         nnoremap <space>g- :Silent Git stash<CR>:e<CR>
         nnoremap <space>g+ :Silent Git stash pop<CR>:e<CR>
