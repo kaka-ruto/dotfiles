@@ -590,11 +590,14 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'sodapopcan/vim-twiggy'
     " }}}
 
-    " UltiSnips {{{
-        Plug 'SirVer/ultisnips' " Snippets plugin
-        let g:UltiSnipsExpandTrigger="<C-l>"
+    " UltiSnips, snippets in Vim {{{
+        Plug 'SirVer/ultisnips'
+        let g:UltiSnipsExpandTrigger="<tab>"
         let g:UltiSnipsJumpForwardTrigger="<C-j>"
         let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+        " Popular snippets
+        Plug 'honza/vim-snippets'
     " }}}
     
     " Linting {{{
