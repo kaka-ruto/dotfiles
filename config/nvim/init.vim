@@ -369,24 +369,7 @@ call plug#begin('~/.config/nvim/plugged')
     " mappings to easily delete, change and add such surroundings in pairs, such as quotes, parens, etc.
     Plug 'tpope/vim-surround'
 
-    " {{{ Tmux integration for vim
-        Plug 'benmills/vimux'
-        " Zoom the tmux runner page
-        " Use tmux bind-key z to restore
-        map <Leader>vz :VimuxZoomRunner <CR>
-
-        " Close vimux runner
-        map <Leader>vq :VimuxCloseRunner <CR>
-
-        " Prompt for a command to run map
-        map <Leader>vp :VimuxPromptCommand <CR>
-
-        " Run last command executed by VimuxRunCommand
-        map <Leader>vl :VimuxRunLastCommand <CR>
-
-        " Change the height of the runner, percentage
-        " let g:VimuxHeight = '40' # Default = 20
-    " }}}
+    Plug 'tpope/vim-dispatch'
 
     " {{{ Run your tests at the speed of thought
         Plug 'janko/vim-test'
@@ -398,7 +381,7 @@ call plug#begin('~/.config/nvim/plugged')
         " nmap <silent> <C-g> :TestVisit <CR>
 
         " Execute tests using vimux.vim
-        let test#strategy = "basic"
+        let test#strategy = "dispatch"
     " }}}
 
     " enables repeating other supported plugins with the . command
