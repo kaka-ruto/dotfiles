@@ -41,6 +41,13 @@ call plug#begin('~/.config/nvim/plugged')
     set visualbell
     set t_vb=
     set tm=500
+
+    " Make Vim faster
+    " Lazy load the man plugin
+    silent! command -nargs=* Man
+      \ delcommand Man |
+      \ runtime ftplugin/man.vim |
+      \ Man <args>
 " }}}
 
 " Appearance {{{
