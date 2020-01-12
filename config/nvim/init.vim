@@ -303,6 +303,11 @@ call plug#begin('~/.config/nvim/plugged')
     nnoremap <silent> ^ g^
     nnoremap <silent> $ g$
 
+    " Insert char at cursor position in normal mode
+    nnoremap <C-i> i <ESC>r
+    " Append char after cursor position in normal mode
+    nnoremap <C-a> a <ESC>r
+
     " helpers for dealing with other people's code
     nmap \t :set ts=4 sts=4 sw=4 noet<cr>
     nmap \s :set ts=4 sts=4 sw=4 et<cr>
