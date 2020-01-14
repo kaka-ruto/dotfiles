@@ -590,12 +590,13 @@ call plug#begin('~/.config/nvim/plugged')
 
     " UltiSnips, snippets in Vim {{{
         Plug 'SirVer/ultisnips'
-        let g:UltiSnipsExpandTrigger="<tab>"
-        let g:UltiSnipsJumpForwardTrigger="<C-j>"
-        let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+        let g:UltiSnipsExpandTrigger=";"
 
         " Popular snippets
         Plug 'honza/vim-snippets'
+         
+        " Hit tab to scroll dropdown of suggestions
+        imap <Tab> <C-n>
     " }}}
     
     " Linting {{{
