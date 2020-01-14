@@ -721,6 +721,12 @@ call plug#begin('~/.config/nvim/plugged')
         " Select a string and hit either of the following
         vmap <Leader>ts :call I18nTranslateString()<CR>
         vmap <Leader>dt :call I18nDisplayTranslation()<CR>
+
+        " Sellecting Ruby blocks using ar and ir
+        Plug 'kana/vim-textobj-user'
+        Plug 'nelstrom/vim-textobj-rubyblock'
+        " Requires enabling the matchit plugin
+        runtime macros/matchit.vim
     " }}}
 
     " JavaScript {{{
