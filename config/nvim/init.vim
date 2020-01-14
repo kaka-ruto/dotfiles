@@ -24,7 +24,8 @@ call plug#begin('~/.config/nvim/plugged')
     set clipboard=unnamed
 
     if has('mouse')
-        set mouse=a
+        " Disable every mouse interaction
+        set mouse=
     endif
 
     " Searching
@@ -337,6 +338,9 @@ call plug#begin('~/.config/nvim/plugged')
     nmap <leader>5 <Plug>HiInterestingWord5
     nmap <leader>6 <Plug>HiInterestingWord6
 
+    " Stop repeating jjjj... Stop repeating kkkk...
+    Plug 'takac/vim-hardtime'
+    let g:hardtime_default_on = 1
     " Get off my lawn
     nnoremap <Left> :echoe "Use h"<CR>
     nnoremap <Right> :echoe "Use l"<CR>
