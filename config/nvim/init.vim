@@ -290,6 +290,7 @@ call plug#begin('~/.config/nvim/plugged')
     vnoremap $\ <esc>`>o*/<esc>`<O/*<esc>
     vnoremap $< <esc>`>a><esc>`<i<<esc>
 
+    set cursorline
     " toggle cursor line
     nnoremap <leader>i :set cursorline!<cr>
 
@@ -559,24 +560,25 @@ call plug#begin('~/.config/nvim/plugged')
 
     " vim-fugitive {{{
         Plug 'tpope/vim-fugitive'
-        nnoremap <space>ga :Git add %:p<CR><CR>
-        nnoremap <space>gs :Gstatus<CR>
-        nnoremap <space>gc :Gcommit -v -q<CR>
-        nnoremap <space>gt :Gcommit -v -q %:p<CR>
-        nnoremap <space>gd :Gdiff<CR>
-        nnoremap <space>ge :Gedit<CR>
-        nnoremap <space>gr :Gread<CR>
-        nnoremap <space>gw :Gwrite<CR><CR>
-        nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
-        nnoremap <space>gp :Ggrep<Space>
-        nnoremap <space>gm :Gmove<Space>
-        nnoremap <space>gb :Git branch<Space>
-        nnoremap <space>go :Git checkout<Space>
-        nnoremap <space>gp :Dispatch! Git push<CR>
-        nnoremap <space>gu :Dispatch! Git pull<CR>
-        nnoremap <space>gb :Gblame<CR>
-        nnoremap <space>g- :Silent Git stash<CR>:e<CR>
-        nnoremap <space>g+ :Silent Git stash pop<CR>:e<CR>
+        nnoremap gaa :Git add %:p<CR><CR>
+        nnoremap gss :Gstatus<CR>
+        nnoremap gcc :gcommit -v -q<cr>
+        nnoremap gtt :Gcommit -v -q %:p<CR>
+        nnoremap gdd :Gdiff<CR>
+        nnoremap gee :Gedit<CR>
+        nnoremap grr :Gread<CR>
+        nnoremap gww :Gwrite<CR><CR>
+        nnoremap gll :silent! Glog<CR>:bot copen<CR>
+        nnoremap ggg :Ggrep<Space>
+        nnoremap gmm :Gmove<Space>
+        nnoremap gre :Grename<Space>
+        nnoremap gbb :Git branch<Space>
+        nnoremap gco :Git checkout<Space>
+        nnoremap gpp :Dispatch! Git push<CR>
+        nnoremap gpl :Dispatch! Git pull<CR>
+        nnoremap gbb :Gblame<CR>
+        nnoremap g- :Silent Git stash<CR>:e<CR>
+        nnoremap g+ :Silent Git stash pop<CR>:e<CR>
         " Auto-clean fugitive buffers
         autocmd BufReadPost fugitive://* set bufhidden=delete
 
