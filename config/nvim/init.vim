@@ -28,13 +28,15 @@ call plug#begin('~/.config/nvim/plugged')
         set mouse=
     endif
 
-    " Searching
-    set ignorecase " case insensitive searching
-    set smartcase " case-sensitive if expresson contains a capital letter
-    set hlsearch " highlight search results
-    set incsearch " set incremental search, like modern browsers
-    set nolazyredraw " don't redraw while executing macros
+    "{{{ Searching
+        Plug 'google/vim-searchindex' " Display number of matches and index of current match
+        set ignorecase " case insensitive searching
+        set smartcase " case-sensitive if expresson contains a capital letter
+        set hlsearch " highlight search results
+        set incsearch " set incremental search, like modern browsers
+    " }}}
 
+    set nolazyredraw " don't redraw while executing macros
     set magic " Set magic on, for regex
 
     " error bells
