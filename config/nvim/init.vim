@@ -210,8 +210,8 @@ call plug#begin('~/.config/nvim/plugged')
     xnoremap <leader>dw "_dw
     xnoremap <leader>dd "_dd
 
-    " Split edit/change the vimrc/initvim
-    nnoremap cv :vsp $INITVIM <cr>
+    " Edit the vimrc/initvim
+    nnoremap cv :edit $INITVIM <cr>
     " edit gitconfig
     map <leader>eg :e! ~/.gitconfig<cr>
 
@@ -328,6 +328,9 @@ call plug#begin('~/.config/nvim/plugged')
     " around line
     vnoremap <silent> al :<c-u>normal! $v0<cr>
     onoremap <silent> al :<c-u>normal! $v0<cr>
+    
+    " CTRL-U in insert mode deletes a lot. Put an undo-point before it.
+    inoremap <C-u> <C-g>u<C-u>
 
     " Interesting word mappings
     nmap <leader>0 <Plug>ClearInterestingWord
