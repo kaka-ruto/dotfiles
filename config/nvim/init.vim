@@ -210,8 +210,8 @@ call plug#begin('~/.config/nvim/plugged')
     xnoremap <leader>dw "_dw
     xnoremap <leader>dd "_dd
 
-    " Split edit the vimrc/initvim
-    map <leader>ev :sp $INITVIM <cr>
+    " Split edit/change the vimrc/initvim
+    nnoremap cv :vsp $INITVIM <cr>
     " edit gitconfig
     map <leader>eg :e! ~/.gitconfig<cr>
 
