@@ -124,3 +124,8 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload_shell="exec ${SHELL} -l"
+
+# Ruby and Rails
+alias be="bundle exec"
+alias ber="bundle exec rails"
+alias bers="bundle exec rspec"
