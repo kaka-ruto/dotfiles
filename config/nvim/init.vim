@@ -570,9 +570,9 @@ call plug#begin('~/.config/nvim/plugged')
     " vim-fugitive {{{
         Plug 'tpope/vim-fugitive'
         nnoremap gap :Git add %:p<CR><CR>
-        nnoremap gaa :Git add .<CR><CR>
+        nnoremap gaa :Git add . <CR><CR>
         nnoremap gss :Gstatus<CR>
-        nnoremap gcc :Gcommit -v -q<CR>
+        nnoremap goo :Gcommit -v -q<CR>
         nnoremap gtt :Gcommit -v -q %:p<CR>
         nnoremap gdd :Gdiff<CR>
         nnoremap gee :Gedit<CR>
