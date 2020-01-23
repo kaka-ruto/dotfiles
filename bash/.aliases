@@ -129,3 +129,14 @@ alias reload_shell="exec ${SHELL} -l"
 alias be="bundle exec"
 alias ber="bundle exec rails"
 alias bers="bundle exec rspec"
+alias berdm="bundle exec rails db:migrate"
+alias berdr="bundle exec rails db:rollback"
+alias berds="bundle exec rails db:seed"
+alias bi="bundle install"
+alias tdl="tail log/development.log"
+alias ttl="tail log/test.log"
+
+# Rubocop
+alias rc='rubocop' # Run rubocop
+alias rca='rubocop -a' # Run rubocop autocorrect
+alias rcagc='rubocop --auto-gen-config' # Run rubocop autogen config
