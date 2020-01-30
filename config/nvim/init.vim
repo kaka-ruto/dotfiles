@@ -491,6 +491,9 @@ call plug#begin('~/.config/nvim/plugged')
         " Open ranger instead of the default netrw when you open a directory
         let g:ranger_replace_netrw = 1
     " }}}
+
+    " Modern performant generic finder and dispatcher for Vim and NeoVim
+    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
     
     " Denite {{{
     " Unite all (neo)vim interfaces
