@@ -461,6 +461,9 @@ call plug#begin('~/.config/nvim/plugged')
         nmap <leader>st :Startify<cr>
     " }}}
 
+    " Profiling (neo)vim's startuptime
+    Plug 'dstein64/vim-startuptime'
+
     " Close buffers but keep splits
     Plug 'moll/vim-bbye'
     nmap <leader>b :Bdelete<cr>
@@ -481,44 +484,12 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Ranger {{{
         " Use ranger for file exploration (install with 'brew install ranger')
-        " ranger.vim and bclose.vim are wrappers for ranger integration with vim, and to avoid using the default netrw
-        Plug 'francoiscabrol/ranger.vim'
-        Plug 'rbgrouleff/bclose.vim'
-
-        " The default mapping for opening ranger is <leader>f
-        " Use map <leader>x :Ranger<CR> to change
-
-        " Open ranger instead of the default netrw when you open a directory
         let g:ranger_replace_netrw = 1
     " }}}
 
     " Modern performant generic finder and dispatcher for Vim and NeoVim
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
     
-    " Denite {{{
-    " Unite all (neo)vim interfaces
-        Plug 'Shougo/denite.nvim', { 'do' : ':UpdateRemotePlugins' }
-        " Denite uses python3, specify it's path
-        let g:python3_host_prog = '/usr/local/bin/python3'
-         
-        " ================ Denite Mappings =================
-
-        " Ctrl b - Browse currently open buffers
-        map <C-b> :Denite buffer -split=floating -winrow=1 <CR>
-
-        " Ctrl p - Browse list of files in current directory
-        map <C-p> :DeniteProjectDir file/rec -split=floating -winrow=1 <CR>
-
-        " <leader> g - Search current directory for occurences of given term and close window if no results
-        nnoremap <leader>g :<C-u>Denite grep:. -split=floating -winrow=1 -no-empty <CR>
-
-        " <leader> j - Search current directory for occurences of word under cursor
-        nnoremap <leader>j :<C-u>DeniteCursorWord grep:. -split=floating -winrow=1 <CR>
-
-
-		
-    " }}}
-
     " FZF {{{
         "Plug '/usr/local/opt/fzf'
         "Plug 'junegunn/fzf.vim'
@@ -728,11 +699,6 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'vim-ruby/vim-ruby'
         Plug 'tpope/vim-rails'
         Plug 'tpope/vim-bundler'
-        " Translations
-        Plug 'stefanoverna/vim-i18n'
-        " Select a string and hit either of the following
-        vmap <Leader>ts :call I18nTranslateString()<CR>
-        vmap <Leader>dt :call I18nDisplayTranslation()<CR>
 
         " Sellecting Ruby blocks using ar and ir
         Plug 'kana/vim-textobj-user'
@@ -823,118 +789,4 @@ call plug#end()
     highlight xmlAttrib cterm=italic term=italic gui=italic
     " highlight Type cterm=italic term=italic gui=italic
     highlight Normal ctermbg=none
-" }}}
-
-" Denite {{{
-    " call-ing denite# must come after vim-plug's `call plug#end()`
-    " Use the silver searcher (ag) for searching current directory for files
-    call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-    " If in a git directory, search git files only
-    "call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-    "call denite#custom#var('file/rec/git', 'command',
-    "    \ ['git', 'ls-files', '-co', '--exclude-standard'])
-    "nnoremap <silent> <C-p> :<C-u>Denite
-    "   \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
-
-    " Use ag in place of grep
-    call denite#custom#var('grep', 'command', ['ag'])
-
-    " Custom options for ripgrep
-    "   --vimgrep:  Show results with every match on it's own line
-    "   --hidden:   Search hidden directories and files
-    "   --heading:  Show the file name above clusters of matches from each file
-    "   --S:        Search case insensitively if the pattern is all lowercase
-    call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
-
-    " Recommended defaults for ripgrep via Denite docs
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-
-    " Remove date from buffer list
-    call denite#custom#var('buffer', 'date_format', '')
-
-    call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
-
-    call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-                \ [ '.git/', '.ropeproject/', '__pycache__/*', '*.pyc', 'node_modules/',
-                \ 'venv/', 'images/', '*.min.*', 'img/', 'fonts/', '*.png'])
-
-    " Open file commands
-    " ctrl - t to open in a new vim tab
-    call denite#custom#map('insert, normal', "<C-t>", '<denite:do_action:tabopen>')
-    " ctrl - v to open in a new vertical vim split
-    call denite#custom#map('insert, normal', "<C-v>", '<denite:do_action:vsplit>')
-    " ctrl - h to open in a new horizontal vim split
-    call denite#custom#map('insert, normal', "<C-h>", '<denite:do_action:split>')
-     
-    " Custom options for Denite
-    "   auto_resize             - Auto resize the Denite window height automatically.
-    "   prompt                  - Customize denite prompt
-    "   direction               - Specify Denite window direction
-    "   winminheight            - Specify min height for Denite window
-    "   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-    "   prompt_highlight        - Specify color of prompt
-    "   highlight_matched_char  - Matched characters highlight
-    "   highlight_matched_range - matched range highlight
-    let s:denite_options = {'default' : {
-                \ 'split': 'floating',
-                \ 'start_filter': 1,
-                \ 'source_names': 'short',
-                \ 'direction': 'dynamictop',
-                \ 'auto_resize': 1,
-                \ 'statusline': 0,
-                \ 'prompt': 'λ: ',
-                \ 'highlight_prompt': 'StatusLine',
-                \ 'highlight_matched_char': 'QuickFixLine',
-                \ 'highlight_matched_range': 'Normal',
-                \ 'highlight_mode_insert': 'Visual',
-                \ 'highlight_mode_normal': 'Visual',
-                \ 'highlight_filter_background': 'DiffAdd',
-                \ 'winrow': 1,
-                \ 'vertical_preview': 1
-                \ }}
-
-    " Loop through denite options and enable them
-    function! s:profile(opts) abort
-        for l:fname in keys(a:opts)
-            for l:dopt in keys(a:opts[l:fname])
-                call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-            endfor
-        endfor
-    endfunction
-
-    call s:profile(s:denite_options)
-     
-    " Define mappings while in denite buffer
-    autocmd FileType denite call s:denite_my_settings()
-    function! s:denite_my_settings() abort
-      " <CR> - Open currently selected file
-      nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
-      " q or <Esc>  - Quit Denite window
-      nnoremap <silent><buffer><expr> q denite#do_map('quit')
-      nnoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
-      " d - Delete currenly selected file
-      nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
-      " p - Preview currently selected file
-      nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
-      " <C-o> or i  - Switch to insert mode inside of filter prompt
-      nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
-      nnoremap <silent><buffer><expr> <C-o> denite#do_map('open_filter_buffer')
-    endfunction
-
-
-    " Define mappings while in 'filter' mode
-    autocmd FileType denite-filter call s:denite_filter_my_settings()
-    function! s:denite_filter_my_settings() abort
-      " <C-o> - Switch to normal mode inside of search results
-      imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
-      " <Esc> - Exit denite window in both insert and normal modes
-      inoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
-      nnoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
-      " <CR> - Open currently selected file by pressing Enter in any mode
-      inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
-    endfunction
-
 " }}}
