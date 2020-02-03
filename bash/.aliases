@@ -140,3 +140,7 @@ alias ttl="tail log/test.log"
 alias rc='rubocop' # Run rubocop
 alias rca='rubocop -a' # Run rubocop autocorrect
 alias rcagc='rubocop --auto-gen-config' # Run rubocop autogen config
+
+# Docker
+alias dcr='docker-compose run'
+alias dcrr='docker-compose run runner'
