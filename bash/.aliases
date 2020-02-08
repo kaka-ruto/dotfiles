@@ -48,6 +48,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# Colorize 'cat'
+alias cat=ccat
 
 # Get week number
 alias week_number='date +%V'

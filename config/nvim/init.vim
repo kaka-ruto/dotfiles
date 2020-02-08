@@ -487,10 +487,14 @@ call plug#begin('~/.config/nvim/plugged')
         let g:ranger_replace_netrw = 1
     " }}}
 
-    " Modern performant generic finder and dispatcher for Vim and NeoVim
-    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
-    
+    " Enable opening a file in a given line
+    Plug 'bogado/file-line'
+
     " FZF {{{
+        " FZF with floating previews
+        set  runtimepath+=/usr/local/opt/fzf
+        Plug 'yuki-ycino/fzf-preview.vim'
+        let g:fzf_preview_use_dev_icons = 1
         "Plug '/usr/local/opt/fzf'
         "Plug 'junegunn/fzf.vim'
         "let g:fzf_layout = { 'down': '~25%' }
