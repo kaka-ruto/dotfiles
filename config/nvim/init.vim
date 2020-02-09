@@ -397,6 +397,9 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'tpope/vim-dispatch'
 
+    " Insert or delete brackets, parens, quotes in pair
+    Plug 'jiangmiao/auto-pairs'
+
     " {{{ Run your tests at the speed of thought
         Plug 'janko/vim-test'
         
