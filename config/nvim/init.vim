@@ -184,6 +184,10 @@ call plug#begin('~/.config/nvim/plugged')
     " set a map leader for more key combos, comma
     let mapleader = ','
 
+    " Autosave every time something has been changed in normal mode and when the user leaves insert mode
+    Plug '907th/vim-auto-save'
+    let g:auto_save = 1  " enable AutoSave on Vim startup
+
     " Shortcut to save file in normal insert, or visual modes
     " :update only saves when there are new changes, unlike :write
     " Normal mode
