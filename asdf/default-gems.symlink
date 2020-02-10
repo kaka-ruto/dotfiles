@@ -1,4 +1,4 @@
-# Automatically install a set of default gems right after installing a Ruby version, in asdf
+# Automatically install a set of default gems right after installing a new Ruby version, in asdf
 bundler
 pry
 
@@ -6,10 +6,10 @@ pry
 solargraph
 
 # Beautiful terminal output
-awesome_print
+# awesome_print
 
 # Automatic ctags generation on gem install
 gem-ctags
 
 # Neovim
-neovim
+# neovim

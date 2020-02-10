@@ -312,7 +312,7 @@ call plug#begin('~/.config/nvim/plugged')
     nnoremap <silent> $ g$
 
     " Insert char at cursor position in normal mode
-    nnoremap <C-t> i <ESC>r
+    nnoremap <C-r> i <ESC>r
     " Append char after cursor position in normal mode
     nnoremap <C-a> a <ESC>r
 
@@ -383,8 +383,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     " easy commenting motions
     Plug 'tpope/vim-commentary'
-    xmap \\ <Plug>Commentary
-    nmap \\ <Plug>Commentary
+    nmap \\ gcc
+    nmap <leader>dc :g/#/d <CR>
 
     " mappings which are simply short normal mode aliases for commonly used ex commands
     Plug 'tpope/vim-unimpaired'
@@ -404,7 +404,7 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'janko/vim-test'
         
         nmap <silent> <C-n> :TestNearest <CR>
-        nmap <silent> <C-f> :TestFile <CR>
+        nmap <silent> <C-t> :TestFile <CR>
         nmap <silent> <C-s> :TestSuite <CR>
         nmap <silent> <C-g> :TestLast <CR>
         " nmap <silent> <C-g> :TestVisit <CR>
@@ -502,6 +502,9 @@ call plug#begin('~/.config/nvim/plugged')
         set  runtimepath+=/usr/local/opt/fzf
         Plug 'yuki-ycino/fzf-preview.vim'
         let g:fzf_preview_use_dev_icons = 1
+
+        nnoremap <C-p> :FzfPreviewProjectFiles <cr>
+        nnoremap <C-b> :FzfPreviewBuffers <cr>
         "Plug '/usr/local/opt/fzf'
         "Plug 'junegunn/fzf.vim'
         "let g:fzf_layout = { 'down': '~25%' }
@@ -540,7 +543,7 @@ call plug#begin('~/.config/nvim/plugged')
         "command! FZFMru call fzf#run({
         "\  'source':  v:oldfiles,
         "\  'sink':    'e',
-        "\  'options': '-m -x +s',
+        " \  'options': '-m -x +s',
         "\  'down':    '40%'})
 
         "command! -bang -nargs=* Find call fzf#vim#grep(
@@ -594,13 +597,16 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
     
     " Linting {{{
-        Plug 'dense-analysis/ale'
+        Plug 'desmap/ale-sensible' | Plug 'dense-analysis/ale'
 
-        " Only run linters named in ale_linters settings in /ftplugin/
-        let g:ale_linters_explicit = 1
-
-        " Show the error sign always
-        let g:ale_sign_column_always = 1
+        let g:ale_linters_explicit = 1 " Run specific linters
+        " Set specific linters
+        let g:ale_linters = {
+              \   'javascript': ['eslint'],
+              \   'ruby': ['rubocop', 'solargraph'],
+              \}
+        let g:ale_set_highlights = 0      " Disable ALE auto highlights
+        let g:ale_sign_column_always = 1  " Show the error sign always
     " }}}
 
     " coc {{{
