@@ -210,11 +210,9 @@ call plug#begin('~/.config/nvim/plugged')
     " set paste toggle
     set pastetoggle=<leader>v
      
-    " Delete without copying to clipboard
-    nnoremap <leader>dw "_dw
-    nnoremap <leader>dd "_dd
-    xnoremap <leader>dw "_dw
-    xnoremap <leader>dd "_dd
+    " Paste the lasy yanked text
+    nnoremap p "0p
+    xnoremap p "0p 
 
     " Edit the vimrc/initvim
     nnoremap cv :edit $INITVIM <cr>
@@ -605,8 +603,15 @@ call plug#begin('~/.config/nvim/plugged')
               \   'javascript': ['eslint'],
               \   'ruby': ['rubocop', 'solargraph'],
               \}
+        let g:ale_fixers = {
+              \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+              \   'javascript': ['eslint'],
+              \   'ruby': ['rubocop']
+              \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
+
+        nmap <leader>f :ALEFix <CR>
     " }}}
 
     " coc {{{
@@ -634,13 +639,13 @@ call plug#begin('~/.config/nvim/plugged')
 
         " coc-prettier
         command! -nargs=0 Prettier :CocCommand prettier.formatFile
-        nmap <leader>f :CocCommand prettier.formatFile<cr>
+        " nmap <leader>f :CocCommand prettier.formatFile<cr>
 
         " coc-git
-        nmap [g <Plug>(coc-git-prevchunk)
-        nmap ]g <Plug>(coc-git-nextchunk)
-        nmap gs <Plug>(coc-git-chunkinfo)
-        nmap gu :CocCommand git.chunkUndo<cr>
+        " nmap [g <Plug>(coc-git-prevchunk)
+        " nmap ]g <Plug>(coc-git-nextchunk)
+        " nmap gs <Plug>(coc-git-chunkinfo)
+        " nmap gu :CocCommand git.chunkUndo<cr>
 
         "remap keys for gotos
         nmap <silent> gd <Plug>(coc-definition)
@@ -657,8 +662,8 @@ call plug#begin('~/.config/nvim/plugged')
         nmap <silent> <leader>rn <Plug>(coc-rename)
 
         " Remap for format selected region
-        xmap <leader>f  <Plug>(coc-format-selected)
-        nmap <leader>f  <Plug>(coc-format-selected)
+        " xmap <leader>f  <Plug>(coc-format-selected)
+        " nmap <leader>f  <Plug>(coc-format-selected)
 
         " organize imports
         command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
@@ -686,6 +691,10 @@ call plug#begin('~/.config/nvim/plugged')
         return !col || getline('.')[col - 1]  =~# '\s'
         endfunction
     " }}}
+    
+    " Switch true for fale and vice versa (plus other common swiches too)
+      Plug 'AndrewRadev/switch.vim'
+      let g:switch_mapping = '\' 
 " }}}
 
 " Language-Specific Configuration {{{
@@ -700,22 +709,26 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'othree/html5.vim', { 'for': 'html' }
 
         " mustache support
-        Plug 'mustache/vim-mustache-handlebars'
+        " Plug 'mustache/vim-mustache-handlebars'
 
         " pug / jade support
-        Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
+        " Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
-		" nunjucks support
-        Plug 'niftylettuce/vim-jinja', { 'for': 'njk' }
+        " nunjucks support
+        " Plug 'niftylettuce/vim-jinja', { 'for': 'njk' }
 
         " Slim templating syntax highlighting
-        Plug 'slim-template/vim-slim'
+        " Plug 'slim-template/vim-slim'
     " }}}
 
     " {{{ Ruby and RoR  
         Plug 'vim-ruby/vim-ruby'
         Plug 'tpope/vim-rails'
         Plug 'tpope/vim-bundler'
+
+        " Rapid navigation to factory definition
+        Plug 'christoomey/vim-rfactory'
+        nmap rf :Rfactory <CR>
 
         " Sellecting Ruby blocks using ar and ir
         Plug 'kana/vim-textobj-user'
@@ -728,16 +741,15 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'othree/yajs.vim', { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
         " Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
         Plug 'moll/vim-node', { 'for': 'javascript' }
-		Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
-		Plug 'MaxMEllon/vim-jsx-pretty'
-		let g:vim_jsx_pretty_highlight_close_tag = 1
+        Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
+        Plug 'MaxMEllon/vim-jsx-pretty'
+        let g:vim_jsx_pretty_highlight_close_tag = 1
     " }}}
 
     " TypeScript {{{
         Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx'] }
         " Plug 'Shougo/vimproc.vim', { 'do': 'make' } TODO what still needs this?
     " }}}
-
 
     " Styles {{{
         Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
@@ -774,6 +786,9 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 " }}}
 
+" {{{ Yaml
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" }}}
   " Show indentation lines {{{
     Plug 'Yggdroot/indentLine'
   " }}}
