@@ -1,6 +1,6 @@
 " .vimrc / init.vim
 " The following vim/neovim configuration works for both Vim and NeoVim
-"  
+"
 " ensure vim-plug is installed and then load it
 call functions#PlugLoad()
 call plug#begin('~/.config/nvim/plugged')
@@ -62,7 +62,7 @@ call plug#begin('~/.config/nvim/plugged')
       autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
       autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
     augroup END
-    
+
     set wrap " turn on line wrapping
     set wrapmargin=8 " wrap lines when coming within n characters from side
     set linebreak " set soft wrapping
@@ -91,10 +91,9 @@ call plug#begin('~/.config/nvim/plugged')
     setlocal softtabstop=2 " edit as if the tabs are 2 characters wide
     setlocal shiftwidth=2 " number of spaces to use for indent and unindent
     setlocal expandtab
-     
+
     " Upon opening a file of type xyz, source the file ~/.vim/ftplugin/xyz.vim
     filetype plugin indent on
-
 
     " code folding settings
     set foldmethod=syntax " fold based on indent
@@ -181,8 +180,8 @@ call plug#begin('~/.config/nvim/plugged')
 " }}}
 
 " General Mappings {{{
-    " set a map leader for more key combos, comma
-    let mapleader = ','
+    " set a map leader for more key combos, space
+    let mapleader = '\<Space>'
 
     " Autosave every time something has been changed in normal mode and when the user leaves insert mode
     Plug '907th/vim-auto-save'
@@ -201,7 +200,7 @@ call plug#begin('~/.config/nvim/plugged')
     map <Enter> o <ESC>
     map <S-Enter> O <ESC>
 
-    " Source init.vim 
+    " Source init.vim
     nmap <leader>so :source $INITVIM <cr>
 
     " Exit vim
@@ -209,10 +208,10 @@ call plug#begin('~/.config/nvim/plugged')
 
     " set paste toggle
     set pastetoggle=<leader>v
-     
+
     " Paste the lasy yanked text
     nnoremap p "0p
-    xnoremap p "0p 
+    xnoremap p "0p
 
     " Edit the vimrc/initvim
     nnoremap cv :edit $INITVIM <cr>
@@ -229,8 +228,8 @@ call plug#begin('~/.config/nvim/plugged')
     nmap <leader>md :%!markdown --html4tags <cr>
 
     " remove extra whitespace
-    nmap <leader><space> :%s/\s\+$<cr>
-    nmap <leader><space><space> :%s/\n\{2,}/\r\r/g<cr>
+    " nmap <leader><space> :%s/\s\+$<cr>
+    " nmap <leader><space><space> :%s/\n\{2,}/\r\r/g<cr>
 
     inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
     inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
@@ -261,7 +260,7 @@ call plug#begin('~/.config/nvim/plugged')
 			let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
 			let &t_ti = "\<Esc]>2;vim\<Esc>\\" . &t_ti
 			let &t_te = "\Esc><]2;>". previous_title . "\<Esc>\\" . &t_te
-			
+
 			nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
 			nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
 			nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
@@ -332,7 +331,7 @@ call plug#begin('~/.config/nvim/plugged')
     " around line
     vnoremap <silent> al :<c-u>normal! $v0<cr>
     onoremap <silent> al :<c-u>normal! $v0<cr>
-    
+
     " CTRL-U in insert mode deletes a lot. Put an undo-point before it.
     inoremap <C-u> <C-g>u<C-u>
 
@@ -400,7 +399,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " {{{ Run your tests at the speed of thought
         Plug 'janko/vim-test'
-        
+
         nmap <silent> <C-n> :TestNearest <CR>
         nmap <silent> <C-t> :TestFile <CR>
         nmap <silent> <C-s> :TestSuite <CR>
@@ -589,11 +588,11 @@ call plug#begin('~/.config/nvim/plugged')
 
         " Popular snippets
         Plug 'honza/vim-snippets'
-         
+
         " Hit tab to scroll dropdown of suggestions
         imap <Tab> <C-n>
     " }}}
-    
+
     " Linting {{{
         Plug 'desmap/ale-sensible' | Plug 'dense-analysis/ale'
 
@@ -691,10 +690,10 @@ call plug#begin('~/.config/nvim/plugged')
         return !col || getline('.')[col - 1]  =~# '\s'
         endfunction
     " }}}
-    
-    " Switch true for fale and vice versa (plus other common swiches too)
+
+    " Switch true for false and vice versa (plus other common swiches too)
       Plug 'AndrewRadev/switch.vim'
-      let g:switch_mapping = '\' 
+      let g:switch_mapping = '\'
 " }}}
 
 " Language-Specific Configuration {{{
@@ -721,7 +720,7 @@ call plug#begin('~/.config/nvim/plugged')
         " Plug 'slim-template/vim-slim'
     " }}}
 
-    " {{{ Ruby and RoR  
+    " {{{ Ruby and RoR
         Plug 'vim-ruby/vim-ruby'
         Plug 'tpope/vim-rails'
         Plug 'tpope/vim-bundler'
