@@ -190,11 +190,11 @@ call plug#begin('~/.config/nvim/plugged')
     " Shortcut to save file in normal insert, or visual modes
     " :update only saves when there are new changes, unlike :write
     " Normal mode
-    nnoremap <leader>s :update <cr>
+    " nnoremap <leader>s :update <cr>
     " Insert mode: escape to normal mode and update
-    inoremap <leader>s <ESC> :update <cr>
+    " inoremap <leader>s <ESC> :update <cr>
     " Visual mode
-    vnoremap <leader>s :update <cr>
+    " vnoremap <leader>s :update <cr>
 
     " Add blank lines in normal mode using Enter and Shift-Enter(below and above resp.)
     map <Enter> o <ESC>
@@ -690,7 +690,8 @@ call plug#begin('~/.config/nvim/plugged')
         return !col || getline('.')[col - 1]  =~# '\s'
         endfunction
     " }}}
-
+    "
+    " Motions on
     " Switch true for false and vice versa (plus other common swiches too)
       Plug 'AndrewRadev/switch.vim'
       let g:switch_mapping = '\'
