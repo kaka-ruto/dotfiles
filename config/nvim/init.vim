@@ -85,6 +85,8 @@ call plug#begin('~/.config/nvim/plugged')
     set updatetime=300
     set signcolumn=yes
     set shortmess+=c
+    set splitright " Open new split panes to the right
+    set fillchars+=vert:\!
 
     " Set fefault tabs ans spaces control (file specific configurations in config/nvim/ftplugin/)
     setlocal tabstop=2 " the visible width of tabs
@@ -181,7 +183,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " General Mappings {{{
     " set a map leader for more key combos, space
-    let mapleader = '\<Space>'
+    let mapleader = "\<Space>"
 
     " Autosave every time something has been changed in normal mode and when the user leaves insert mode
     Plug '907th/vim-auto-save'
@@ -381,6 +383,7 @@ call plug#begin('~/.config/nvim/plugged')
     " easy commenting motions
     Plug 'tpope/vim-commentary'
     nmap \\ gcc
+    vmap \\ gcc
     nmap <leader>dc :g/#/d <CR>
 
     " mappings which are simply short normal mode aliases for commonly used ex commands
@@ -396,7 +399,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Insert or delete brackets, parens, quotes in pair
     Plug 'jiangmiao/auto-pairs'
-
+ 
     " {{{ Run your tests at the speed of thought
         Plug 'janko/vim-test'
 
@@ -406,8 +409,8 @@ call plug#begin('~/.config/nvim/plugged')
         nmap <silent> <C-g> :TestLast <CR>
         " nmap <silent> <C-g> :TestVisit <CR>
 
-        " Execute tests using vimux.vim
-        let test#strategy = "dispatch"
+        " Execute tests using dispatch
+        let test#strategy = 'dispatch'
     " }}}
 
     " enables repeating other supported plugins with the . command
@@ -478,6 +481,10 @@ call plug#begin('~/.config/nvim/plugged')
     " Highlight copied text
     Plug 'machakann/vim-highlightedyank'
 
+    " Animate pane resizing
+    Plug 'camspiers/animate.vim'
+    Plug 'camspiers/lens.vim'
+
     " File type icons
     Plug 'ryanoasis/vim-devicons'
     let g:WebDevIconsOS = 'Darwin'
@@ -488,7 +495,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Ranger {{{
         " Use ranger for file exploration (install with 'brew install ranger')
-        let g:ranger_replace_netrw = 1
+        " let g:ranger_replace_netrw = 1
     " }}}
 
     " Enable opening a file in a given line
@@ -500,8 +507,10 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'yuki-ycino/fzf-preview.vim'
         let g:fzf_preview_use_dev_icons = 1
 
-        nnoremap <C-p> :FzfPreviewProjectFiles <cr>
-        nnoremap <C-b> :FzfPreviewBuffers <cr>
+        nnoremap <C-p> :FzfPreviewProjectFiles <CR>
+        nnoremap <C-b> :FzfPreviewBuffers <CR>
+        nnoremap <C-f> :FzfPreviewProjectGrep <CR>
+         
         "Plug '/usr/local/opt/fzf'
         "Plug 'junegunn/fzf.vim'
         "let g:fzf_layout = { 'down': '~25%' }
@@ -584,8 +593,9 @@ call plug#begin('~/.config/nvim/plugged')
 
     " UltiSnips, snippets in Vim {{{
         Plug 'SirVer/ultisnips'
-        let g:UltiSnipsExpandTrigger=";"
-
+        let g:UltiSnipsExpandTrigger = '\'
+        let g:UltiSnipsJumpForwardTrigger = '\'
+         
         " Popular snippets
         Plug 'honza/vim-snippets'
 
@@ -690,8 +700,34 @@ call plug#begin('~/.config/nvim/plugged')
         return !col || getline('.')[col - 1]  =~# '\s'
         endfunction
     " }}}
-    "
-    " Motions on
+    
+    " Motions on steroids
+    Plug 'justinmk/vim-sneak'
+     " Plug 'easymotion/vim-easymotion'
+
+     " Default leader is <leader><leader>
+       
+     " <Leader>f{char} to move to {char}
+     " map  <Leader>f <Plug>(easymotion-bd-f)
+     " nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+     " s{char}{char} to move to {char}{char}
+     " nmap s <Plug>(easymotion-s2)
+     " nmap t <Plug>(easymotion-t2)
+
+     " Move to line
+     " map <Leader>l <Plug>(easymotion-bd-jk)
+
+     " Move to word
+     " map  <Leader>w <Plug>(easymotion-bd-w)
+     " nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+     " let g:EasyMotion_smartcase = 1
+      
+     " n-char search motion
+      " map  // <Plug>(easymotion-sn)
+      " omap // <Plug>(easymotion-tn)
+
     " Switch true for false and vice versa (plus other common swiches too)
       Plug 'AndrewRadev/switch.vim'
       let g:switch_mapping = '\'
@@ -725,6 +761,7 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'vim-ruby/vim-ruby'
         Plug 'tpope/vim-rails'
         Plug 'tpope/vim-bundler'
+        Plug 'ecomba/vim-ruby-refactoring'
 
         " Rapid navigation to factory definition
         Plug 'christoomey/vim-rfactory'
