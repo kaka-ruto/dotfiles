@@ -135,8 +135,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Load colorschemes
     Plug 'chriskempson/base16-vim'
-    " Plug 'altercation/vim-colors-solarized'
-    Plug 'arcticicestudio/nord-vim'
+    Plug 'lifepillar/vim-solarized8'
 
     " LightLine {{{
         Plug 'itchyny/lightline.vim'
@@ -842,10 +841,7 @@ call plug#end()
         let base16colorspace=256
         source ~/.vimrc_background
     else
-       " syntax enable
-       " set background=dark
-       " colorscheme solarized
-       colorscheme nord
+       colorscheme solarized8_flat
       " Make vim transparent 
       " hi Normal guibg=NONE ctermbg=NONE
     endif
