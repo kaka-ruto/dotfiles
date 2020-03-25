@@ -10,6 +10,7 @@ echo "=============================="
 
 formulas=(
     bat
+    ccat
     diff-so-fancy
     dnsmasq
     fzf
@@ -25,7 +26,7 @@ formulas=(
     the_silver_searcher
     shellcheck
     tmux
-    trash
+    rmtrash
     tree
     wget
     vim

@@ -135,7 +135,6 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Load colorschemes
     Plug 'chriskempson/base16-vim'
-    Plug 'joshdick/onedark.vim'
 
     " LightLine {{{
         Plug 'itchyny/lightline.vim'
@@ -842,9 +841,7 @@ call plug#end()
         let base16colorspace=256
         source ~/.vimrc_background
     else
-        let g:onedark_termcolors=16
-        let g:onedark_terminal_italics=1
-        colorscheme onedark
+        hi Normal guibg=NONE ctermbg=NONE
     endif
     syntax on
 
