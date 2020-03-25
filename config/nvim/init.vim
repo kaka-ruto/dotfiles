@@ -135,6 +135,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Load colorschemes
     Plug 'chriskempson/base16-vim'
+    " Plug 'altercation/vim-colors-solarized'
+    Plug 'arcticicestudio/nord-vim'
 
     " LightLine {{{
         Plug 'itchyny/lightline.vim'
@@ -490,11 +492,10 @@ call plug#begin('~/.config/nvim/plugged')
     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
     let g:DevIconsEnableFoldersOpenClose = 1
     let g:DevIconsEnableFolderExtensionPatternMatching = 1
-    let g:WebdeviconsEnableDenite = 1
 
     " Ranger {{{
         " Use ranger for file exploration (install with 'brew install ranger')
-        " let g:ranger_replace_netrw = 1
+        let g:ranger_replace_netrw = 1
     " }}}
 
     " Enable opening a file in a given line
@@ -841,7 +842,12 @@ call plug#end()
         let base16colorspace=256
         source ~/.vimrc_background
     else
-        hi Normal guibg=NONE ctermbg=NONE
+       " syntax enable
+       " set background=dark
+       " colorscheme solarized
+       colorscheme nord
+      " Make vim transparent 
+      " hi Normal guibg=NONE ctermbg=NONE
     endif
     syntax on
 
