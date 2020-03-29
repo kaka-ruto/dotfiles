@@ -12,7 +12,7 @@ source "$DOTFILES/zsh/git_prompt.zsh"
 source "$DOTFILES/zsh/jobs_prompt.zsh"
 source "$DOTFILES/zsh/node_prompt.zsh"
 
-PROMPT_SYMBOL='❯'
+PROMPT_SYMBOL='➤'
 
 ASYNC_PROC=0
 function async() {
