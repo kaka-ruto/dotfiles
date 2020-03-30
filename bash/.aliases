@@ -13,7 +13,7 @@ alias ........="cd ../../../.."
 alias del="rmtrash" 
 
 # Shortcuts
-alias p="cd ~/projects"
+alias tx=tmuxinator
 
 # Git
 alias ga="git add"

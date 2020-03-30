@@ -26,6 +26,7 @@ formulas=(
     the_silver_searcher
     shellcheck
     tmux
+    tmuxinator
     rmtrash
     tree
     wget
