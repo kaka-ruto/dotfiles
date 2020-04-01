@@ -702,6 +702,7 @@ call plug#begin('~/.config/nvim/plugged')
     
     " Motions on steroids
     Plug 'justinmk/vim-sneak'
+    let g:sneak#s_next = 1
      " Plug 'easymotion/vim-easymotion'
 
      " Default leader is <leader><leader>
