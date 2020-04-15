@@ -67,6 +67,7 @@ call plug#begin('~/.config/nvim/plugged')
     set wrapmargin=8 " wrap lines when coming within n characters from side
     set linebreak " set soft wrapping
     set showbreak=… " show ellipsis at breaking
+    set formatoptions-=t " Turn line autowrapping off in insert mode, formatoptions+=t to turn on
     set autoindent " automatically set indent of new line
     set ttyfast " faster redrawing
     set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
@@ -372,6 +373,11 @@ call plug#begin('~/.config/nvim/plugged')
         " when there are multiple windows open
         autocmd FileType qf wincmd J
         autocmd FileType qf nmap <buffer> q :q<cr>
+    augroup END
+
+    augroup templates
+      " Insert skeleton code to new Ruby files, eg frozen string literal comments
+      autocmd BufNewFile *.rb 0r ~/.dotfiles/config/nvim/templates/skeleton.rb
     augroup END
 " }}}
 
@@ -843,8 +849,6 @@ call plug#end()
         source ~/.vimrc_background
     else
        colorscheme solarized8_flat
-      " Make vim transparent 
-      " hi Normal guibg=NONE ctermbg=NONE
     endif
     syntax on
 
@@ -858,4 +862,9 @@ call plug#end()
     highlight xmlAttrib cterm=italic term=italic gui=italic
     " highlight Type cterm=italic term=italic gui=italic
     highlight Normal ctermbg=none
+     
+    " Make vim transparent 
+    " highlight Normal guibg=NONE ctermbg=NONE
+    " highlight NonText guibg=NONE ctermbg=NONE
+    " highlight CursorLine guibg=NONE ctermbg=NONE
 " }}}
