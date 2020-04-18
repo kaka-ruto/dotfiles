@@ -18,10 +18,10 @@ fi
 export LC_ALL=en_US.UTF-8
 
 if [ -z "$TMUX" ]; then
-    tic -x $DOTFILES/resources/xterm-256color-italic.terminfo
+    tic $DOTFILES/resources/xterm-256color-italic.terminfo
     export TERM=xterm-256color-italic
 else
-    tic $DOTFILES/resources/tmux-256color-italic.terminfo
+    tic -x $DOTFILES/resources/tmux-256color-italic.terminfo
     export TERM=tmux-256color-italic
 fi
 
