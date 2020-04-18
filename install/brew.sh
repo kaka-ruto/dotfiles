@@ -68,4 +68,8 @@ fi
 if [[ "$SHELL" != "$zsh_path" ]]; then
     chsh -s "$zsh_path"
     echo "default shell changed to $zsh_path"
+
+    # Source zshrc
+    echo "source ~/.dotfiles/zsh/zshenv.symlink" >> ~/.zshrc
+    echo "source ~/.dotfiles/zsh/zshrc.symlink" >> ~/.zshrc
 fi

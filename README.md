@@ -1,8 +1,10 @@
 # Dotfiles
 
-Welcome to my world. This is a collection of vim, tmux, and zsh configurations. Interested in a video walkthrough of the dotfiles? Check out my talk, [vim + tmux](https://www.youtube.com/watch?v=5r6yzFEXajQ).
+Welcome to my world. This is a collection of vim, tmux, and zsh configurations. Interested in a video walkthrough of the dotfiles? Check out this talk, [vim + tmux](https://www.youtube.com/watch?v=5r6yzFEXajQ).
 
-Obviously this setup works for me, a JavaScript developer on macOS, but this particular setup may not work for you. If this particular setup doesn't work for you, please steal ideas from this and if you like, contribute back tips, tricks, and other tidbits via Pull Requests if you like!
+If you want to learn about Vim in general, check out Thoughtbot's Upcase [Learn Vim](https://thoughtbot.com/upcase/vim) tutorial.
+
+Obviously this setup works for me, a mainstream Ruby and part time JavaScript developer on macOS, but this particular setup may not work for you. If this particular setup doesn't work for you, please steal ideas from this and if you like, contribute back tips, tricks, and other tidbits via Pull Requests if you like!
 ![A screenshot of the dotfiles setup](screenshot.png)
 
 ## Contents
@@ -35,7 +37,7 @@ If on OSX, you will need to install the XCode CLI tools before continuing. To do
 Then, clone the dotfiles repository to your home directory as `~/.dotfiles`. 
 
 ```bash
-➜ git clone https://github.com/nicknisi/dotfiles.git ~/.dotfiles
+➜ git clone https://github.com/borenho/dotfiles.git ~/.dotfiles
 ➜ cd ~/.dotfiles
 ➜ ./install.sh
 ```
@@ -109,7 +111,7 @@ Inside of [`.zshrc`](zsh/zshrc.symlink), the `EDITOR` shell variable is set to `
 vim and neovim should just work once the correct plugins are installed. To install the plugins, you will need to open Neovim in the following way:
 
 ```bash
-➜ nvim +PlugInstall
+$ nvim +PlugInstall
 ```
 
 ## Fonts
@@ -122,6 +124,10 @@ Tmux is a terminal multiplexor which lets you create windows and splits in the t
 
 When tmux starts up, [login-shell](bin/login-shell) will be run and if it determines you are running this on macOS, it will call reattach-to-user-namespace, to fix the system clipboard for use inside of tmux.
 
+I also user [tmuxinator](https://github.com/tmuxinator/tmuxinator) to manage my different project's tmux sessions. 
+
+You can find my tmuxinator config files in `config/tmuxinator/`
+
 ## Questions
 
-If you have questions, notice issues,  or would like to see improvements, please open an [issue](https://github.com/nicknisi/dotfiles/issues/new) and I'm happy to help you out!
+If you have questions, notice issues,  or would like to see improvements, please open an [issue](https://github.com/borenho/dotfiles/issues/new) and I'm happy to help you out!
