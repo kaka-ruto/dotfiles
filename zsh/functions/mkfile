@@ -1,3 +1,7 @@
-mkfile() { 
-    mkdir -p $(dirname "$1") && touch "$1" 
+mkfile() {
+    mkdir -p $(dirname "$1") && touch "$1"
+
+    if [ -d .git ]; then
+        git add "$1"
+    fi;
 }

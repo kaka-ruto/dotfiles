@@ -37,9 +37,12 @@ prepend_path $HOME/bin
 
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
-if [[ -d ~/code ]]; then
+if [[ -d ~/Code ]]; then
     export CODE_DIR=~/Code
 fi
+
+# Use <C-Space> for word-to-word autocompletion (partial autocompletion)
+bindkey '^ ' forward-word
 
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10

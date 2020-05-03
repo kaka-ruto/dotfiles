@@ -512,9 +512,22 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'yuki-ycino/fzf-preview.vim'
         let g:fzf_preview_use_dev_icons = 1
 
-        nnoremap <C-p> :FzfPreviewProjectFiles <CR>
+        " Select project files
+        nnoremap <leader>pf :FzfPreviewProjectFiles <CR>
+        " Select file from git ls-files
+        nnoremap <C-p> :FzfPreviewGitFiles <CR>
+        " Select file from directory files (default to current working directory) (Required [ripgrep]
+        nnoremap <C-df> :FzfPreviewDirectoryFiles <CR>
+        " Select git status listed file
+        nnoremap <leader>gs :FzfPreviewGitStatus <CR>
+        " Select file buffers
         nnoremap <C-b> :FzfPreviewBuffers <CR>
-        nnoremap <C-f> :FzfPreviewProjectGrep <CR>
+        " Select all buffers
+        nnoremap <C-ab> :FzfPreviewAllBuffers <CR>
+        " Grep project files from args word 
+        nnoremap <C-f> :FzfPreviewProjectGrep <Space>
+        " Grep project files for selected word
+        xnoremap <C-f> "sy:FzfPreviewProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
          
         "Plug '/usr/local/opt/fzf'
         "Plug 'junegunn/fzf.vim'
@@ -620,10 +633,11 @@ call plug#begin('~/.config/nvim/plugged')
         let g:ale_fixers = {
               \   '*': ['remove_trailing_lines', 'trim_whitespace'],
               \   'javascript': ['eslint'],
-              \   'ruby': ['rubocop']
+              \   'ruby': ['rubocop', 'solargraph']
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
+        let g:ale_fix_on_save = 1
 
         nmap <leader>f :ALEFix <CR>
     " }}}
