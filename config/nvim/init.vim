@@ -405,7 +405,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Insert or delete brackets, parens, quotes in pair
     Plug 'jiangmiao/auto-pairs'
- 
+
     " {{{ Run your tests at the speed of thought
         Plug 'janko/vim-test'
 
@@ -524,11 +524,11 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <C-b> :FzfPreviewBuffers <CR>
         " Select all buffers
         nnoremap <C-ab> :FzfPreviewAllBuffers <CR>
-        " Grep project files from args word 
+        " Grep project files from args word
         nnoremap <C-f> :FzfPreviewProjectGrep <Space>
         " Grep project files for selected word
         xnoremap <C-f> "sy:FzfPreviewProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
-         
+
         "Plug '/usr/local/opt/fzf'
         "Plug 'junegunn/fzf.vim'
         "let g:fzf_layout = { 'down': '~25%' }
@@ -613,7 +613,7 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'SirVer/ultisnips'
         let g:UltiSnipsExpandTrigger = '\'
         let g:UltiSnipsJumpForwardTrigger = '\'
-         
+
         " Popular snippets
         Plug 'honza/vim-snippets'
 
@@ -633,7 +633,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:ale_fixers = {
               \   '*': ['remove_trailing_lines', 'trim_whitespace'],
               \   'javascript': ['eslint'],
-              \   'ruby': ['rubocop', 'solargraph']
+              \   'ruby': ['rubocop']
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
@@ -719,14 +719,14 @@ call plug#begin('~/.config/nvim/plugged')
         return !col || getline('.')[col - 1]  =~# '\s'
         endfunction
     " }}}
-    
+
     " Motions on steroids
     Plug 'justinmk/vim-sneak'
     let g:sneak#s_next = 1
      " Plug 'easymotion/vim-easymotion'
 
      " Default leader is <leader><leader>
-       
+
      " <Leader>f{char} to move to {char}
      " map  <Leader>f <Plug>(easymotion-bd-f)
      " nmap <Leader>f <Plug>(easymotion-overwin-f)
@@ -743,7 +743,7 @@ call plug#begin('~/.config/nvim/plugged')
      " nmap <Leader>w <Plug>(easymotion-overwin-w)
 
      " let g:EasyMotion_smartcase = 1
-      
+
      " n-char search motion
       " map  // <Plug>(easymotion-sn)
       " omap // <Plug>(easymotion-tn)
@@ -781,6 +781,29 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'vim-ruby/vim-ruby'
         Plug 'tpope/vim-rails'
         Plug 'tpope/vim-bundler'
+        Plug 'tpope/vim-rake'
+
+        let g:rails_projections = {
+              \  "app/controllers/*_controller.rb": {
+              \      "test": [
+              \        "spec/requests/{}_spec.rb",
+              \        "spec/controllers/{}_controller_spec.rb",
+              \        "test/controllers/{}_controller_test.rb"
+              \      ],
+              \      "alternate": [
+              \        "spec/requests/{}_spec.rb",
+              \        "spec/controllers/{}_controller_spec.rb",
+              \        "test/controllers/{}_controller_test.rb"
+              \      ],
+              \   },
+              \   "spec/requests/*_spec.rb": {
+              \      "command": "request",
+              \      "alternate": "app/controllers/{}_controller.rb",
+              \      "template": "require 'rails_helper'\n\n" .
+              \        "RSpec.describe '{}' do\nend",
+              \   },
+              \ }
+
         Plug 'ecomba/vim-ruby-refactoring'
 
         " Rapid navigation to factory definition
@@ -876,8 +899,8 @@ call plug#end()
     highlight xmlAttrib cterm=italic term=italic gui=italic
     " highlight Type cterm=italic term=italic gui=italic
     highlight Normal ctermbg=none
-     
-    " Make vim transparent 
+
+    " Make vim transparent
     " highlight Normal guibg=NONE ctermbg=NONE
     " highlight NonText guibg=NONE ctermbg=NONE
     " highlight CursorLine guibg=NONE ctermbg=NONE
