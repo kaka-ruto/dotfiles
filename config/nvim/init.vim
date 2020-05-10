@@ -783,6 +783,7 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'tpope/vim-bundler'
         Plug 'tpope/vim-rake'
 
+        " For projectionist.vim (comes with rake.vim)
         let g:rails_projections = {
               \  "app/controllers/*_controller.rb": {
               \      "test": [
@@ -818,36 +819,36 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 
     " JavaScript {{{
-        Plug 'othree/yajs.vim', { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
-        " Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
-        Plug 'moll/vim-node', { 'for': 'javascript' }
-        Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
-        Plug 'MaxMEllon/vim-jsx-pretty'
-        let g:vim_jsx_pretty_highlight_close_tag = 1
+        " Plug 'othree/yajs.vim', { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
+        Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
+        " Plug 'moll/vim-node', { 'for': 'javascript' }
+        " Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
+        " Plug 'MaxMEllon/vim-jsx-pretty'
+        " let g:vim_jsx_pretty_highlight_close_tag = 1
     " }}}
 
     " TypeScript {{{
-        Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx'] }
+        " Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx'] }
         " Plug 'Shougo/vimproc.vim', { 'do': 'make' } TODO what still needs this?
     " }}}
 
     " Styles {{{
-        Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
-        Plug 'groenewege/vim-less', { 'for': 'less' }
-        Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-        Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-        Plug 'stephenway/postcss.vim', { 'for': 'css' }
+        " Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
+        " Plug 'groenewege/vim-less', { 'for': 'less' }
+        " Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+        " Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+        " Plug 'stephenway/postcss.vim', { 'for': 'css' }
     " }}}
 
     " markdown {{{
-        Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-        let g:markdown_fenced_languages = [ 'tsx=typescript.tsx' ]
+        " Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+        " let g:markdown_fenced_languages = [ 'tsx=typescript.tsx' ]
 
         " Open markdown files in Marked.app - mapped to <leader>m
-        Plug 'itspriddle/vim-marked', { 'for': 'markdown', 'on': 'MarkedOpen' }
-        nmap <leader>m :MarkedOpen!<cr>
-        nmap <leader>mq :MarkedQuit<cr>
-        nmap <leader>* *<c-o>:%s///gn<cr>
+        " Plug 'itspriddle/vim-marked', { 'for': 'markdown', 'on': 'MarkedOpen' }
+        " nmap <leader>m :MarkedOpen!<cr>
+        " nmap <leader>mq :MarkedQuit<cr>
+        " nmap <leader>* *<c-o>:%s///gn<cr>
     " }}}
 
     " JSON {{{
@@ -855,7 +856,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:vim_json_syntax_conceal = 0
     " }}}
 
-    Plug 'fatih/vim-go', { 'for': 'go' }
+    " Plug 'fatih/vim-go', { 'for': 'go' }
     Plug 'ekalinin/Dockerfile.vim'
 
     " VueJS {{{
@@ -881,12 +882,7 @@ call plug#end()
 " Colorscheme and final setup {{{
     " This call must happen after the plug#end() call to ensure
     " that the colorschemes have been loaded
-    if filereadable(expand("~/.vimrc_background"))
-        let base16colorspace=256
-        source ~/.vimrc_background
-    else
-       colorscheme solarized8_flat
-    endif
+    colorscheme solarized8_flat
     syntax on
 
     " make the highlighting of tabs and other non-text less annoying
