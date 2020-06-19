@@ -427,6 +427,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     " single/multi line code handler: gS - split one line into multiple, gJ - combine multiple lines into one
     Plug 'AndrewRadev/splitjoin.vim'
+    nmap gj :SplitjoinSplit <CR>
+    nmap gk :SplitjoinJoin <CR>
 
     " add end, endif, etc. automatically
     Plug 'tpope/vim-endwise'
@@ -513,7 +515,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:fzf_preview_use_dev_icons = 1
 
         " Select project files
-        nnoremap <leader>pf :FzfPreviewProjectFiles <CR>
+        nnoremap <C-[> :FzfPreviewProjectFiles <CR>
         " Select file from git ls-files
         nnoremap <C-p> :FzfPreviewGitFiles <CR>
         " Select file from directory files (default to current working directory) (Required [ripgrep]
@@ -723,6 +725,8 @@ call plug#begin('~/.config/nvim/plugged')
     " Motions on steroids
     Plug 'justinmk/vim-sneak'
     let g:sneak#s_next = 1
+    map m <Plug>Sneak_s
+    " map S <Plug>Sneak_S
      " Plug 'easymotion/vim-easymotion'
 
      " Default leader is <leader><leader>
@@ -751,6 +755,9 @@ call plug#begin('~/.config/nvim/plugged')
     " Switch true for false and vice versa (plus other common swiches too)
       Plug 'AndrewRadev/switch.vim'
       let g:switch_mapping = '\'
+
+      " Productivity - how much time do I spend on each project?
+      Plug 'wakatime/vim-wakatime'
 " }}}
 
 " Language-Specific Configuration {{{
@@ -776,6 +783,9 @@ call plug#begin('~/.config/nvim/plugged')
         " Slim templating syntax highlighting
         " Plug 'slim-template/vim-slim'
     " }}}
+
+    " Regenerate tags and get the task out of my way
+    Plug 'ludovicchabant/vim-gutentags'
 
     " {{{ Ruby and RoR
         Plug 'vim-ruby/vim-ruby'
@@ -833,7 +843,7 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 
     " Styles {{{
-        " Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
+        Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
         " Plug 'groenewege/vim-less', { 'for': 'less' }
         " Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
         " Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
@@ -841,7 +851,7 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 
     " markdown {{{
-        " Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+        Plug 'tpope/vim-markdown', { 'for': 'markdown' }
         " let g:markdown_fenced_languages = [ 'tsx=typescript.tsx' ]
 
         " Open markdown files in Marked.app - mapped to <leader>m

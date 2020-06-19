@@ -24,3 +24,6 @@ tscommand*.txt
 
 # npm things
 npm-debug.log
+tags
+*.pem
+encrypted_data_bag_secret
