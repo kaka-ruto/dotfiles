@@ -515,7 +515,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:fzf_preview_use_dev_icons = 1
 
         " Select project files
-        nnoremap <C-[> :FzfPreviewProjectFiles <CR>
+        nnoremap <C-;> :FzfPreviewProjectFiles <CR>
         " Select file from git ls-files
         nnoremap <C-p> :FzfPreviewGitFiles <CR>
         " Select file from directory files (default to current working directory) (Required [ripgrep]
@@ -640,6 +640,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
         let g:ale_fix_on_save = 1
+        let g:ale_javascript_prettier_options = '--single-quote'
 
         nmap <leader>f :ALEFix <CR>
     " }}}

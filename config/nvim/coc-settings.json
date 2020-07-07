@@ -15,11 +15,15 @@
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "git.addGBlameToBufferVar": true,
     "coc.preferences.formatOnSaveFiletypes": ["typescript", "javascript", "typescript.tsx", "typescriptreact", "javascriptreact"],
-    "solargraph.hover": true,
+
+	"solargraph.hover": true,
     "solargraph.completion": true,
     "solargraph.autoformat": true,
+    "solargraph.formatting": true,
+    "solargraph.folding": true,
     "solargraph.symbols": true,
     "solargraph.definitions": true,
     "solargraph.rename": true,
-    "solargraph.references": true
+    "solargraph.references": true,
+    "solargraph.diagnostics": true
 }

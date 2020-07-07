@@ -1,6 +1,7 @@
 # Prepend programming language binaries via ASDF shims
 PATH="$HOME/.asdf/bin:$PATH"
 PATH="$HOME/.asdf/shims:$PATH"
+PATH="$PATH:$(yarn global bin)"
 
 export -U PATH
 

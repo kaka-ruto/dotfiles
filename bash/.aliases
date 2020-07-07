@@ -10,10 +10,10 @@ alias ......="cd ../../.."
 alias ........="cd ../../../.."
 
 # So you never have to use rm again (install rmtrash to use)
-alias del="rmtrash" 
+alias del="rmtrash"
 
 # Shortcuts
-alias tx=tmuxinator
+alias tx="ASDF_RUBY_VERSION=2.6.5 tmuxinator"
 
 # Git
 alias ga="git add"
