@@ -2,7 +2,8 @@ set -g default-shell $SHELL
 
 # tmux display things in 256 colors
 set -g default-terminal "tmux-256color-italic"
-set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
+# set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
+set -ga terminal-overrides ",*256col*:Tc"
 
 set -g history-limit 20000
 
@@ -58,7 +59,7 @@ bind - split-window -v -c "#{pane_current_path}"
 
 # synchronize all panes in a window
 bind y setw synchronize-panes
- 
+
 # Kill all panes except the current one
 bind k kill-pane -a
 

@@ -312,7 +312,7 @@ call plug#begin('~/.config/nvim/plugged')
     nnoremap <silent> $ g$
 
     " Insert char at cursor position in normal mode
-    nnoremap <C-r> i <ESC>r
+    " nnoremap <C-r> i <ESC>r
     " Append char after cursor position in normal mode
     nnoremap <C-a> a <ESC>r
 
@@ -515,7 +515,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:fzf_preview_use_dev_icons = 1
 
         " Select project files
-        nnoremap <C-;> :FzfPreviewProjectFiles <CR>
+        nnoremap <C-q> :FzfPreviewProjectFiles <CR>
         " Select file from git ls-files
         nnoremap <C-p> :FzfPreviewGitFiles <CR>
         " Select file from directory files (default to current working directory) (Required [ripgrep]

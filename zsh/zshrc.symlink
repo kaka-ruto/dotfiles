@@ -26,10 +26,11 @@ else
     export TERM=tmux-256color-italic
 fi
 
+fpath=($fpath ~/.zsh/completion)
 
-# initialize autocomplete
-autoload -U compinit add-zsh-hook
-compinit
+# initialize autocomplete for oh-my-zsh
+# autoload -U compinit add-zsh-hook
+# compinit
 
 prepend_path /usr/local/opt/grep/libexec/gnubin
 prepend_path /usr/local/sbin

@@ -16,7 +16,7 @@
     "git.addGBlameToBufferVar": true,
     "coc.preferences.formatOnSaveFiletypes": ["typescript", "javascript", "typescript.tsx", "typescriptreact", "javascriptreact"],
 
-	"solargraph.hover": true,
+    "solargraph.hover": false,
     "solargraph.completion": true,
     "solargraph.autoformat": true,
     "solargraph.formatting": true,
