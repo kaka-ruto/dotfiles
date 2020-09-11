@@ -189,6 +189,9 @@ call plug#begin('~/.config/nvim/plugged')
     " Autosave every time something has been changed in normal mode and when the user leaves insert mode
     Plug '907th/vim-auto-save'
     let g:auto_save = 1  " enable AutoSave on Vim startup
+    let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+    let g:auto_save_no_updatetime = 1  " do not change the 'updatetime' option
+    let g:auto_save_silent = 1  " do not display the auto-save notification
 
     " Shortcut to save file in normal insert, or visual modes
     " :update only saves when there are new changes, unlike :write
@@ -349,7 +352,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Stop repeating jjjj... Stop repeating kkkk...
     Plug 'takac/vim-hardtime'
-    let g:hardtime_default_on = 1
+    " let g:hardtime_default_on = 1
     " Get off my lawn
     nnoremap <Left> :echoe "Use h"<CR>
     nnoremap <Right> :echoe "Use l"<CR>
@@ -646,7 +649,7 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 
     " coc {{{
-        Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
         let g:coc_global_extensions = [
         \ 'coc-css',
