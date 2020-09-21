@@ -498,10 +498,10 @@ call plug#begin('~/.config/nvim/plugged')
 
     " File type icons
     Plug 'ryanoasis/vim-devicons'
-    let g:WebDevIconsOS = 'Darwin'
-    let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-    let g:DevIconsEnableFoldersOpenClose = 1
-    let g:DevIconsEnableFolderExtensionPatternMatching = 1
+    " let g:WebDevIconsOS = 'Darwin'
+    " let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+    " let g:DevIconsEnableFoldersOpenClose = 1
+    " let g:DevIconsEnableFolderExtensionPatternMatching = 1
 
     " Ranger {{{
         " Use ranger for file exploration (install with 'brew install ranger')
@@ -511,77 +511,36 @@ call plug#begin('~/.config/nvim/plugged')
     " Enable opening a file in a given line
     Plug 'bogado/file-line'
 
+    Plug 'junegunn/vim-peekaboo'
+
     " FZF {{{
-        " FZF with floating previews
-        set  runtimepath+=/usr/local/opt/fzf
-        Plug 'yuki-ycino/fzf-preview.vim'
+        Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
+
+        " FZF with floating previews through coc-fzf-preview
+        nmap , [fzf-p]
+        xmap , [fzf-p]
+
+        nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+        nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
+        nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
+        nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
+        nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+        nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
+        nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
+        nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
+        nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
+        nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+        nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+        xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+        nnoremap <silent> [fzf-p]t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
+        nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
+        nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
+
+        " Use vim-devicons
         let g:fzf_preview_use_dev_icons = 1
 
-        " Select project files
-        nnoremap <C-q> :FzfPreviewProjectFiles <CR>
-        " Select file from git ls-files
-        nnoremap <C-p> :FzfPreviewGitFiles <CR>
-        " Select file from directory files (default to current working directory) (Required [ripgrep]
-        nnoremap <C-df> :FzfPreviewDirectoryFiles <CR>
-        " Select git status listed file
-        nnoremap <leader>gs :FzfPreviewGitStatus <CR>
-        " Select file buffers
-        nnoremap <C-b> :FzfPreviewBuffers <CR>
-        " Select all buffers
-        nnoremap <C-ab> :FzfPreviewAllBuffers <CR>
-        " Grep project files from args word
-        nnoremap <C-f> :FzfPreviewProjectGrep <Space>
-        " Grep project files for selected word
-        xnoremap <C-f> "sy:FzfPreviewProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
-
-        "Plug '/usr/local/opt/fzf'
-        "Plug 'junegunn/fzf.vim'
-        "let g:fzf_layout = { 'down': '~25%' }
-
-        " if isdirectory(".git")
-            " if in a git project, use :GFiles
-            " nmap <silent> <leader>t :GitFiles --cached --others --exclude-standard<cr>
-        " else
-            " otherwise, use :FZF
-            " nmap <silent> <leader>t :FZF<cr>
-        " endif
-
-        " nmap <silent> <leader>y :GFiles?<cr>
-
-        " nmap <silent> <leader>r :Buffers<cr>
-        " nmap <silent> <leader>e :FZF<cr>
-        " nmap <leader><tab> <plug>(fzf-maps-n)
-        " xmap <leader><tab> <plug>(fzf-maps-x)
-        " omap <leader><tab> <plug>(fzf-maps-o)
-
-        " Insert mode completion
-        " imap <c-x><c-k> <plug>(fzf-complete-word)
-        " imap <c-x><c-f> <plug>(fzf-complete-path)
-        "imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-        "imap <c-x><c-l> <plug>(fzf-complete-line)
-
-        "nnoremap <silent> <Leader>C :call fzf#run({
-        "\   'source':
-        "\     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
-        "\         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
-        "\   'sink':    'colo',
-        "\   'options': '+m',
-        "\   'left':    30
-        "\ })<CR>
-
-        "command! FZFMru call fzf#run({
-        "\  'source':  v:oldfiles,
-        "\  'sink':    'e',
-        " \  'options': '-m -x +s',
-        "\  'down':    '40%'})
-
-        "command! -bang -nargs=* Find call fzf#vim#grep(
-         "   \ 'rg --column --line-number --no-heading --follow --color=always '.<q-args>, 1,
-          "  \ <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
-        "command! -bang -nargs=? -complete=dir Files
-         "   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:50%', '?'), <bang>0)
-        "command! -bang -nargs=? -complete=dir GitFiles
-         "   \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview('right:50%', '?'), <bang>0)
+        " devicons character width
+        let g:fzf_preview_dev_icon_prefix_string_length = 3
     " }}}
 
     " vim-fugitive {{{
@@ -645,7 +604,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:ale_fix_on_save = 1
         let g:ale_javascript_prettier_options = '--single-quote'
 
-        nmap <leader>f :ALEFix <CR>
+        " nmap <leader>f :ALEFix <CR>
     " }}}
 
     " coc {{{
@@ -666,7 +625,8 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'coc-ultisnips',
         \ 'coc-solargraph',
         \ 'coc-tailwindcss',
-        \ 'coc-vetur'
+        \ 'coc-vetur',
+        \ 'coc-fzf-preview'
         \ ]
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
