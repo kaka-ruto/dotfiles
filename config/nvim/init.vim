@@ -163,7 +163,7 @@ call plug#begin('~/.config/nvim/plugged')
             \       'filename': 'helpers#lightline#fileName',
             \       'fileformat': 'helpers#lightline#fileFormat',
             \       'filetype': 'helpers#lightline#fileType',
-            \       'gitbranch': 'helpers#lightline#gitBranch',
+            \       'gitbranch': 'FugitiveHead',
             \       'cocstatus': 'coc#status',
             \       'currentfunction': 'helpers#lightline#currentFunction',
             \       'gitblame': 'helpers#lightline#gitBlame'
@@ -484,7 +484,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Close buffers but keep splits
     Plug 'moll/vim-bbye'
-    nmap <leader>b :Bdelete<cr>
+    nmap <leader>bb :Bdelete<cr>
 
     " context-aware pasting
     Plug 'sickill/vim-pasta'
@@ -498,10 +498,10 @@ call plug#begin('~/.config/nvim/plugged')
 
     " File type icons
     Plug 'ryanoasis/vim-devicons'
-    " let g:WebDevIconsOS = 'Darwin'
-    " let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-    " let g:DevIconsEnableFoldersOpenClose = 1
-    " let g:DevIconsEnableFolderExtensionPatternMatching = 1
+    let g:WebDevIconsOS = 'Darwin'
+    let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+    let g:DevIconsEnableFoldersOpenClose = 1
+    let g:DevIconsEnableFolderExtensionPatternMatching = 1
 
     " Ranger {{{
         " Use ranger for file exploration (install with 'brew install ranger')
@@ -517,8 +517,8 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 
         " FZF with floating previews through coc-fzf-preview
-        nmap , [fzf-p]
-        xmap , [fzf-p]
+        nmap <leader> [fzf-p]
+        xmap <leader> [fzf-p]
 
         nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
         nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
