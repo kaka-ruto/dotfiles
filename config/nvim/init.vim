@@ -785,11 +785,9 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'christoomey/vim-rfactory'
         nmap rf :Rfactory <CR>
 
-        " Sellecting Ruby blocks using ar and ir
+        " Selecting Ruby blocks using ar and ir
         Plug 'kana/vim-textobj-user'
-        Plug 'nelstrom/vim-textobj-rubyblock'
-        " Requires enabling the matchit plugin
-        runtime macros/matchit.vim
+        Plug 'rhysd/vim-textobj-ruby'
     " }}}
 
     " JavaScript {{{
