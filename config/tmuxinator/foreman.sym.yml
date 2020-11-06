@@ -1,7 +1,7 @@
-# <%= path %>
+# /Users/kaka/.config/tmuxinator/foreman.yml
 
-name: <%= name %>
-root: ~/
+name: foreman
+root: ~/Code/ruby/foreman
 
 # Optional tmux socket
 # socket_name: foo
@@ -41,12 +41,9 @@ root: ~/
 
 windows:
   - editor:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
+      panes: vim app/graphql/foreman_graphql_schema.rb
+
+  - console:
+      layout: even-horizontal
       panes:
-        - vim
-        - guard
-  - server: bundle exec rails s
-  - logs: tail -f log/development.log
+        - git pull

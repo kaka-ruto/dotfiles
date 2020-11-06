@@ -221,6 +221,15 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Edit the vimrc/initvim
     nnoremap cv :edit $INITVIM <cr>
+
+    " Aytomatically reload vimrc on edit
+    if has ('autocmd') " Remain compatible with earlier versions
+      augroup vimrc     " Source vim configuration upon save
+        autocmd! BufWritePost $INITVIM source % | echom "Reloaded " . $INITVIM | redraw
+        autocmd! BufWritePost $INITVIM if has('gui_running') | so % | echom "Reloaded " . $INITVIM | endif | redraw
+      augroup END
+    endif " has autocmd
+
     " edit gitconfig
     map <leader>eg :e! ~/.gitconfig<cr>
 
@@ -517,6 +526,7 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 
         " FZF with floating previews through coc-fzf-preview
+        noremap [fzf-p] <Nop>
         nmap <leader> [fzf-p]
         xmap <leader> [fzf-p]
 
@@ -788,6 +798,9 @@ call plug#begin('~/.config/nvim/plugged')
         " Selecting Ruby blocks using ar and ir
         Plug 'kana/vim-textobj-user'
         Plug 'rhysd/vim-textobj-ruby'
+        " Plug 'nelstrom/vim-textobj-rubyblock'
+          " Requires enabling the matchit plugin
+        " runtime macros/matchit.vim
     " }}}
 
     " JavaScript {{{
@@ -830,6 +843,10 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Plug 'fatih/vim-go', { 'for': 'go' }
     Plug 'ekalinin/Dockerfile.vim'
+
+    " Like context.vim but lightweight. install after Neovim 0.5.0 is realeased
+    " Plug 'nvim-treesitter/nvim-treesitter'
+    " Plug 'romgrk/nvim-treesitter-context'
 
     " VueJS {{{
         Plug 'posva/vim-vue'
