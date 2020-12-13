@@ -249,7 +249,7 @@ call plug#begin('~/.config/nvim/plugged')
     inoremap <expr> <C-j> pumvisible() ? "\<C-N>" : "\<C-j>"
     inoremap <expr> <C-k> pumvisible() ? "\<C-P>" : "\<C-k>"
 
-    nmap <leader>l :set list!<cr>
+    nmap <leader>sl :set list!<cr>
 
     " keep visual selection when indenting/outdenting
     vmap < <gv
@@ -526,7 +526,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/vim-peekaboo'
 
     " FZF {{{
-        Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
+        " Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
+        " set rtp+=/usr/local/opt/fzf
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
         Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release', 'do': ':UpdateRemotePlugins' }
 
         " FZF with floating previews through coc-fzf-preview
@@ -582,7 +585,7 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap gss :Gstatus<CR>
         nnoremap goo :Gcommit -v -q<CR>
         nnoremap gtt :Gcommit -v -q %:p<CR>
-        nnoremap gdd :Gdiff<CR>
+        nnoremap gdd :Gdiffsplit!<CR>
         nnoremap gee :Gedit<CR>
         nnoremap grr :Gread<CR>
         nnoremap gww :Gwrite<CR><CR>
@@ -597,6 +600,9 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap gbb :Gblame<CR>
         nnoremap g- :Silent Git stash<CR>:e<CR>
         nnoremap g+ :Silent Git stash pop<CR>:e<CR>
+        " Merge conflicts
+        nnoremap <leader>ll :diffget //3<CR>
+        nnoremap <leader>hh :diffget //2<CR>
         " Auto-clean fugitive buffers
         autocmd BufReadPost fugitive://* set bufhidden=delete
 
@@ -769,6 +775,34 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Regenerate tags and get the task out of my way
     Plug 'ludovicchabant/vim-gutentags'
+    let g:gutentags_add_default_project_roots = 0
+    let g:gutentags_project_root  = ['package.json', '.git', '.hg', '.svn']
+    let g:gutentags_cache_dir = expand('~/.gutentags_cache')
+    let g:gutentags_exclude_filetypes = ['gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail', 'git']
+    let g:gutentags_generate_on_new = 1
+    let g:gutentags_generate_on_missing = 1
+    let g:gutentags_generate_on_write = 1
+    let g:gutentags_generate_on_empty_buffer = 0
+    let g:gutentags_ctags_extra_args = ['--tag-relative=yes', '--fields=+ailmnS']
+    let g:gutentags_ctags_exclude = [
+    \  '*.git', '*.svn', '*.hg',
+    \  'cache', 'build', 'dist', 'bin', 'node_modules', 'bower_components',
+    \  '*-lock.json',  '*.lock',
+    \  '*.min.*',
+    \  '*.bak',
+    \  '*.zip',
+    \  '*.pyc',
+    \  '*.class',
+    \  '*.sln',
+    \  '*.tmp',
+    \  '*.cache',
+    \  '*.pdb',
+    \  '*.exe', '*.dll', '*.bin',
+    \  '*.swp', '*.swo',
+    \  '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png', '*.svg',
+    \  '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+    \  '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx', '*.xls',
+    \]
 
     " {{{ Ruby and RoR
         Plug 'vim-ruby/vim-ruby'
@@ -879,7 +913,11 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 " Example of how to set the ruby host to a particualr Ruby version using asdf
-" let g:ruby_host_prog = '~/.asdf/shims/neovim-ruby-host'
+  let g:ruby_host_prog = '~/.asdf/shims/neovim-ruby-host'
+  " let g:python_host_prog = '~/.asdf/shims/python2'
+  " Disable python 2 support
+  let g:loaded_python_provider = 0
+  let g:python3_host_prog = '~/.asdf/shims/python3'
 
 " Colorscheme and final setup {{{
     " This call must happen after the plug#end() call to ensure
