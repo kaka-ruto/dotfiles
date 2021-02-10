@@ -102,4 +102,10 @@ bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-
 source ~/.dotfiles/tmux/base16.sh
 
 ######## Tmux Plugins #########
+# Save tmux sessions
 set -g @plugin 'tmux-plugins/tmux-resurrect'
+# Save (neo)vim sessions
+set -g @resurrect-strategy-nvim 'session'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

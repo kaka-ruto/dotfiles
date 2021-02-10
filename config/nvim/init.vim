@@ -415,6 +415,9 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'tpope/vim-dispatch'
 
+    " Save vim/neovim sessions
+    Plug 'tpope/vim-obsession'
+
     " A collection of language packs
     Plug 'sheerun/vim-polyglot'
 
@@ -639,8 +642,12 @@ call plug#begin('~/.config/nvim/plugged')
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
-        let g:ale_fix_on_save = 1
+        " let g:ale_fix_on_save = 1
         let g:ale_javascript_prettier_options = '--single-quote'
+        let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+        let g:ale_sign_error = '✘'
+        let g:ale_sign_warning = '⚠'
+        let g:ale_lint_on_text_changed = 'never'
 
         nmap <leader>f :ALEFix <CR>
     " }}}
@@ -662,7 +669,8 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'coc-ultisnips',
         \ 'coc-solargraph',
         \ 'coc-tailwindcss',
-        \ 'coc-vetur'
+        \ 'coc-vetur',
+        \ 'coc-cfn-lint'
         \ ]
         " \ 'coc-fzf-preview'
 
@@ -814,17 +822,17 @@ call plug#begin('~/.config/nvim/plugged')
         let g:rails_projections = {
               \  "app/controllers/*_controller.rb": {
               \      "test": [
-              \        "spec/requests/{}_spec.rb",
+              \        "spec/requests/{}_request_spec.rb",
               \        "spec/controllers/{}_controller_spec.rb",
               \        "test/controllers/{}_controller_test.rb"
               \      ],
               \      "alternate": [
-              \        "spec/requests/{}_spec.rb",
+              \        "spec/requests/{}_request_spec.rb",
               \        "spec/controllers/{}_controller_spec.rb",
               \        "test/controllers/{}_controller_test.rb"
               \      ],
               \   },
-              \   "spec/requests/*_spec.rb": {
+              \   "spec/requests/*_request_spec.rb": {
               \      "command": "request",
               \      "alternate": "app/controllers/{}_controller.rb",
               \      "template": "require 'rails_helper'\n\n" .
@@ -832,6 +840,7 @@ call plug#begin('~/.config/nvim/plugged')
               \   },
               \ }
 
+        Plug 'vim-scripts/a.vim'
         Plug 'ecomba/vim-ruby-refactoring'
 
         " C-c, C-c to send code to a REPL

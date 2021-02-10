@@ -1,7 +1,7 @@
 # /Users/kaka/.config/tmuxinator/sokotrack-api.yml
 
 name: sokotrack-api
-root: ~/Code/soko/sokotrack/sokotrack-api
+root: ~/Code/clients/soko/sokotrack/sokotrack-api
 
 # Optional tmux socket
 # socket_name: foo

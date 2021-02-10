@@ -20,6 +20,7 @@ alias ga="git add"
 alias gs="g s"
 alias gp="g push"
 alias gc="g commit"
+alias gl="g l"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -132,6 +133,7 @@ alias be="bundle exec"
 alias ber="bundle exec rails"
 alias bers="bundle exec rspec"
 alias berdm="bundle exec rails db:migrate"
+alias bergm="bundle exec rails g migration"
 alias berdr="bundle exec rails db:rollback"
 alias berds="bundle exec rails db:seed"
 alias bi="bundle install"
@@ -144,5 +146,9 @@ alias rca='rubocop -a' # Run rubocop autocorrect
 alias rcagc='rubocop --auto-gen-config' # Run rubocop autogen config
 
 # Docker
-alias dcr='docker-compose run'
-alias dcrr='docker-compose run runner'
+alias docker-rm-dangling-images='docker rmi $(docker images -qa -f 'dangling=true')'
+alias docker-rm-all-containers='docker rm $(docker ps -aq)'
+alias docker-rm-stopped-containers='docker container prune'
+alias docker-rm-all-images='docker rmi $(docker images -a -q)'
+#Run the AWS CLI v2 from within a Docker container as if it was installed on the host system
+alias aws-docker='docker run --rm -ti -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
