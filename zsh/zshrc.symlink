@@ -1,7 +1,12 @@
 # Prepend programming language binaries via ASDF shims
+# ArmHomebrewfirst
+PATH="/opt/homebrew/bin:$PATH"
+# IntelHomebrewLast
+PATH="/usr/local/bin/brew:$PATH"
 PATH="$HOME/.asdf/bin:$PATH"
 PATH="$HOME/.asdf/shims:$PATH"
-PATH="$PATH:$(yarn global bin)"
+# PATH="$PATH:$(yarn global bin)"
+PATH="$HOME/.neovim/bin:$PATH"
 
 export -U PATH
 
@@ -119,9 +124,18 @@ fi
 # add a config file for ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
+
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export ASDF_DATA_DIR=`brew --prefix asdf`/
+# source $ASDF_DATA_DIR/asdf.sh
+# source /opt/homebrew/opt/asdf/asdf.sh
+# source $HOME/.asdf/asdf.sh 
+# local ASDF_PATH=$(ibrew --prefix asdf)
+# source /sr/asdf.sh
+ 
+
 
 # alias git to hub
 if type hub > /dev/null 2>&1; then
@@ -148,3 +162,19 @@ export LESS_TERMCAP_mh=$(tput dim)
 if hash brew 2>/dev/null; then
     source `brew --prefix`/etc/profile.d/z.sh
 fi
+
+# Install Rubies {
+# Setup Compiler paths for readline and openssl
+# local READLINE_PATH=$(ibrew --prefix readline)
+# local OPENSSL_PATH=$(brew --prefix openssl)
+# export LDFLAGS="-L$OPENSSL_PATH/lib"
+# export CPPFLAGS="-I$OPENSSL_PATH/include"
+# export PKG_CONFIG_PATH="$OPENSLL_PATH/lib/pkgconfig"
+
+# Use the OpenSSL from Homebrew instead of ruby-build
+# export RUBY_CONFIGURE_OPTS="--with-readline-dir=$READLINE_PATH"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
+
+# Place openssl@1.1 at the beginning of your PATH (preempt system libs)
+# export PATH=$OPENSSL_PATH/bin:$PATH
+# }

@@ -89,7 +89,9 @@ bind Escape copy-mode
 unbind p
 bind p paste-buffer
 bind -T copy-mode-vi 'v' send -X begin-selection
-bind -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+# bind -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+# bind-key -T copy-mode-vi 'y' send -X copy-pipe "kitty +kitten clipboard"
+bind-key -T copy-mode-vi y if-shell "test ! -z $KITTY_WINDOW_ID" "send-keys -X copy-pipe 'kitty +kitten clipboard'" "send-keys -X copy-pipe  'pbcopy'"
 
 # Buffers to/from Mac clipboard, yay tmux book from pragprog
 bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
@@ -106,6 +108,8 @@ source ~/.dotfiles/tmux/base16.sh
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 # Save (neo)vim sessions
 set -g @resurrect-strategy-nvim 'session'
+# Copy on tmux
+set -g @plugin 'tmux-plugins/tmux-yank'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'

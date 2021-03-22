@@ -9,8 +9,8 @@ alias ....="cd ../.."
 alias ......="cd ../../.."
 alias ........="cd ../../../.."
 
-# So you never have to use rm again (install rmtrash to use)
-alias del="rmtrash"
+# So you never have to use rm again (install trash to use)
+alias del="trash"
 
 # Shortcuts
 alias tx="=tmuxinator"
@@ -50,7 +50,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Colorize 'cat'
-alias cat=ccat
+# alias cat=ccat
 
 # Get week number
 alias week_number='date +%V'
@@ -152,3 +152,13 @@ alias docker-rm-stopped-containers='docker container prune'
 alias docker-rm-all-images='docker rmi $(docker images -a -q)'
 #Run the AWS CLI v2 from within a Docker container as if it was installed on the host system
 alias aws-docker='docker run --rm -ti -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+alias dcr='docker-compose run'
+alias dcrr='docker-compose run runner'
+
+# Rosetta 2
+alias a='arch --arm64'
+alias abrew='a /usr/local/bin/brew'
+
+# x86 Homebrew
+alias i="arch -x86_64"
+alias ibrew="i /usr/local/bin/brew"

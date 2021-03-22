@@ -9,6 +9,7 @@ echo -e "\\n\\nInstalling homebrew packages..."
 echo "=============================="
 
 formulas=(
+    asdf
     bat
     ccat
     diff-so-fancy
@@ -20,26 +21,24 @@ formulas=(
     hub
     markdown
     mas
-    "neovim --HEAD"
+    # "neovim --HEAD"
     # python
     reattach-to-user-namespace
     the_silver_searcher
     shellcheck
     tmux
-    tmuxinator
+    # tmuxinator
     trash
     tree
     wget
-    vim
+    # vim
     z
     # zsh
     ripgrep
     git-standup
     entr
     # yarn
-    gpg
-    gawk
-    asdf
+    ctags
 )
 
 for formula in "${formulas[@]}"; do
@@ -47,7 +46,7 @@ for formula in "${formulas[@]}"; do
     if brew list "$formula_name" > /dev/null 2>&1; then
         echo "$formula_name already installed... skipping."
     else
-        brew install "$formula"
+         arch -arm64 brew install "$formula"
     fi
 done
 
@@ -59,7 +58,7 @@ echo "=============================="
 # after the install, install neovim python libraries
 echo -e "\\n\\nRunning Neovim Python install"
 echo "=============================="
-pip3 install pynvim
+# pip3 install pynvim
 
 # Change the default shell to zsh
 zsh_path="$( command -v zsh )"

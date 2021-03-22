@@ -532,7 +532,8 @@ call plug#begin('~/.config/nvim/plugged')
         " Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
         " set rtp+=/usr/local/opt/fzf
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-        " Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/remote', 'do': ':UpdateRemotePlugins' }
+        Plug 'junegunn/fzf.vim'
+        Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 
         " FZF with floating previews
         noremap [fzf-p] <Nop>
@@ -922,7 +923,7 @@ call plug#end()
   " let g:python_host_prog = '~/.asdf/shims/python2'
   " Disable python 2 support
   let g:loaded_python_provider = 0
-  let g:python3_host_prog = '~/.asdf/shims/python3'
+  let g:python3_host_prog = '~/.asdf/shims/python'
 
 " Colorscheme and final setup {{{
     " This call must happen after the plug#end() call to ensure
