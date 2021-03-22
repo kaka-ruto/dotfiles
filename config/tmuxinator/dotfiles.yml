@@ -44,4 +44,7 @@ windows:
       layout: even-horizontal
       panes:
         - vim config/nvim/init.vim
-        - vim config/alacritty/alacritty.sym.yml
+  - bash:
+      layout: even-horizontal
+      panes:
+        - git update
