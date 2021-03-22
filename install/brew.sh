@@ -21,22 +21,25 @@ formulas=(
     markdown
     mas
     "neovim --HEAD"
-    python
+    # python
     reattach-to-user-namespace
     the_silver_searcher
     shellcheck
     tmux
     tmuxinator
-    rmtrash
+    trash
     tree
     wget
     vim
     z
-    zsh
+    # zsh
     ripgrep
     git-standup
     entr
-    yarn
+    # yarn
+    gpg
+    gawk
+    asdf
 )
 
 for formula in "${formulas[@]}"; do
