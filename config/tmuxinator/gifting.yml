@@ -1,7 +1,8 @@
-# /Users/kaka/.config/tmuxinator/sokotrack-web.yml
+# /Users/kaka/.config/tmuxinator/gifting.yml
 
-name: sokotrack-web
-root: ~/Code/clients/soko/sokotrack-web
+name: gifting
+# root: ~/Code/clients/plecco/ourgivingboard-api
+root: ~/Code/clients/ourgivingboard/ourgivingboard-api
 
 # Optional tmux socket
 # socket_name: foo
@@ -41,14 +42,43 @@ root: ~/Code/clients/soko/sokotrack-web
 
 windows:
   - editor:
-      panes: vim components/buttons/create.vue
+      panes: vim app/models/user.rb
 
   - console:
       layout: even-horizontal
       panes:
+        # - bundle exec rails c
+        # - export AWS_PROFILE=givingboard && git status
         - git status
 
-  - server:
+  - staging-server:
       layout: even-horizontal
       panes:
-        - npm run dev
+        # - export AWS_PROFILE=givingboard && saw watch /docker-compose/ourgivingboard-staging --raw
+        - saw watch /docker-compose/ourgivingboard-staging --raw
+
+  - staging-console:
+      layout: even-horizontal
+      panes:
+        # - be rails c -e staging
+        # - export AWS_PROFILE=givingboard
+        - git update
+
+  - prod-server:
+      layout: even-horizontal
+      panes:
+        # - export AWS_PROFILE=givingboard && saw watch /docker-compose/ourgivingboard-prod --raw
+        - saw watch /docker-compose/ourgivingboard-prod --raw
+
+  - prod-console:
+      layout: even-horizontal
+      panes:
+        # - be rails c -e production
+        # - export AWS_PROFILE=givingboard
+        - gl -5
+
+  - database:
+      layout: even-horizontal
+      panes:
+        # - export AWS_PROFILE=givingboard && make dbcon
+        - gs

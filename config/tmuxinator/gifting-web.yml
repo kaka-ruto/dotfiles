@@ -1,7 +1,7 @@
-# /Users/kaka/.config/tmuxinator/gifting.yml
+# /Users/kaka/.config/tmuxinator/gifting-web.yml
 
-name: gifting
-root: ~/Code/clients/plecco/ourgivingboard-api
+name: gifting-web
+root: ~/Code/clients/ourgivingboard/ourgivingboard-web
 
 # Optional tmux socket
 # socket_name: foo
@@ -41,37 +41,14 @@ root: ~/Code/clients/plecco/ourgivingboard-api
 
 windows:
   - editor:
-      panes: vim app/models/user.rb
+      panes: vim .env
 
   - console:
       layout: even-horizontal
       panes:
-        # - bundle exec rails c
-        - export AWS_PROFILE=givingboard && git status
+        - git update
 
-  - staging-server:
+  - server:
       layout: even-horizontal
       panes:
-        - export AWS_PROFILE=givingboard && saw watch /docker-compose/ourgivingboard-staging --raw
-
-  - staging-console:
-      layout: even-horizontal
-      panes:
-        # - be rails c -e staging
-        - export AWS_PROFILE=givingboard
-
-  - prod-server:
-      layout: even-horizontal
-      panes:
-        - export AWS_PROFILE=givingboard && saw watch /docker-compose/ourgivingboard-prod --raw
-
-  - prod-console:
-      layout: even-horizontal
-      panes:
-        # - be rails c -e production
-        - export AWS_PROFILE=givingboard
-
-  - database:
-      layout: even-horizontal
-      panes:
-        - export AWS_PROFILE=givingboard && make dbcon
+        - npm start
