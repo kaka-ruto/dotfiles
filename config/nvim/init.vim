@@ -630,12 +630,12 @@ call plug#begin('~/.config/nvim/plugged')
         " Set specific linters
         let g:ale_linters = {
               \   'javascript': ['eslint'],
-              \   'ruby': ['rubocop', 'solargraph'],
+              \   'ruby': ['standardrb', 'solargraph'],
               \}
         let g:ale_fixers = {
               \   '*': ['remove_trailing_lines', 'trim_whitespace'],
               \   'javascript': ['eslint'],
-              \   'ruby': ['rubocop']
+              \   'ruby': ['standardrb']
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
@@ -811,6 +811,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     " {{{ Ruby and RoR
         Plug 'vim-ruby/vim-ruby'
+        " Configure vim-ruby to use the same indentation style as standardrb
+        let g:ruby_indent_assignment_style = 'variable'
         Plug 'tpope/vim-rails'
         Plug 'tpope/vim-bundler'
         Plug 'tpope/vim-rake'
@@ -919,7 +921,7 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 " Example of how to set the ruby host to a particualr Ruby version using asdf
-  let g:ruby_host_prog = '~/.asdf/shims/neovim-ruby-host'
+  let g:ruby_host_prog = '~/.asdf/shims/ruby'
   " let g:python_host_prog = '~/.asdf/shims/python2'
   " Disable python 2 support
   let g:loaded_python_provider = 0
