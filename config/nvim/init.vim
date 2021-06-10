@@ -228,6 +228,11 @@ call plug#begin('~/.config/nvim/plugged')
         autocmd! BufWritePost $INITVIM source % | echom "Reloaded " . $INITVIM | redraw
         autocmd! BufWritePost $INITVIM if has('gui_running') | so % | echom "Reloaded " . $INITVIM | endif | redraw
       augroup END
+      " Create non-existing directories when I write a new file with :e path/to/new_file.rb
+      autocmd BufWritePre *
+            \ if '<afile>' !~ '^scp:' && !isdirectory(expand('<afile>:h')) |
+            \ call mkdir(expand('<afile>:h'), 'p') |
+            \ endif
     endif " has autocmd
 
     " edit gitconfig
@@ -418,6 +423,33 @@ call plug#begin('~/.config/nvim/plugged')
     " Save vim/neovim sessions
     Plug 'tpope/vim-obsession'
 
+    " Better Netrw
+    Plug 'tpope/vim-vinegar'
+    " Open netrw in the dir of the current file
+    nnoremap <leader>ff :Lex %:p:h<CR>  
+    " Open netrw in the current working dir
+    nnoremap <Leader>fa :Lex<CR>
+    let g:netrw_liststyle = 3  " Use tree view
+    let g:netrw_winsize = 10 " Smaller default window size
+    " let g:netrw_keepdir = 0 " Keep current and browsing dir synced
+    let g:netrw_browse_split = 2 "Open files vertically
+    function! NetrwMapping()
+      " Go back in history
+      nmap <buffer> H u
+      " Go up a dir
+      nmap <buffer> h -^
+      " Open a dir or file
+      nmap <buffer> l <CR>
+      " Toggle dotfiles
+      nmap <buffer> . gh
+      " Close the preview window
+      nmap <buffer> P <C-w>z
+      " Open a file and close netrw
+      nmap <buffer> L <CR>:Lex<CR>
+      " Close netrw
+      nmap <buffer> <Leader>ff :Lex<CR>
+    endfunction
+
     " A collection of language packs
     Plug 'sheerun/vim-polyglot'
 
@@ -517,11 +549,6 @@ call plug#begin('~/.config/nvim/plugged')
     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
     let g:DevIconsEnableFoldersOpenClose = 1
     let g:DevIconsEnableFolderExtensionPatternMatching = 1
-
-    " Ranger {{{
-        " Use ranger for file exploration (install with 'brew install ranger')
-        let g:ranger_replace_netrw = 1
-    " }}}
 
     " Enable opening a file in a given line
     Plug 'bogado/file-line'

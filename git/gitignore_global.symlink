@@ -28,3 +28,6 @@ tags
 tags.*
 *.pem
 encrypted_data_bag_secret
+
+# Python environments
+venv
