@@ -72,6 +72,7 @@ call plug#begin('~/.config/nvim/plugged')
     set ttyfast " faster redrawing
     set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
     set laststatus=2 " show the status line all the time
+    set statusline+=%F " always show file full path
     set so=7 " set 7 lines to the cursors - when moving vertical
     set wildmenu " enhanced command line completion
     set hidden " current buffer can be put into background
@@ -426,20 +427,22 @@ call plug#begin('~/.config/nvim/plugged')
     " Better Netrw
     Plug 'tpope/vim-vinegar'
     " Open netrw in the dir of the current file
-    nnoremap <leader>ff :Lex %:p:h<CR>  
+    nnoremap <leader>ff :Lex %:p:h<CR>
     " Open netrw in the current working dir
     nnoremap <Leader>fa :Lex<CR>
     let g:netrw_liststyle = 3  " Use tree view
     let g:netrw_winsize = 10 " Smaller default window size
     " let g:netrw_keepdir = 0 " Keep current and browsing dir synced
     let g:netrw_browse_split = 2 "Open files vertically
+    let g:netrw_preview   = 1   " Open previews vertically
+
     function! NetrwMapping()
       " Go back in history
       nmap <buffer> H u
       " Go up a dir
       nmap <buffer> h -^
       " Open a dir or file
-      nmap <buffer> l <CR>
+      " nmap <buffer> l <CR>
       " Toggle dotfiles
       nmap <buffer> . gh
       " Close the preview window
@@ -474,6 +477,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " .editorconfig support
     Plug 'editorconfig/editorconfig-vim'
+    let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
     " single/multi line code handler: gS - split one line into multiple, gJ - combine multiple lines into one
     Plug 'AndrewRadev/splitjoin.vim'
@@ -657,17 +661,19 @@ call plug#begin('~/.config/nvim/plugged')
         " Set specific linters
         let g:ale_linters = {
               \   'javascript': ['eslint'],
-              \   'ruby': ['standardrb', 'solargraph'],
+              \   'javascriptreact': ['prettier'],
+              \   'ruby': ['rubocop', 'solargraph'],
               \}
         let g:ale_fixers = {
               \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-              \   'javascript': ['eslint'],
-              \   'ruby': ['standardrb']
+              \   'javascript': ['prettier'],
+              \   'javascriptreact': ['prettier'],
+              \   'ruby': ['rubocop']
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
         " let g:ale_fix_on_save = 1
-        let g:ale_javascript_prettier_options = '--single-quote'
+        let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
         let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
         let g:ale_sign_error = '✘'
         let g:ale_sign_warning = '⚠'
@@ -682,14 +688,11 @@ call plug#begin('~/.config/nvim/plugged')
         let g:coc_global_extensions = [
         \ 'coc-css',
         \ 'coc-json',
-        \ 'coc-tsserver',
         \ 'coc-git',
-        \ 'coc-eslint',
         \ 'coc-pairs',
         \ 'coc-sh',
         \ 'coc-vimlsp',
         \ 'coc-emmet',
-        \ 'coc-prettier',
         \ 'coc-ultisnips',
         \ 'coc-solargraph',
         \ 'coc-tailwindcss',
@@ -701,7 +704,7 @@ call plug#begin('~/.config/nvim/plugged')
         autocmd CursorHold * silent call CocActionAsync('highlight')
 
         " coc-prettier
-        command! -nargs=0 Prettier :CocCommand prettier.formatFile
+        " command! -nargs=0 Prettier :CocCommand prettier.formatFile
         " nmap <leader>f :CocCommand prettier.formatFile<cr>
 
         " coc-git

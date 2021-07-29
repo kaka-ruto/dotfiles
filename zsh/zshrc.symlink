@@ -178,3 +178,8 @@ fi
 # Place openssl@1.1 at the beginning of your PATH (preempt system libs)
 # export PATH=$OPENSSL_PATH/bin:$PATH
 # }
+
+# Python
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.asdf/installs/python/3.9.2/bin/virtualenv
+source ~/.asdf/installs/python/3.9.2/bin/virtualenvwrapper.sh

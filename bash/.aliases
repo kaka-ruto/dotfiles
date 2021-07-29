@@ -19,8 +19,16 @@ alias tx="=tmuxinator"
 alias ga="git add"
 alias gs="g s"
 alias gp="g push"
+alias gu="g update"
 alias gc="g commit"
 alias gl="g l"
+# Uncommit + unstage
+alias undo="git reset HEAD~"
+# Uncommit + unstage + clean
+alias hard-reset="git reset --hard HEAD~"
+alias hard-reset=""
+alias remote-reset="git reset --hard @{upstream}"
+alias discard="git checkout ."
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
