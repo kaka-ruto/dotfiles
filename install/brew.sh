@@ -46,6 +46,7 @@ for formula in "${formulas[@]}"; do
     if brew list "$formula_name" > /dev/null 2>&1; then
         echo "$formula_name already installed... skipping."
     else
+<<<<<<< HEAD
         arch_name="$(uname -m)"
  
         if [ "${arch_name}" = "x86_64" ]; then
@@ -62,6 +63,26 @@ for formula in "${formulas[@]}"; do
         else
             echo "Unknown architecture: ${arch_name}"
         fi
+||||||| parent of ad447da (Check processor before brew install)
+         arch -arm64 brew install "$formula"
+=======
+        arch_name="$(uname -m)"
+ 
+        if [ "${arch_name}" = "x86_64" ]; then
+            if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
+                echo "Running on Rosetta 2"
+                brew install "$formula"
+            else
+                echo "Running on native Intel"
+                brew install "$formula"
+            fi 
+        elif [ "${arch_name}" = "arm64" ]; then
+            echo "Running on ARM"
+            arch -arm64 brew install "$formula"
+        else
+            echo "Unknown architecture: ${arch_name}"
+        fi
+>>>>>>> ad447da (Check processor before brew install)
     fi
 done
 

@@ -186,3 +186,5 @@ then
     export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.asdf/installs/python/3.9.2/bin/virtualenv
     source ~/.asdf/installs/python/3.9.2/bin/virtualenvwrapper.sh
 fi
+
+
