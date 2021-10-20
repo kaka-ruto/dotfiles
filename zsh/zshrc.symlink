@@ -180,6 +180,9 @@ fi
 # }
 
 # Python
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.asdf/installs/python/3.9.2/bin/virtualenv
-source ~/.asdf/installs/python/3.9.2/bin/virtualenvwrapper.sh
+if [[ -d "$HOME/.virtualenvs" ]]
+then
+    export WORKON_HOME=$HOME/.virtualenvs
+    export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.asdf/installs/python/3.9.2/bin/virtualenv
+    source ~/.asdf/installs/python/3.9.2/bin/virtualenvwrapper.sh
+fi

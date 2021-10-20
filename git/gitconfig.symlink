@@ -33,6 +33,7 @@
     abort = rebase --abort
 
     l = log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
 
     # show what I did today
     daytoday = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday\" --author=\"`git config --get user.name`\"'"

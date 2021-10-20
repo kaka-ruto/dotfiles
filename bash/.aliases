@@ -22,7 +22,7 @@ alias gp="g push"
 alias gu="g update"
 alias gc="g commit"
 alias gl="g l"
-# Uncommit + unstage
+# Uncommit + unstage the last commit
 alias undo="git reset HEAD~"
 # Uncommit + unstage + clean
 alias hard-reset="git reset --hard HEAD~"
