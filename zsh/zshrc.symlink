@@ -187,4 +187,13 @@ then
     source ~/.asdf/installs/python/3.9.2/bin/virtualenvwrapper.sh
 fi
 
+# Kitty
+export KITTY_CONFIG_DIRECTORY="$DOTFILES/config/kitty/kitty.sym.conf"
 
+# Mycli pager: https://www.mycli.net/pager
+export LESS="-SRXF"
+
+# Change default posgres user and database
+export PGDATABASE=postgres
+export PGUSER=postgres
+export PGHOST=localhost

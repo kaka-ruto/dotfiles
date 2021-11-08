@@ -455,6 +455,9 @@ call plug#begin('~/.config/nvim/plugged')
       " Close netrw
       nmap <buffer> <Leader>ff :Lex<CR>
     endfunction
+    " Read or write files with sudo
+    Plug 'lambdalisue/suda.vim'
+    let g:suda_smart_edit = 1
 
     " A collection of language packs
     Plug 'sheerun/vim-polyglot'

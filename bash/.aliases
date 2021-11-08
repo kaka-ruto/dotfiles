@@ -2,6 +2,8 @@
 
 # use nvim, but don't make me think about it
 alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
 
 # Easier navigation
 alias ..="cd .."
@@ -158,10 +160,15 @@ alias docker-rm-dangling-images='docker rmi $(docker images -qa -f 'dangling=tru
 alias docker-rm-all-containers='docker rm $(docker ps -aq)'
 alias docker-rm-stopped-containers='docker container prune'
 alias docker-rm-all-images='docker rmi $(docker images -a -q)'
-#Run the AWS CLI v2 from within a Docker container as if it was installed on the host system
-alias aws-docker='docker run --rm -ti -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+alias dk='docker'
+alias dc='docker-compose'
 alias dcr='docker-compose run'
 alias dcrr='docker-compose run runner'
+alias dcb='docker-compose build'
+alias dcu='docker-compose up'
+alias dcd='docker-compose down'
+#Run the AWS CLI v2 from within a Docker container as if it was installed on the host system
+alias aws-docker='docker run --rm -ti -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
 
 # Rosetta 2
 alias a='arch --arm64'
@@ -170,3 +177,9 @@ alias abrew='a /usr/local/bin/brew'
 # x86 Homebrew
 alias i="arch -x86_64"
 alias ibrew="i /usr/local/bin/brew"
+ 
+# Lazydocker
+alias lzd='lazydocker'
+
+#Dnsmasq
+alias masq-restart='sudo brew services restart dnsmasq'
