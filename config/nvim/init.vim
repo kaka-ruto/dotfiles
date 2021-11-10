@@ -429,14 +429,16 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Better Netrw
     Plug 'tpope/vim-vinegar'
-    " Open netrw in the dir of the current file
-    nnoremap <leader>ff :Lex %:p:h<CR>
     " Open netrw in the current working dir
-    nnoremap <Leader>fa :Lex<CR>
+    nnoremap <leader>fa :Lex %:p:h<CR>
+    " Open netrw in the dir of the current file
+    nnoremap <Leader>ff :Lex<CR>
+    " Remap NetrwRefresh to use c-re instead of c-l
+    nmap <c-re> <Plug>NetrwRefresh
     let g:netrw_liststyle = 3  " Use tree view
     let g:netrw_winsize = 10 " Smaller default window size
     " let g:netrw_keepdir = 0 " Keep current and browsing dir synced
-    let g:netrw_browse_split = 2 "Open files vertically
+    let g:netrw_browse_split = 4 "Open files in the prev window
     let g:netrw_preview   = 1   " Open previews vertically
 
     function! NetrwMapping()
@@ -455,6 +457,7 @@ call plug#begin('~/.config/nvim/plugged')
       " Close netrw
       nmap <buffer> <Leader>ff :Lex<CR>
     endfunction
+     
     " Read or write files with sudo
     Plug 'lambdalisue/suda.vim'
     let g:suda_smart_edit = 1

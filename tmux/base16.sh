@@ -56,4 +56,4 @@ tm_time="#[default,bg=$base00,fg=$base0C] %R"
 tm_date="#[default,bg=$base00,fg=$base0C] %h %d %Y"
 tm_host="#[fg=$base0E,bg=$base00] #h "
  
-set -g status-right "$tm_tunes $tm_battery $tm_time $tm_date"
+set -g status-right "$tm_tunes   $tm_battery $tm_time $tm_date"
