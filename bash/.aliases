@@ -24,6 +24,8 @@ alias gp="g push"
 alias gu="g update"
 alias gc="g commit"
 alias gl="g l"
+alias gd="g diff"
+alias gfo="g fetch origin"
 # Uncommit + unstage the last commit
 alias undo="git reset HEAD~"
 # Uncommit + unstage + clean
@@ -183,3 +185,7 @@ alias lzd='lazydocker'
 
 #Dnsmasq
 alias masq-restart='sudo brew services restart dnsmasq'
+
+# Elixir
+# Prepend you last test with iex -s mix test --trace
+alias mp='fc -e - mix\ test=iex\ -S\ mix\ test\ --trace mix\ test'

@@ -609,10 +609,14 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
         nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
         xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+        nnoremap <silent> [fzf-p]go    :<C-u>CocCommand fzf-preview.CocOutline<CR>
+        nnoremap <silent> [fzf-p]gi    :<C-u>CocCommand fzf-preview.CocImplementations<CR>
+        nnoremap <silent> [fzf-p]gt    :<C-u>CocCommand fzf-preview.CocTypeDefinitions<CR>
+        nnoremap <silent> [fzf-p]gf    :<C-u>CocCommand fzf-preview.CocReferences<CR>
         " Reuse last query
         nnoremap <Leader>G :<C-u>CocCommand fzf-preview.ProjectGrep . --resume<Space>
         nnoremap <silent> [fzf-p]tt     :<C-u>CocCommand fzf-preview.BufferTags<CR>
-        nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
+        nnoremap <silent> [fzf-p]u     :<C-u>CocCommand fzf-preview.QuickFix<CR>
         nnoremap <silent> [fzf-p]ll     :<C-u>CocCommand fzf-preview.LocationList<CR>
 
         " Use vim-devicons
@@ -687,12 +691,14 @@ call plug#begin('~/.config/nvim/plugged')
               \   'javascript': ['eslint'],
               \   'javascriptreact': ['prettier'],
               \   'ruby': ['rubocop', 'solargraph'],
+              \   'elixir': ['mix_format']
               \}
         let g:ale_fixers = {
               \   '*': ['remove_trailing_lines', 'trim_whitespace'],
               \   'javascript': ['prettier'],
               \   'javascriptreact': ['prettier'],
-              \   'ruby': ['rubocop']
+              \   'ruby': ['rubocop'],
+              \   'elixir': ['mix_format']
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
@@ -722,10 +728,12 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'coc-tailwindcss',
         \ 'coc-vetur',
         \ 'coc-cfn-lint',
-        \ 'coc-fzf-preview'
+        \ 'coc-fzf-preview',
+        \ 'coc-elixir'
         \ ]
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
+        autocmd FileType elixir let b:coc_root_patterns = ['mix.exs']
 
         " coc-prettier
         " command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -927,6 +935,11 @@ call plug#begin('~/.config/nvim/plugged')
     " TypeScript {{{
         " Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx'] }
         " Plug 'Shougo/vimproc.vim', { 'do': 'make' } TODO what still needs this?
+    " }}}
+      
+    " Elixir {{{
+        Plug 'elixir-editors/vim-elixir'
+        Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
     " }}}
 
     " Styles {{{
