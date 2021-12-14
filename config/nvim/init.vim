@@ -624,6 +624,7 @@ call plug#begin('~/.config/nvim/plugged')
 
         " devicons character width
         let g:fzf_preview_dev_icon_prefix_string_length = 3
+        " let g:fzf_preview_command = 'bat --color=always --plain {-1}'
 
         " Use true color preview in Neovim 
         augroup fzf_preview
@@ -640,6 +641,8 @@ call plug#begin('~/.config/nvim/plugged')
     " vim-fugitive {{{
         Plug 'tpope/vim-fugitive'
         nnoremap gap :Git add %:p<CR><CR>
+        " Add current file
+        nnoremap gaf :Git add %<CR><CR>
         nnoremap gaa :Git add . <CR><CR>
         nnoremap gss :Gstatus<CR>
         nnoremap goo :Gcommit -v -q<CR>
@@ -674,12 +677,11 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'SirVer/ultisnips'
         let g:UltiSnipsExpandTrigger = '\'
         let g:UltiSnipsJumpForwardTrigger = '\'
+        " Hit tab to scroll dropdown of suggestions
+        imap <Tab> <C-n>
 
         " Popular snippets
         Plug 'honza/vim-snippets'
-
-        " Hit tab to scroll dropdown of suggestions
-        imap <Tab> <C-n>
     " }}}
 
     " Linting {{{
@@ -991,11 +993,13 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 " Example of how to set the ruby host to a particualr Ruby version using asdf
-  let g:ruby_host_prog = '~/.asdf/shims/ruby'
+  let g:ruby_host_prog = '/usr/local/opt/asdf/shims/ruby'
+  " let g:ruby_host_prog = '~/.asdf/shims/ruby'
   " let g:python_host_prog = '~/.asdf/shims/python2'
   " Disable python 2 support
   let g:loaded_python_provider = 0
-  let g:python3_host_prog = '~/.asdf/shims/python'
+  " let g:python3_host_prog = '~/.asdf/shims/python'
+  let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Colorscheme and final setup {{{
     " This call must happen after the plug#end() call to ensure

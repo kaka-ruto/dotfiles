@@ -6,7 +6,8 @@ PATH="/usr/local/bin/brew:$PATH"
 PATH="$HOME/.asdf/bin:$PATH"
 PATH="$HOME/.asdf/shims:$PATH"
 # PATH="$PATH:$(yarn global bin)"
-PATH="$HOME/.neovim/bin:$PATH"
+# PATH="$HOME/.neovim/bin:$PATH"
+PATH="/usr/local/bin/nvim:$PATH"
 
 export -U PATH
 
@@ -128,8 +129,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# export ASDF_DATA_DIR=`brew --prefix asdf`/
-# source $ASDF_DATA_DIR/asdf.sh
 # source /opt/homebrew/opt/asdf/asdf.sh
 # source $HOME/.asdf/asdf.sh 
 # local ASDF_PATH=$(ibrew --prefix asdf)
@@ -163,21 +162,38 @@ if hash brew 2>/dev/null; then
     source `brew --prefix`/etc/profile.d/z.sh
 fi
 
-# Install Rubies {
-# Setup Compiler paths for readline and openssl
-# local READLINE_PATH=$(ibrew --prefix readline)
-# local OPENSSL_PATH=$(brew --prefix openssl)
-# export LDFLAGS="-L$OPENSSL_PATH/lib"
-# export CPPFLAGS="-I$OPENSSL_PATH/include"
-# export PKG_CONFIG_PATH="$OPENSLL_PATH/lib/pkgconfig"
+# Architecture-based exports {
+arch_name="$(uname -m)"
 
-# Use the OpenSSL from Homebrew instead of ruby-build
-# export RUBY_CONFIGURE_OPTS="--with-readline-dir=$READLINE_PATH"
-# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
+if [ "${arch_name}" = "x86_64" ]; then
+    if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
+        echo "Running on Rosetta 2"
+        local OPENSSL_PATH=$(xbrew --prefix openssl)
+        local READLINE_PATH=$(xbrew --prefix readline)
+        local LOCAL_ASDF_DATA_DIR=$(xbrew --prefix asdf)
+    else
+        echo "Running on ARM"
+        local OPENSSL_PATH=$(brew --prefix openssl)
+        local READLINE_PATH=$(brew --prefix readline)
+        local LOCAL_ASDF_DATA_DIR=$(brew --prefix asdf)
+    fi 
+elif [ "${arch_name}" = "arm64" ]; then
+    echo "Running on ARM"
+    arch -arm64 brew install "$formula"
+else
+    echo "Unknown architecture: ${arch_name}"
+fi
 
-# Place openssl@1.1 at the beginning of your PATH (preempt system libs)
-# export PATH=$OPENSSL_PATH/bin:$PATH
+export LDFLAGS="-L$OPENSSL_PATH/lib"
+export CPPFLAGS="-I$OPENSSL_PATH/include"
+export PKG_CONFIG_PATH="$OPENSLL_PATH/lib/pkgconfig"
+export PATH=$OPENSSL_PATH/bin:$PATH
+export RUBY_CONFIGURE_OPTS="--with-readline-dir=$READLINE_PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
 # }
+
+export ASDF_DATA_DIR=$LOCAL_ASDF_DATA_DIR
+source $ASDF_DATA_DIR/asdf.sh
 
 # Python
 if [[ -d "$HOME/.virtualenvs" ]]
@@ -197,3 +213,4 @@ export LESS="-SRXF"
 export PGDATABASE=postgres
 export PGUSER=postgres
 export PGHOST=localhost
+export HOMEBREW_NO_AUTO_UPDATE=1

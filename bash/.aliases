@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # use nvim, but don't make me think about it
-alias vim="nvim"
-alias vi="nvim"
-alias v="nvim"
+alias vim="/usr/local/bin/nvim"
+alias vi="/usr/local/bin/nvim"
+alias v="/usr/local/bin/nvim"
 
 # Easier navigation
 alias ..="cd .."
@@ -177,8 +177,8 @@ alias a='arch --arm64'
 alias abrew='a /usr/local/bin/brew'
 
 # x86 Homebrew
-alias i="arch -x86_64"
-alias ibrew="i /usr/local/bin/brew"
+alias x="arch -x86_64"
+alias xbrew="x /usr/local/bin/brew"
  
 # Lazydocker
 alias lzd='lazydocker'

@@ -1,7 +1,7 @@
-# /Users/kaka/.config/tmuxinator/nayvy.yml
+# /Users/kaka/.config/tmuxinator/autopaye.yml
 
-name: nayvy
-root: ~/Code/clients/thenayvy/nayvy
+name: autopaye
+root: ~/Code/clients/autopaye/autopaye
  
 # Optional tmux socket
 # socket_name: foo
@@ -80,4 +80,3 @@ windows:
       layout: even-horizontal
       panes:
         - gs
-
