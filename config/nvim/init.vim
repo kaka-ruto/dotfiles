@@ -644,7 +644,7 @@ call plug#begin('~/.config/nvim/plugged')
         " Add current file
         nnoremap gaf :Git add %<CR><CR>
         nnoremap gaa :Git add . <CR><CR>
-        nnoremap gss :Gstatus<CR>
+        nnoremap gss :G<CR>
         nnoremap goo :Gcommit -v -q<CR>
         nnoremap gtt :Gcommit -v -q %:p<CR>
         nnoremap gdd :Gdiffsplit!<CR>
@@ -658,6 +658,7 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap gbb :Git branch<Space>
         nnoremap gco :Git checkout<Space>
         nnoremap gpp :Dispatch! Git push<CR>
+        nnoremap gpf :Dispatch! Git push --force-with-lease<CR>
         nnoremap gpl :Dispatch! Git pull<CR>
         nnoremap gbb :Gblame<CR>
         nnoremap g- :Silent Git stash<CR>:e<CR>

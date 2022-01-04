@@ -1,13 +1,14 @@
 # Prepend programming language binaries via ASDF shims
 # ArmHomebrewfirst
-PATH="/opt/homebrew/bin:$PATH"
+# PATH="/opt/homebrew/bin:$PATH"
 # IntelHomebrewLast
-PATH="/usr/local/bin/brew:$PATH"
-PATH="$HOME/.asdf/bin:$PATH"
-PATH="$HOME/.asdf/shims:$PATH"
+# PATH="/usr/local/bin/brew:$PATH"
+# PATH="$HOME/.asdf/bin:$PATH"
+# PATH="$HOME/.asdf/shims:$PATH"
 # PATH="$PATH:$(yarn global bin)"
 # PATH="$HOME/.neovim/bin:$PATH"
 PATH="/usr/local/bin/nvim:$PATH"
+PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 
 export -U PATH
 
@@ -35,8 +36,8 @@ fi
 fpath=($fpath ~/.zsh/completion)
 
 # initialize autocomplete for oh-my-zsh
-# autoload -U compinit add-zsh-hook
-# compinit
+autoload -U compinit add-zsh-hook
+compinit
 
 prepend_path /usr/local/opt/grep/libexec/gnubin
 prepend_path /usr/local/sbin
@@ -129,12 +130,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# source /opt/homebrew/opt/asdf/asdf.sh
-# source $HOME/.asdf/asdf.sh 
-# local ASDF_PATH=$(ibrew --prefix asdf)
-# source /sr/asdf.sh
- 
-
 
 # alias git to hub
 if type hub > /dev/null 2>&1; then
@@ -166,20 +161,27 @@ fi
 arch_name="$(uname -m)"
 
 if [ "${arch_name}" = "x86_64" ]; then
-    if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
-        echo "Running on Rosetta 2"
-        local OPENSSL_PATH=$(xbrew --prefix openssl)
-        local READLINE_PATH=$(xbrew --prefix readline)
-        local LOCAL_ASDF_DATA_DIR=$(xbrew --prefix asdf)
-    else
-        echo "Running on ARM"
-        local OPENSSL_PATH=$(brew --prefix openssl)
-        local READLINE_PATH=$(brew --prefix readline)
-        local LOCAL_ASDF_DATA_DIR=$(brew --prefix asdf)
-    fi 
+    echo "Running on Rosetta 2"
+    local OPENSSL_PATH=$(xbrew --prefix openssl)
+    local READLINE_PATH=$(xbrew --prefix readline)
+    local LOCAL_ASDF_DATA_DIR=$(xbrew --prefix asdf)
+    # Postgres dependency
+    export PATH="/usr/local/opt/libpq/bin:$PATH"
+    export PKG_CONFIG_PATH="/usr/local/opt/libpq/lib/pkgconfig"
 elif [ "${arch_name}" = "arm64" ]; then
     echo "Running on ARM"
-    arch -arm64 brew install "$formula"
+    local OPENSSL_PATH=$(brew --prefix openssl)
+    local READLINE_PATH=$(brew --prefix readline)
+    local LOCAL_ASDF_DATA_DIR=$(brew --prefix asdf)
+    # Postgres dependency
+    export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+    export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+    # Upgraded Libffi
+    export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+    export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
 else
     echo "Unknown architecture: ${arch_name}"
 fi
@@ -188,19 +190,17 @@ export LDFLAGS="-L$OPENSSL_PATH/lib"
 export CPPFLAGS="-I$OPENSSL_PATH/include"
 export PKG_CONFIG_PATH="$OPENSLL_PATH/lib/pkgconfig"
 export PATH=$OPENSSL_PATH/bin:$PATH
-export RUBY_CONFIGURE_OPTS="--with-readline-dir=$READLINE_PATH"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$OPENSSL_PATH"
-# }
 
 export ASDF_DATA_DIR=$LOCAL_ASDF_DATA_DIR
-source $ASDF_DATA_DIR/asdf.sh
+source "$ASDF_DATA_DIR/libexec/asdf.sh"
 
 # Python
 if [[ -d "$HOME/.virtualenvs" ]]
 then
+    local PYTHON_PATH=$(asdf where python)
     export WORKON_HOME=$HOME/.virtualenvs
-    export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.asdf/installs/python/3.9.2/bin/virtualenv
-    source ~/.asdf/installs/python/3.9.2/bin/virtualenvwrapper.sh
+    export VIRTUALENVWRAPPER_VIRTUALENV="$PYTHON_PATH/bin/virtualenv"
+    source "$PYTHON_PATH/bin/virtualenvwrapper.sh"
 fi
 
 # Kitty
