@@ -137,6 +137,13 @@ bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-
 # bind C-j choose-tree
 bind j split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
+# C-g to interactively checkout git branches
+bind g split-window -v "git branch --sort=-committerdate | grep -v '^\*' | fzf --reverse --info=inline | xargs git checkout"
+
+# Move windows to the left/right with ctrl shift left/right
+bind-key -n C-S-Left swap-window -t -1\; select-window -t -1
+bind-key -n C-S-Right swap-window -t +1\; select-window -t +1
+
 ##############################
 ### Color & Style Settings ###
 ##############################

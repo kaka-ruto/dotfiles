@@ -1,7 +1,7 @@
-# /Users/kaka/.config/tmuxinator/data-api.yml
+# /Users/kaka/.config/tmuxinator/data-compiler.yml
 
-name: data-api
-root: ~/Code/clients/betty/data-api
+name: data-compiler
+root: ~/Code/clients/betty/data-compiler
 
 # Optional tmux socket
 # socket_name: foo

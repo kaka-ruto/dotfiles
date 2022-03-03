@@ -226,7 +226,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Edit the vimrc/initvim
     nnoremap cv :edit $INITVIM <cr>
 
-    " Aytomatically reload vimrc on edit
+    " Automatically reload vimrc on edit
     if has ('autocmd') " Remain compatible with earlier versions
       augroup vimrc     " Source vim configuration upon save
         autocmd! BufWritePost $INITVIM source % | echom "Reloaded " . $INITVIM | redraw
@@ -241,6 +241,10 @@ call plug#begin('~/.config/nvim/plugged')
 
     " edit gitconfig
     map <leader>eg :e! ~/.gitconfig<cr>
+    " Open a file in the same dir as the open buffer
+    map ,e :e <C-R>=expand("%:h") . "/" <CR>
+    " split open a file in the same dir as the open buffer
+    map ,v :vs <C-R>=expand("%:h") . "/" <CR>
 
     " clear highlighted search
     noremap <silent> <Esc> <Esc>:let @/ =""<cr>
@@ -689,18 +693,19 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'desmap/ale-sensible' | Plug 'dense-analysis/ale'
 
         let g:ale_linters_explicit = 1 " Run specific linters
+        let g:ale_disable_lsp = 1 " Don't provide LSP features already provided by coc.nvim
         " Set specific linters
         let g:ale_linters = {
               \   'javascript': ['eslint'],
               \   'javascriptreact': ['prettier'],
-              \   'ruby': ['rubocop', 'solargraph'],
+              \   'ruby': ['standardrb'],
               \   'elixir': ['mix_format']
               \}
         let g:ale_fixers = {
               \   '*': ['remove_trailing_lines', 'trim_whitespace'],
               \   'javascript': ['prettier'],
               \   'javascriptreact': ['prettier'],
-              \   'ruby': ['rubocop'],
+              \   'ruby': ['standardrb'],
               \   'elixir': ['mix_format']
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
