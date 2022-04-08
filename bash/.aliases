@@ -189,3 +189,6 @@ alias masq-restart='sudo brew services restart dnsmasq'
 # Elixir
 # Prepend you last test with iex -s mix test --trace
 alias mp='fc -e - mix\ test=iex\ -S\ mix\ test\ --trace mix\ test'
+
+# Kubernetes
+alias k=kubectl

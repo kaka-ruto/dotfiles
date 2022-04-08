@@ -214,3 +214,6 @@ export PGDATABASE=postgres
 export PGUSER=postgres
 export PGHOST=localhost
 export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Extend shell completion for kubectl alias k
+compdef __start_kubectl k

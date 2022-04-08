@@ -219,6 +219,9 @@ call plug#begin('~/.config/nvim/plugged')
     " set paste toggle
     set pastetoggle=<leader>v
 
+    " Yank all lines in file
+    map <leader>co :%y+<cr>
+
     " Paste the lasy yanked text
     nnoremap p "0p
     xnoremap p "0p
@@ -705,7 +708,7 @@ call plug#begin('~/.config/nvim/plugged')
               \   '*': ['remove_trailing_lines', 'trim_whitespace'],
               \   'javascript': ['prettier'],
               \   'javascriptreact': ['prettier'],
-              \   'ruby': ['standardrb'],
+              \   'ruby': ['standardrb', 'rubocop'],
               \   'elixir': ['mix_format']
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
