@@ -221,8 +221,12 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Yank all lines in file
     map <leader>co :%y+<cr>
+    " Highlight all file (like ctrl A)
+    map <leader>vv ggVG
+    " Ctrl A + paste
+    map <leader>pp ggVGp
 
-    " Paste the lasy yanked text
+    " Paste the last yanked text
     nnoremap p "0p
     xnoremap p "0p
 
@@ -414,10 +418,17 @@ call plug#begin('~/.config/nvim/plugged')
     " substitute, search, and abbreviate multiple variants of a word
     Plug 'tpope/vim-abolish'
 
-    " easy commenting motions
     Plug 'tpope/vim-commentary'
+    " comment a line or visual block
     nmap \\ gcc
     vmap \\ gcc
+    " Comment paragraph
+    nmap c\\ gcap
+    " Uncomment a line or lines of comments
+    nmap u\\ gcgc
+    " Delete a line or lines of comments
+    nmap d\\ dgc
+    " Delete all lines(comments?) starting with #
     nmap <leader>dc :g/#/d <CR>
 
     " mappings which are simply short normal mode aliases for commonly used ex commands

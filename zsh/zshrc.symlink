@@ -208,6 +208,8 @@ export KITTY_CONFIG_DIRECTORY="$DOTFILES/config/kitty/kitty.sym.conf"
 
 # Mycli pager: https://www.mycli.net/pager
 export LESS="-SRXF"
+# Readline (on the terminal) in vi mode
+set -o vi
 
 # Change default posgres user and database
 export PGDATABASE=postgres
