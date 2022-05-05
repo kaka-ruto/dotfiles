@@ -28,11 +28,17 @@ This will not delete any of these files, and the install scripts will not overwr
 
 ### Installation
 
-If on OSX, you will need to install the XCode CLI tools before continuing. To do so, open a terminal and type
+If on OSX, you will need to install the XCode CLI tools and brew before continuing. To do so, open a terminal and type
 
 ```bash
-➜ xcode-select --install
+xcode-select --install
 ```
+Install brew from https://docs.brew.sh/Installation
+
+Add Homebrew to your path
+
+`echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> Users/<your username>/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"`
 
 Then, clone the dotfiles repository to your home directory as `~/.dotfiles`. 
 

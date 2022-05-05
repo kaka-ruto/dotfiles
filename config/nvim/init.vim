@@ -712,15 +712,13 @@ call plug#begin('~/.config/nvim/plugged')
         let g:ale_linters = {
               \   'javascript': ['eslint'],
               \   'javascriptreact': ['prettier'],
-              \   'ruby': ['standardrb'],
-              \   'elixir': ['mix_format']
+              \   'ruby': ['standardrb']
               \}
         let g:ale_fixers = {
               \   '*': ['remove_trailing_lines', 'trim_whitespace'],
               \   'javascript': ['prettier'],
               \   'javascriptreact': ['prettier'],
-              \   'ruby': ['standardrb', 'rubocop'],
-              \   'elixir': ['mix_format']
+              \   'ruby': ['standardrb', 'rubocop']
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
@@ -751,11 +749,11 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'coc-vetur',
         \ 'coc-cfn-lint',
         \ 'coc-fzf-preview',
-        \ 'coc-elixir'
+        "\ 'coc-elixir'
         \ ]
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
-        autocmd FileType elixir let b:coc_root_patterns = ['mix.exs']
+        " autocmd FileType elixir let b:coc_root_patterns = ['mix.exs']
 
         " coc-prettier
         " command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -960,8 +958,8 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
       
     " Elixir {{{
-        Plug 'elixir-editors/vim-elixir'
-        Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+        " Plug 'elixir-editors/vim-elixir'
+        " Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
     " }}}
 
     " Styles {{{

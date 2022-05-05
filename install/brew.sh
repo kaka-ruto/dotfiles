@@ -21,8 +21,7 @@ formulas=(
     hub
     markdown
     mas
-    "neovim --HEAD"
-    # python
+    neovim
     reattach-to-user-namespace
     the_silver_searcher
     shellcheck
@@ -31,7 +30,6 @@ formulas=(
     trash
     tree
     wget
-    # vim
     z
     # zsh
     ripgrep
