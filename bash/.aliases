@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # use nvim, but don't make me think about it
-alias vim="/usr/local/bin/nvim"
-alias vi="/usr/local/bin/nvim"
-alias v="/usr/local/bin/nvim"
+alias vim="/opt/homebrew/bin/nvim"
+alias vi="/opt/homebrew/bin/nvim"
+alias v="/opt/homebrew/bin/nvim"
 
 # Easier navigation
 alias ..="cd .."

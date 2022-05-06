@@ -1011,13 +1011,13 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 " Example of how to set the ruby host to a particualr Ruby version using asdf
-  let g:ruby_host_prog = '/usr/local/opt/asdf/shims/ruby'
+  let g:ruby_host_prog = "/opt/homebrew/opt/asdf/shims/ruby"
   " let g:ruby_host_prog = '~/.asdf/shims/ruby'
   " let g:python_host_prog = '~/.asdf/shims/python2'
   " Disable python 2 support
   let g:loaded_python_provider = 0
   " let g:python3_host_prog = '~/.asdf/shims/python'
-  let g:python3_host_prog = '/usr/local/bin/python3'
+  let g:python3_host_prog = "/opt/homebrew/opt/asdf/shims/python"
 
 " Colorscheme and final setup {{{
     " This call must happen after the plug#end() call to ensure

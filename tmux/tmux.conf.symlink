@@ -144,6 +144,8 @@ bind g split-window -v "git branch --sort=-committerdate | grep -v '^\*' | fzf -
 bind-key -n C-S-Left swap-window -t -1\; select-window -t -1
 bind-key -n C-S-Right swap-window -t +1\; select-window -t +1
 
+set-option -g focus-events on
+
 ##############################
 ### Color & Style Settings ###
 ##############################
