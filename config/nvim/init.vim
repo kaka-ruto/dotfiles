@@ -613,7 +613,8 @@ call plug#begin('~/.config/nvim/plugged')
         " nnoremap <silent> [fzf-p]t     :<C-u>FzfPreviewBufferTags<CR>
 
         " fzf-preview with coc
-        nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+        nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources git<CR>
+        nnoremap          [fzf-p]d     :<C-u>CocCommand fzf-preview.DirectoryFiles<space>
         nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
         nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
         nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
@@ -639,11 +640,11 @@ call plug#begin('~/.config/nvim/plugged')
 
         " Use vim-devicons
         let g:fzf_preview_use_dev_icons = 0
-
         " devicons character width
         let g:fzf_preview_dev_icon_prefix_string_length = 3
         " let g:fzf_preview_command = 'bat --color=always --plain {-1}'
-
+        " " Commands used for project grep
+        let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --hidden -g \!"* *"'
         " Use true color preview in Neovim 
         augroup fzf_preview
           autocmd!
@@ -748,8 +749,7 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'coc-tailwindcss',
         \ 'coc-vetur',
         \ 'coc-cfn-lint',
-        \ 'coc-fzf-preview',
-        "\ 'coc-elixir'
+        \ 'coc-fzf-preview'
         \ ]
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
