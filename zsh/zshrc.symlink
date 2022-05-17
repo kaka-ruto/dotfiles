@@ -162,34 +162,13 @@ arch_name="$(uname -m)"
 
 if [ "${arch_name}" = "x86_64" ]; then
     echo "Running on Rosetta 2"
-    local OPENSSL_PATH=$(xbrew --prefix openssl)
-    local READLINE_PATH=$(xbrew --prefix readline)
     local LOCAL_ASDF_DATA_DIR=$(xbrew --prefix asdf)
-    # Postgres dependency
-    export PATH="/usr/local/opt/libpq/bin:$PATH"
-    export PKG_CONFIG_PATH="/usr/local/opt/libpq/lib/pkgconfig"
 elif [ "${arch_name}" = "arm64" ]; then
     echo "Running on ARM"
-    local OPENSSL_PATH=$(brew --prefix openssl)
-    local READLINE_PATH=$(brew --prefix readline)
     local LOCAL_ASDF_DATA_DIR=$(brew --prefix asdf)
-    # Postgres dependency
-    export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-    export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
-    export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
-    # Upgraded Libffi
-    export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
-    export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
 else
     echo "Unknown architecture: ${arch_name}"
 fi
-
-export LDFLAGS="-L$OPENSSL_PATH/lib"
-export CPPFLAGS="-I$OPENSSL_PATH/include"
-export PKG_CONFIG_PATH="$OPENSLL_PATH/lib/pkgconfig"
-export PATH=$OPENSSL_PATH/bin:$PATH
 
 export ASDF_DATA_DIR=$LOCAL_ASDF_DATA_DIR
 source "$ASDF_DATA_DIR/libexec/asdf.sh"
