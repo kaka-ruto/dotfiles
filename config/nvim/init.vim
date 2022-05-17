@@ -590,7 +590,7 @@ call plug#begin('~/.config/nvim/plugged')
         " Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
         " set rtp+=/usr/local/opt/fzf
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-        Plug 'junegunn/fzf.vim'
+        " Plug 'junegunn/fzf.vim'
         Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 
         " FZF with floating previews
@@ -598,57 +598,64 @@ call plug#begin('~/.config/nvim/plugged')
         nmap <leader> [fzf-p]
         xmap <leader> [fzf-p]
 
-        " fzf-preview with remote plugins
-        " nnoremap <silent> [fzf-p]p     :<C-u>FzfPreviewFromResources project_mru git<CR>
-        " nnoremap <silent> [fzf-p]gs    :<C-u>FzfPreviewGitStatus<CR>
-        " nnoremap <silent> [fzf-p]ga    :<C-u>FzfPreviewGitActions<CR>
-        " nnoremap <silent> [fzf-p]b     :<C-u>FzfPreviewBuffers<CR>
-        " nnoremap <silent> [fzf-p]B     :<C-u>FzfPreviewAllBuffers<CR>
-        " nnoremap <silent> [fzf-p]o     :<C-u>FzfPreviewFromResources buffer project_mru<CR>
-        " nnoremap <silent> [fzf-p]<C-o> :<C-u>FzfPreviewJumps<CR>
-        " nnoremap <silent> [fzf-p]g;    :<C-u>FzfPreviewChanges<CR>
-        " " nnoremap <silent> [fzf-p]/     :<C-u>FzfPreviewLines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
-        " nnoremap <silent> [fzf-p]/     :<C-u>FzfPreviewLines --add-fzf-arg=--no-sort<CR>
-        " xnoremap          [fzf-p]gr    "sy:FzfPreviewProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
-        " nnoremap <silent> [fzf-p]t     :<C-u>FzfPreviewBufferTags<CR>
+        " fzf-preview with vim-script RPC
+        nnoremap <silent> [fzf-p]p     :<C-u>FzfPreviewFromResourcesRpc git<CR>
+        nnoremap          [fzf-p]d     :<C-u>FzfPreviewDirectoryFilesRpc<space>
+        nnoremap <silent> [fzf-p]gs    :<C-u>FzfPreviewGitStatusRpc<CR>
+        nnoremap <silent> [fzf-p]ga    :<C-u>FzfPreviewGitActionsRpc<CR>
+        nnoremap <silent> [fzf-p]b     :<C-u>FzfPreviewBuffersRpc<CR>
+        nnoremap <silent> [fzf-p]B     :<C-u>FzfPreviewAllBuffersRpc<CR>
+        nnoremap <silent> [fzf-p]oo    :<C-u>FzfPreviewFromResourcesRpc buffer project_mru<CR>
+        nnoremap <silent> [fzf-p]<C-o> :<C-u>FzfPreviewJumpsRpc<CR>
+        nnoremap <silent> [fzf-p]g;    :<C-u>FzfPreviewChangesRpc<CR>
+        nnoremap <silent> [fzf-p]/     :<C-u>FzfPreviewLinesRpc --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
+        nnoremap <silent> [fzf-p]*     :<C-u>FzfPreviewLinesRpc --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+        nnoremap          [fzf-p]gr    :<C-u>FzfPreviewProjectGrepRpc<Space>
+        xnoremap          [fzf-p]gr    "sy:FzfPreviewProjectGrepRpc<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+        nnoremap <silent> [fzf-p]tt    :<C-u>FzfPreviewBufferTagsRpc<CR>
+        nnoremap <silent> [fzf-p]u     :<C-u>FzfPreviewQuickFixRpc<CR>
+        nnoremap <silent> [fzf-p]ll    :<C-u>FzfPreviewLocationListRpc<CR>
 
         " fzf-preview with coc
-        nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources git<CR>
-        nnoremap          [fzf-p]d     :<C-u>CocCommand fzf-preview.DirectoryFiles<space>
-        nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
-        nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
-        nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
-        nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
-        nnoremap <silent> [fzf-p]oo    :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
-        nnoremap <silent> [fzf-p]mm    :<C-u>CocCommand fzf-preview.MruFiles<CR>
-        nnoremap <silent> [fzf-p]ww    :<C-u>CocCommand fzf-preview.MrwFiles<CR>
-        nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
-        nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
-        nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
-        nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
-        nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
-        xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
-        nnoremap <silent> [fzf-p]go    :<C-u>CocCommand fzf-preview.CocOutline<CR>
-        nnoremap <silent> [fzf-p]gi    :<C-u>CocCommand fzf-preview.CocImplementations<CR>
-        nnoremap <silent> [fzf-p]gt    :<C-u>CocCommand fzf-preview.CocTypeDefinitions<CR>
-        nnoremap <silent> [fzf-p]gf    :<C-u>CocCommand fzf-preview.CocReferences<CR>
-        " Reuse last query
-        nnoremap <Leader>G :<C-u>CocCommand fzf-preview.ProjectGrep . --resume<Space>
-        nnoremap <silent> [fzf-p]tt     :<C-u>CocCommand fzf-preview.BufferTags<CR>
-        nnoremap <silent> [fzf-p]u     :<C-u>CocCommand fzf-preview.QuickFix<CR>
-        nnoremap <silent> [fzf-p]ll     :<C-u>CocCommand fzf-preview.LocationList<CR>
+        " nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources git<CR>
+        " nnoremap          [fzf-p]d     :<C-u>CocCommand fzf-preview.DirectoryFiles<space>
+        " nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
+        " nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
+        " nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
+        " nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+        " nnoremap <silent> [fzf-p]oo    :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
+        " nnoremap <silent> [fzf-p]mm    :<C-u>CocCommand fzf-preview.MruFiles<CR>
+        " nnoremap <silent> [fzf-p]ww    :<C-u>CocCommand fzf-preview.MrwFiles<CR>
+        " nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
+        " nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
+        " nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
+        " nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+        " nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+        " xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+        " nnoremap <silent> [fzf-p]go    :<C-u>CocCommand fzf-preview.CocOutline<CR>
+        " nnoremap <silent> [fzf-p]gi    :<C-u>CocCommand fzf-preview.CocImplementations<CR>
+        " nnoremap <silent> [fzf-p]gt    :<C-u>CocCommand fzf-preview.CocTypeDefinitions<CR>
+        " nnoremap <silent> [fzf-p]gf    :<C-u>CocCommand fzf-preview.CocReferences<CR>
+        " " Reuse last query
+        " nnoremap <Leader>G :<C-u>CocCommand fzf-preview.ProjectGrep . --resume<Space>
+        " nnoremap <silent> [fzf-p]tt     :<C-u>CocCommand fzf-preview.BufferTags<CR>
+        " nnoremap <silent> [fzf-p]u     :<C-u>CocCommand fzf-preview.QuickFix<CR>
+        " nnoremap <silent> [fzf-p]ll     :<C-u>CocCommand fzf-preview.LocationList<CR>
 
         " Use vim-devicons
-        let g:fzf_preview_use_dev_icons = 0
+        " let g:fzf_preview_use_dev_icons = 0
         " devicons character width
-        let g:fzf_preview_dev_icon_prefix_string_length = 3
+        " let g:fzf_preview_dev_icon_prefix_string_length = 3
         " let g:fzf_preview_command = 'bat --color=always --plain {-1}'
         " " Commands used for project grep
-        let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --hidden -g \!"* *"'
-        " Use true color preview in Neovim 
+        " let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --hidden -g \!"* *"'
+        " let g:fzf_preview_lines_command = "awk '{if (NF>0) print NR, $0}'" 
+        
+        "Use true color preview in Neovim 
         augroup fzf_preview
           autocmd!
-          autocmd User fzf_preview#coc#initialized call s:fzf_preview_settings() " Or fzf_preview#remote#initialized or fzf_preview#rpc#initialized
+          autocmd User fzf_preview#rpc#initialized call s:fzf_preview_settings() 
+          " autocmd User fzf_preview#coc#initialized call s:fzf_preview_settings() 
         augroup END
 
         function! s:fzf_preview_settings() abort
@@ -748,8 +755,7 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'coc-solargraph',
         \ 'coc-tailwindcss',
         \ 'coc-vetur',
-        \ 'coc-cfn-lint',
-        \ 'coc-fzf-preview'
+        \ 'coc-cfn-lint'
         \ ]
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
