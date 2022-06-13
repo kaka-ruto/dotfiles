@@ -139,8 +139,7 @@ call plug#begin('~/.config/nvim/plugged')
     match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
     " Load colorschemes
-    Plug 'chriskempson/base16-vim'
-    Plug 'lifepillar/vim-solarized8'
+    Plug 'joshdick/onedark.vim'
 
     " LightLine {{{
         Plug 'itchyny/lightline.vim'
@@ -225,6 +224,10 @@ call plug#begin('~/.config/nvim/plugged')
     map <leader>vv ggVG
     " Ctrl A + paste
     map <leader>pp ggVGp
+    " Copy current file path
+    nnoremap <leader>cd :let @+=expand('%')<cr>
+    " Copy current file path with line number
+    nnoremap <leader>cl :let @+=expand('%') . ':' . line('.')<CR>
 
     " Paste the last yanked text
     nnoremap p "0p
@@ -480,14 +483,13 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lambdalisue/suda.vim'
     let g:suda_smart_edit = 1
 
-    " A collection of language packs
-    Plug 'sheerun/vim-polyglot'
-
     " Insert or delete brackets, parens, quotes in pair
     Plug 'jiangmiao/auto-pairs'
 
     " {{{ Run your tests at the speed of thought
         Plug 'janko/vim-test'
+        Plug 'preservim/vimux'
+         Plug 'voldikss/vim-floaterm'
 
         nmap <silent> <C-n> :TestNearest <CR>
         nmap <silent> <C-t> :TestFile <CR>
@@ -496,7 +498,7 @@ call plug#begin('~/.config/nvim/plugged')
         " nmap <silent> <C-g> :TestVisit <CR>
 
         " Execute tests using dispatch
-        let test#strategy = 'dispatch'
+        let test#strategy = 'vimux'
     " }}}
 
     " enables repeating other supported plugins with the . command
@@ -590,7 +592,7 @@ call plug#begin('~/.config/nvim/plugged')
         " Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
         " set rtp+=/usr/local/opt/fzf
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-        " Plug 'junegunn/fzf.vim'
+        Plug 'junegunn/fzf.vim'
         Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 
         " FZF with floating previews
@@ -606,6 +608,8 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <silent> [fzf-p]b     :<C-u>FzfPreviewBuffersRpc<CR>
         nnoremap <silent> [fzf-p]B     :<C-u>FzfPreviewAllBuffersRpc<CR>
         nnoremap <silent> [fzf-p]oo    :<C-u>FzfPreviewFromResourcesRpc buffer project_mru<CR>
+        nnoremap <silent> [fzf-p]mm    :<C-u>FzfPreviewMruFilesRpc<CR>
+        nnoremap <silent> [fzf-p]ww    :<C-u>FzfPreviewMrwFilesRpc<CR>
         nnoremap <silent> [fzf-p]<C-o> :<C-u>FzfPreviewJumpsRpc<CR>
         nnoremap <silent> [fzf-p]g;    :<C-u>FzfPreviewChangesRpc<CR>
         nnoremap <silent> [fzf-p]/     :<C-u>FzfPreviewLinesRpc --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
@@ -649,7 +653,6 @@ call plug#begin('~/.config/nvim/plugged')
         " let g:fzf_preview_command = 'bat --color=always --plain {-1}'
         " " Commands used for project grep
         " let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --hidden -g \!"* *"'
-        " let g:fzf_preview_lines_command = "awk '{if (NF>0) print NR, $0}'" 
         
         "Use true color preview in Neovim 
         augroup fzf_preview
@@ -754,8 +757,7 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'coc-ultisnips',
         \ 'coc-solargraph',
         \ 'coc-tailwindcss',
-        \ 'coc-vetur',
-        \ 'coc-cfn-lint'
+        \ 'coc-vetur'
         \ ]
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -996,8 +998,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ekalinin/Dockerfile.vim'
 
     " Like context.vim but lightweight. install after Neovim 0.5.0 is realeased
-    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    " Plug 'romgrk/nvim-treesitter-context'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'romgrk/nvim-treesitter-context'
 
     " VueJS {{{
         Plug 'posva/vim-vue'
@@ -1028,7 +1030,7 @@ call plug#end()
 " Colorscheme and final setup {{{
     " This call must happen after the plug#end() call to ensure
     " that the colorschemes have been loaded
-    colorscheme solarized8_flat
+    colorscheme onedark
     syntax on
 
     " make the highlighting of tabs and other non-text less annoying
