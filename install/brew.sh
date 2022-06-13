@@ -21,7 +21,7 @@ formulas=(
     hub
     markdown
     mas
-    neovim
+    --HEAD neovim
     reattach-to-user-namespace
     the_silver_searcher
     shellcheck
@@ -31,7 +31,7 @@ formulas=(
     tree
     wget
     z
-    # zsh
+    zsh
     ripgrep
     git-standup
     entr

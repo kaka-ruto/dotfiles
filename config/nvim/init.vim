@@ -225,7 +225,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Ctrl A + paste
     map <leader>pp ggVGp
     " Copy current file path
-    nnoremap <leader>cd :let @+=expand('%')<cr>
+    nnoremap <leader>cd :let @+=expand('%')<CR>
     " Copy current file path with line number
     nnoremap <leader>cl :let @+=expand('%') . ':' . line('.')<CR>
 
@@ -999,6 +999,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Like context.vim but lightweight. install after Neovim 0.5.0 is realeased
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'romgrk/nvim-treesitter-context'
 
     " VueJS {{{
