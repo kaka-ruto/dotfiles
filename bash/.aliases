@@ -20,12 +20,14 @@ alias tx="=tmuxinator"
 # Git
 alias ga="git add"
 alias gs="g s"
+alias gst='git status'
 alias gp="g push"
 alias gu="g update"
 alias gc="g commit"
 alias gl="g l"
 alias gd="g diff"
 alias gfo="g fetch origin"
+alias gb='git branch'
 # Uncommit + unstage the last commit
 alias undo="git reset HEAD~"
 # Uncommit + unstage + clean
