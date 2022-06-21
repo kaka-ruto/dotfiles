@@ -143,6 +143,7 @@ alias reload_shell="exec ${SHELL} -l"
 
 # Ruby and Rails
 alias be="bundle exec"
+alias bers="bundle exec rspec"
 alias br="bin/rails"
 alias brc="bin/rails console"
 alias brr="bin/rails rspec"
@@ -156,9 +157,10 @@ alias tdl="tail log/development.log"
 alias ttl="tail log/test.log"
 
 # Rubocop
-alias rc='rubocop' # Run rubocop
-alias rca='rubocop -a' # Run rubocop autocorrect
-alias rcagc='rubocop --auto-gen-config' # Run rubocop autogen config
+alias rc='be rubocop' # Run rubocop
+alias rca='be rubocop -a' # Run rubocop autocorrect
+alias rcf='be rubocop --fix' # rubocop fix
+alias rcagc='be rubocop --auto-gen-config' # Run rubocop autogen config
 
 # Docker
 alias docker-rm-dangling-images='docker rmi $(docker images -qa -f 'dangling=true')'
@@ -195,3 +197,6 @@ alias mp='fc -e - mix\ test=iex\ -S\ mix\ test\ --trace mix\ test'
 
 # Kubernetes
 alias k=kubectl
+
+# Smart
+alias smartaws=". /usr/local/bin/smartaws"
