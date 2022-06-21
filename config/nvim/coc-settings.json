@@ -10,7 +10,7 @@
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "●",
     "diagnostic.hintSign": "○",
-    "diagnostic.displayByAle": true,
+    "diagnostic.enable": false,
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "git.addGBlameToBufferVar": true,
 
