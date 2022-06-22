@@ -603,7 +603,7 @@ call plug#begin('~/.config/nvim/plugged')
         " fzf-preview with vim-script RPC
         nnoremap <silent> [fzf-p]p     :<C-u>FzfPreviewFromResourcesRpc git<CR>
         nnoremap          [fzf-p]d     :<C-u>FzfPreviewDirectoryFilesRpc<space>
-        nnoremap <silent> [fzf-p]gs    :<C-u>FzfPreviewGitStatusRpc<CR>
+        nnoremap <silent> [fzf-p]gss    :<C-u>FzfPreviewGitStatusRpc<CR>
         nnoremap <silent> [fzf-p]ga    :<C-u>FzfPreviewGitActionsRpc<CR>
         nnoremap <silent> [fzf-p]b     :<C-u>FzfPreviewBuffersRpc<CR>
         nnoremap <silent> [fzf-p]B     :<C-u>FzfPreviewAllBuffersRpc<CR>
@@ -623,7 +623,7 @@ call plug#begin('~/.config/nvim/plugged')
         " fzf-preview with coc
         " nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources git<CR>
         " nnoremap          [fzf-p]d     :<C-u>CocCommand fzf-preview.DirectoryFiles<space>
-        " nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
+        " nnoremap <silent> [fzf-p]gss    :<C-u>CocCommand fzf-preview.GitStatus<CR>
         " nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
         " nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
         " nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
@@ -671,9 +671,9 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'tpope/vim-fugitive'
         nnoremap gap :Git add %:p<CR><CR>
         " Add current file
+        nnoremap <leader>gs :0G<CR>
         nnoremap gaf :Git add %<CR><CR>
         nnoremap gaa :Git add . <CR><CR>
-        nnoremap gss :G<CR>
         nnoremap goo :Gcommit -v -q<CR>
         nnoremap gtt :Gcommit -v -q %:p<CR>
         nnoremap gdd :Gdiffsplit!<CR>
@@ -857,6 +857,7 @@ call plug#begin('~/.config/nvim/plugged')
 
       " Productivity - how much time do I spend on each project?
       Plug 'wakatime/vim-wakatime'
+      Plug 'github/copilot.vim'
 " }}}
 
 " Language-Specific Configuration {{{
@@ -909,6 +910,8 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'tpope/vim-rails'
         Plug 'tpope/vim-bundler'
         Plug 'tpope/vim-rake'
+
+        vnoremap <leader>ex :Extract<space>
 
         " For projectionist.vim (comes with rake.vim)
         let g:rails_projections = {
@@ -1044,6 +1047,7 @@ call plug#end()
     highlight xmlAttrib cterm=italic term=italic gui=italic
     " highlight Type cterm=italic term=italic gui=italic
     highlight Normal ctermbg=none
+    highlight Search guibg=DarkGray
 
     " Make vim transparent
     " highlight Normal guibg=NONE ctermbg=NONE
