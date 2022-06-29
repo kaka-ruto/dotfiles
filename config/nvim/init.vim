@@ -616,7 +616,8 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <silent> [fzf-p]*     :<C-u>FzfPreviewLinesRpc --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
         nnoremap          [fzf-p]gr    :<C-u>FzfPreviewProjectGrepRpc<Space>
         xnoremap          [fzf-p]gr    "sy:FzfPreviewProjectGrepRpc<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
-        nnoremap <silent> [fzf-p]tt    :<C-u>FzfPreviewBufferTagsRpc<CR>
+        nnoremap <silent> [fzf-p]bt    :<C-u>FzfPreviewBufferTagsRpc<CR>
+        nnoremap <silent> [fzf-p]tt    :<C-u>FzfPreviewCtagsRpc<CR>
         nnoremap <silent> [fzf-p]u     :<C-u>FzfPreviewQuickFixRpc<CR>
         nnoremap <silent> [fzf-p]ll    :<C-u>FzfPreviewLocationListRpc<CR>
 
@@ -902,6 +903,14 @@ call plug#begin('~/.config/nvim/plugged')
     \  '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
     \  '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx', '*.xls',
     \]
+    " Open first tag match on a horizontal split
+    nnoremap <leader>] <Esc>:exe "ptag " . expand("<cword>")<Esc>
+    " Next tag
+    nnoremap <leader>m :ptnext <CR>
+    " Prev tag
+    nnoremap <leader>n :ptprevious <CR>
+    " Close tag preview window
+    nnoremap <leader>z <C-w>z
 
     " {{{ Ruby and RoR
         Plug 'vim-ruby/vim-ruby'

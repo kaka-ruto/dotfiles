@@ -9,8 +9,8 @@ solargraph
 hirb
 awesome_print
 
-# Automatic ctags generation on gem install
-gem-ctags
+# Better Ruby ctags
+gem-ripper-tags
 
 # Neovim
 # neovim
