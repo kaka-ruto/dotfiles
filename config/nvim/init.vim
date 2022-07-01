@@ -911,6 +911,10 @@ call plug#begin('~/.config/nvim/plugged')
     nnoremap <leader>n :ptprevious <CR>
     " Close tag preview window
     nnoremap <leader>z <C-w>z
+    "-------------------
+    "~~~~~~~~~~~~~~~~~~~~~
+    "--------------------
+    "~~~~~~~~~~~~~~~~~~~~~
 
     " {{{ Ruby and RoR
         Plug 'vim-ruby/vim-ruby'
