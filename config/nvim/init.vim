@@ -139,7 +139,7 @@ call plug#begin('~/.config/nvim/plugged')
     match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
     " Load colorschemes
-    Plug 'joshdick/onedark.vim'
+    Plug 'navarasu/onedark.nvim'
 
     " LightLine {{{
         Plug 'itchyny/lightline.vim'
@@ -492,7 +492,7 @@ call plug#begin('~/.config/nvim/plugged')
          Plug 'voldikss/vim-floaterm'
 
         nmap <silent> <C-n> :TestNearest <CR>
-        nmap <silent> <C-t> :TestFile <CR>
+        nmap <silent> <C-\> :TestFile <CR>
         nmap <silent> <C-s> :TestSuite <CR>
         nmap <silent> <C-g> :TestLast <CR>
         " nmap <silent> <C-g> :TestVisit <CR>
@@ -658,8 +658,9 @@ call plug#begin('~/.config/nvim/plugged')
         "Use true color preview in Neovim 
         augroup fzf_preview
           autocmd!
-          autocmd User fzf_preview#rpc#initialized call s:fzf_preview_settings() 
+          " autocmd User fzf_preview#rpc#initialized call s:fzf_preview_settings() 
           " autocmd User fzf_preview#coc#initialized call s:fzf_preview_settings() 
+          autocmd User fzf_preview#remote#initialized call s:fzf_preview_settings() 
         augroup END
 
         function! s:fzf_preview_settings() abort
@@ -719,18 +720,18 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'desmap/ale-sensible' | Plug 'dense-analysis/ale'
 
         let g:ale_linters_explicit = 1 " Run specific linters
-        let g:ale_disable_lsp = 1 " Don't provide LSP features already provided by coc.nvim
+        " let g:ale_disable_lsp = 1 " Don't provide LSP features already provided by coc.nvim
         " Set specific linters
         let g:ale_linters = {
               \   'javascript': ['eslint'],
               \   'javascriptreact': ['prettier'],
-              \   'ruby': ['standardrb']
+              \   'ruby': ['rubocop']
               \}
         let g:ale_fixers = {
               \   '*': ['remove_trailing_lines', 'trim_whitespace'],
               \   'javascript': ['prettier'],
               \   'javascriptreact': ['prettier'],
-              \   'ruby': ['standardrb', 'rubocop']
+              \   'ruby': ['rubocop']
               \}
         let g:ale_set_highlights = 0      " Disable ALE auto highlights
         let g:ale_sign_column_always = 1  " Show the error sign always
@@ -903,18 +904,17 @@ call plug#begin('~/.config/nvim/plugged')
     \  '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
     \  '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx', '*.xls',
     \]
+    Plug 'vim-scripts/taglist.vim'
     " Open first tag match on a horizontal split
     nnoremap <leader>] <Esc>:exe "ptag " . expand("<cword>")<Esc>
+    " Split below
+    set splitbelow
     " Next tag
     nnoremap <leader>m :ptnext <CR>
     " Prev tag
     nnoremap <leader>n :ptprevious <CR>
     " Close tag preview window
     nnoremap <leader>z <C-w>z
-    "-------------------
-    "~~~~~~~~~~~~~~~~~~~~~
-    "--------------------
-    "~~~~~~~~~~~~~~~~~~~~~
 
     " {{{ Ruby and RoR
         Plug 'vim-ruby/vim-ruby'
@@ -1033,6 +1033,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Yggdroot/indentLine'
   " }}}
 
+
 call plug#end()
 
 " Example of how to set the ruby host to a particualr Ruby version using asdf
@@ -1043,10 +1044,14 @@ call plug#end()
   let g:loaded_python_provider = 0
   " let g:python3_host_prog = '~/.asdf/shims/python'
   let g:python3_host_prog = "/opt/homebrew/opt/asdf/shims/python"
+  let g:node_host_prog = '~/.nvm/versions/node/v16.15.0/bin/neovim-node-host'
+  let g:loaded_perl_provider = 0
+  " let $PATH = '.nvm/versions/node/v16.15.0/bin:' . $PATH
 
 " Colorscheme and final setup {{{
     " This call must happen after the plug#end() call to ensure
     " that the colorschemes have been loaded
+
     colorscheme onedark
     syntax on
 
