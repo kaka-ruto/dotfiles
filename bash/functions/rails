@@ -1,0 +1,3 @@
+db_down() { bundle exec rails db:migrate:down VERSION="$1"; }
+
+db_up() { bundle exec rails db:migrate:up VERSION="$1"; }

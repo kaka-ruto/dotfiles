@@ -95,8 +95,9 @@ zstyle ':completion:*' completer _expand _complete _files _correct _approximate
 source "$DOTFILES/zsh/utils.zsh"
 source "$DOTFILES/zsh/prompt.zsh"
 
-# Source all aliases
-source "$DOTFILES/bash/.aliases"
+# Source all bash aliases and functions
+source $DOTFILES/bash/.aliases
+for f in $DOTFILES/bash/functions/*; do source $f; done
 
 ########################################################
 # Plugin setup
