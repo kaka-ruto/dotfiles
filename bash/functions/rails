@@ -1,3 +1,17 @@
-db_down() { bundle exec rails db:migrate:down VERSION="$1"; }
+db_down() {
+  if [ -z "$1" ]
+    then
+      bundle exec rails db:rollback
+    else
+      bundle exec rails db:migrate:down VERSION="$1";
+  fi
+}
 
-db_up() { bundle exec rails db:migrate:up VERSION="$1"; }
+db_up() {
+  if [ -z "$1" ]
+    then
+      bundle exec rails db:migrate
+    else
+      bundle exec rails db:migrate:up VERSION="$1";
+  fi
+}
