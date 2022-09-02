@@ -89,6 +89,7 @@ call plug#begin('~/.config/nvim/plugged')
     set shortmess+=c
     set splitright " Open new split panes to the right
     set fillchars+=vert:\!
+    set colorcolumn=120
 
     " Set fefault tabs ans spaces control (file specific configurations in config/nvim/ftplugin/)
     setlocal tabstop=2 " the visible width of tabs
