@@ -218,6 +218,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " set paste toggle
     set pastetoggle=<leader>v
+    " Or use ]p to paste whilst respecting indent level
 
     " Yank all lines in file
     map <leader>co :%y+<cr>
@@ -227,12 +228,22 @@ call plug#begin('~/.config/nvim/plugged')
     map <leader>pp ggVGp
     " Copy current file path
     nnoremap <leader>cd :let @+=expand('%')<CR>
+    " Copy current file name with extension
+    nnoremap <leader>cf :let @+=expand('%:t')<CR>
     " Copy current file path with line number
     nnoremap <leader>cl :let @+=expand('%') . ':' . line('.')<CR>
 
-    " Paste the last yanked text
-    nnoremap p "0p
-    xnoremap p "0p
+    " Pastes the last yanked text instead of any recently deleted text
+    nnoremap yp "0p<Esc>
+
+    " When pasting over a visual selection replaced visual selection won't enter the register
+    xnoremap vp "_dp
+
+    " Deletes a visual selection without adding it to register
+    xnoremap dv "_dd<Esc>
+
+    " Deletes a line like dd but doesn't add to register
+    nnoremap dl "_dd
 
     " Edit the vimrc/initvim
     nnoremap cv :edit $INITVIM <cr>
@@ -860,7 +871,6 @@ call plug#begin('~/.config/nvim/plugged')
 
       " Productivity - how much time do I spend on each project?
       Plug 'wakatime/vim-wakatime'
-      Plug 'github/copilot.vim'
 " }}}
 
 " Language-Specific Configuration {{{
