@@ -1,0 +1,40 @@
+# Create a symlink of this file to the location LG expects to find it
+# mac: ln -sf /Users/name/config/lazygit/config.yml /Users/name/Library/Application\ Support/lazygit/config.yml
+---
+gui:
+  showIcons: true
+  theme:
+    selectedLineBgColor:
+      - default
+    selectedRangeBgColor:
+      - default
+
+customCommands:
+  - key: "<c-p>"
+    description: "Create a pull request on Github"
+    command: "gh pr create --fill --web"
+    context: "global"
+    loadingText: "Creating pull request on GitHub"
+  - key: "<c-b>"
+    description: "Checkout branch via Github pull request ID"
+    prompts:
+      - type: "input"
+        title: "PR id:"
+    command: "hub pr checkout {{index .PromptResponses 0}}"
+    context: "localBranches"
+    loadingText: "checking out PR"
+  - key: "<c-d>"
+    description: "Prune deleted remote branches"
+    command: "git remote prune {{.SelectedRemote.Name}}"
+    context: "remotes"
+    loadingText: "Pruning..."
+  - key: "<c-l>"
+    description: "Prune local branches that have been merged to main"
+    command: "git branch --merged main | grep -v '^[ *]*main$' | xargs git branch -d"
+    context: "localBranches"
+    loadingText: "Pruning..."
+  - key: "E"
+    description: "Add empty commit"
+    context: "commits"
+    command: 'git commit --allow-empty -m "empty commit"'
+    loadingText: "Committing empty commit..."

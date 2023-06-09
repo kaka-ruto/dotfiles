@@ -4,13 +4,12 @@ pry
 
 # Intellisense for Ruby
 solargraph
+solargraph-rails
+solargraph-standardrb
 
 # Beautiful terminal output
 hirb
 awesome_print
-
-# Better Ruby ctags
-gem-ripper-tags
 
 # Neovim
 # neovim
