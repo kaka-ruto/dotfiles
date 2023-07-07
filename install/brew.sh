@@ -21,7 +21,6 @@ formulas=(
     hub
     markdown
     mas
-    --HEAD neovim
     reattach-to-user-namespace
     the_silver_searcher
     shellcheck
@@ -35,8 +34,9 @@ formulas=(
     ripgrep
     git-standup
     entr
-    yarn
     universal-ctags
+    gpg
+    gawk
 )
 
 for formula in "${formulas[@]}"; do
@@ -44,22 +44,23 @@ for formula in "${formulas[@]}"; do
     if brew list "$formula_name" > /dev/null 2>&1; then
         echo "$formula_name already installed... skipping."
     else
-        arch_name="$(uname -m)"
+        brew install "$formula"
+        # arch_name="$(uname -m)"
  
-        if [ "${arch_name}" = "x86_64" ]; then
-            if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
-                echo "Running on Rosetta 2"
-                arch -x86_64 brew install "$formula"
-            else
-                echo "Running on native Intel"
-                brew install "$formula"
-            fi 
-        elif [ "${arch_name}" = "arm64" ]; then
-            echo "Running on ARM"
-            arch -arm64 brew install "$formula"
-        else
-            echo "Unknown architecture: ${arch_name}"
-        fi
+        # if [ "${arch_name}" = "x86_64" ]; then
+        #     if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
+        #         echo "Running on Rosetta 2"
+        #         arch -x86_64 brew install "$formula"
+        #     else
+        #         echo "Running on native Intel"
+        #         brew install "$formula"
+        #     fi 
+        # elif [ "${arch_name}" = "arm64" ]; then
+        #     echo "Running on ARM"
+        #     arch -arm64 brew install "$formula"
+        # else
+        #     echo "Unknown architecture: ${arch_name}"
+        # fi
     fi
 done
 
@@ -69,8 +70,8 @@ echo "=============================="
 /usr/local/opt/fzf/install --all --no-bash --no-fish
 
 # after the install, install neovim python libraries
-echo -e "\\n\\nRunning Neovim Python install"
-echo "=============================="
+# echo -e "\\n\\nRunning Neovim Python install"
+# echo "=============================="
 # pip3 install pynvim
 
 # Change the default shell to zsh

@@ -1,6 +1,37 @@
 #!/usr/bin/env bash
 
-DOTFILES=$HOME/.dotfiles
+DOTFILES=$HOME/Code/Vim/neodotfiles
+
+# TODO: break down each of these blocks into their own files
+#
+# Set up oh-my-zsh before creating zshrc with the symlinks so it's not overwritten
+echo -e "\\n\\nSetting up oh-my-zsh"
+echo "=============================="
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing oh-my-zsh"
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    
+    echo "Renaming zshrc created by oh-my-zsh"
+    mv "$HOME/.zshrc" "$HOME/.zshrc.from-oh-my-zsh"
+else
+    echo "oh-my-zsh already installed... skipping."
+fi
+
+echo -e "\\n\\nSetting up zsh-autosuggestions and zsh-syntax-highlighting"
+echo "=============================="
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+    echo "Installing zsh-autosuggestions"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+else
+    echo "zsh-autosuggestions already installed... skipping."
+fi
+
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
+    echo "Installing zsh-syntax-highlighting"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+else
+    echo "zsh-syntax-highlighting already installed... skipping."
+fi
 
 echo -e "\\nCreating symlinks"
 echo "=============================="
@@ -15,7 +46,7 @@ for file in $linkables ; do
     fi
 done
 
-echo -e "\\n\\ninstalling to ~/.config"
+echo -e "\\n\\nCreating the ~/.config dir if it doesn't exist"
 echo "=============================="
 if [ ! -d "$HOME/.config" ]; then
     echo "Creating ~/.config"
@@ -33,25 +64,43 @@ for config in $config_files; do
     fi
 done
 
-# create vim symlinks
-# As I have moved off of vim as my full time editor in favor of neovim,
-# I feel it doesn't make sense to leave my vimrc intact in the dotfiles repo
-# as it is not really being actively maintained. However, I would still
-# like to configure vim, so lets symlink ~/.vimrc and ~/.vim over to their
-# neovim equivalent.
-
-echo -e "\\n\\nCreating vim symlinks"
+echo -e "\\n\\nCloning Neovim with Astronvim"
 echo "=============================="
-VIMFILES=( "$HOME/.vim:$DOTFILES/config/nvim"
-        "$HOME/.vimrc:$DOTFILES/config/nvim/init.vim" )
 
-for file in "${VIMFILES[@]}"; do
-    KEY=${file%%:*}
-    VALUE=${file#*:}
-    if [ -e "${KEY}" ]; then
-        echo "${KEY} already exists... skipping."
-    else
-        echo "Creating symlink for $KEY"
-        ln -s "${VALUE}" "${KEY}"
-    fi
-done
+if [ ! -d "$HOME/.config/nvim" ]; then
+    echo "Cloning astronvim into ~/.config/nvim"
+    git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+else
+    echo "Astronvim already cloned... Skipping."
+fi
+
+echo -e "\\n\\nCloning my personal astronvim configuration"
+echo "=============================="
+
+if [ ! -d "$HOME/.config/nvim/lua/user" ]; then
+    echo "Cloning astronvim config into ~/.config/nvim/lua/user"
+    git clone https://github.com/kaka-ruto/astronvim.git ~/.config/nvim/lua/user
+else
+    echo "Astronvim config already cloned... Skipping."
+fi
+
+
+echo -e "\\n\\nInstalling tmux plugin manager"
+echo "=============================="
+
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "Cloning tpm into ~/.tmux/plugins/tpm"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+else
+    echo "Tpm already cloned... Skipping."
+fi
+
+echo -e "\\n\\nInstalling ASDF"
+echo "=============================="
+
+if [ ! -d "$HOME/.asdf" ]; then
+    echo "Cloning asdf into ~/.asdf"
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+else
+    echo "asdf already cloned... Skipping."
+fi

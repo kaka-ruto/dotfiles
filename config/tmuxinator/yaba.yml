@@ -1,7 +1,8 @@
 # /Users/kaka/.config/tmuxinator/yaba.yml
 
+---
 name: yaba
-root: ~/Code/clients/thenayvy/yaba
+root: ~/Code/clients/kaka/blog
 
 # Optional tmux socket
 # socket_name: foo
