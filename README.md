@@ -42,8 +42,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"`
 Then, clone the dotfiles repository to your home directory as `~/.dotfiles`.
 
 ```bash
-➜ git clone https://github.com/kaka-ruto/neodotfiles.git ~/.dotfiles
-➜ cd ~/.dotfiles
+➜ mkdir -p ~/Code/Vim && cd ~/Code/Vim
+➜ git clone --recursive https://github.com/kaka-ruto/neodotfiles.git
+➜ cd ~/neodotfiles
 ➜ ./install.sh
 ```
 
@@ -120,7 +121,7 @@ Inside of [`.zshrc`](zsh/zshrc.symlink), the `EDITOR` shell variable is set to `
 vim and neovim should just work once the correct plugins are installed. To install the plugins, you will need to open Neovim in the following way:
 
 ```bash
-nvim +PlugInstall
+nvim
 ```
 
 ## Fonts

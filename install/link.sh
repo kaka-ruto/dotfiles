@@ -10,7 +10,7 @@ echo "=============================="
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing oh-my-zsh"
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    
+
     echo "Renaming zshrc created by oh-my-zsh"
     mv "$HOME/.zshrc" "$HOME/.zshrc.from-oh-my-zsh"
 else
@@ -33,11 +33,11 @@ else
     echo "zsh-syntax-highlighting already installed... skipping."
 fi
 
-echo -e "\\nCreating symlinks"
+echo -e "\\nCreating symlinks from all .symlink files"
 echo "=============================="
-linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
-for file in $linkables ; do
-    target="$HOME/.$( basename "$file" '.symlink' )"
+linkables=$(find -H "$DOTFILES" -maxdepth 3 -name '*.symlink')
+for file in $linkables; do
+    target="$HOME/.$(basename "$file" '.symlink')"
     if [ -e "$target" ]; then
         echo "~${target#$HOME} already exists... Skipping."
     else
@@ -53,9 +53,16 @@ if [ ! -d "$HOME/.config" ]; then
     mkdir -p "$HOME/.config"
 fi
 
-config_files=$( find "$DOTFILES/config" -d 1 2>/dev/null )
+echo -e "\\nCreating symlinks from neodotfiles/config/"
+echo "=============================="
+config_files=$(find "$DOTFILES/config" -d 1 2>/dev/null)
 for config in $config_files; do
-    target="$HOME/.config/$( basename "$config" )"
+    if [ -e "astronvim" ]; then
+        target="$HOME/.config/nvim/lua/user"
+    else
+        target="$HOME/.config/$(basename "$config")"
+    fi
+
     if [ -e "$target" ]; then
         echo "~${target#$HOME} already exists... Skipping."
     else
@@ -73,17 +80,6 @@ if [ ! -d "$HOME/.config/nvim" ]; then
 else
     echo "Astronvim already cloned... Skipping."
 fi
-
-echo -e "\\n\\nCloning my personal astronvim configuration"
-echo "=============================="
-
-if [ ! -d "$HOME/.config/nvim/lua/user" ]; then
-    echo "Cloning astronvim config into ~/.config/nvim/lua/user"
-    git clone https://github.com/kaka-ruto/astronvim.git ~/.config/nvim/lua/user
-else
-    echo "Astronvim config already cloned... Skipping."
-fi
-
 
 echo -e "\\n\\nInstalling tmux plugin manager"
 echo "=============================="
