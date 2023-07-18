@@ -1,7 +1,7 @@
 # /Users/kaka/.config/tmuxinator/smart-api.yml
 
 name: smart-api
-root: ~/Code/smartpension/api
+root: ~/Code/Smart/api
  
 # Optional tmux socket
 # socket_name: foo

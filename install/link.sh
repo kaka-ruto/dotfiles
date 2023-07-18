@@ -53,6 +53,16 @@ if [ ! -d "$HOME/.config" ]; then
     mkdir -p "$HOME/.config"
 fi
 
+echo -e "\\n\\nCloning Neovim with Astronvim"
+echo "=============================="
+
+if [ ! -d "$HOME/.config/nvim" ]; then
+    echo "Cloning astronvim into ~/.config/nvim"
+    git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+else
+    echo "Astronvim already cloned... Skipping."
+fi
+
 echo -e "\\nCreating symlinks from neodotfiles/config/"
 echo "=============================="
 config_files=$(find "$DOTFILES/config" -d 1 2>/dev/null)
@@ -70,16 +80,6 @@ for config in $config_files; do
         ln -s "$config" "$target"
     fi
 done
-
-echo -e "\\n\\nCloning Neovim with Astronvim"
-echo "=============================="
-
-if [ ! -d "$HOME/.config/nvim" ]; then
-    echo "Cloning astronvim into ~/.config/nvim"
-    git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-else
-    echo "Astronvim already cloned... Skipping."
-fi
 
 echo -e "\\n\\nInstalling tmux plugin manager"
 echo "=============================="

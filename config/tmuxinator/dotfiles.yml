@@ -43,7 +43,7 @@ windows:
   - editor:
       layout: even-horizontal
       panes:
-        - vim astronvim/mappings.lua
+        - vim config/astronvim/mappings.lua
   - bash:
       layout: even-horizontal
       panes:

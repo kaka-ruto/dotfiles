@@ -9,12 +9,12 @@ echo -e "\\n\\nInstalling homebrew packages..."
 echo "=============================="
 
 formulas=(
-    asdf
     bat
     ccat
     diff-so-fancy
     dnsmasq
     fzf
+    fd
     git
     grep
     highlight
@@ -37,6 +37,8 @@ formulas=(
     universal-ctags
     gpg
     gawk
+    redis
+    "jesseduffield/lazygit/lazygit"
 )
 
 for formula in "${formulas[@]}"; do

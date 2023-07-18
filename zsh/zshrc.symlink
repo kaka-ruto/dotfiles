@@ -170,10 +170,12 @@ fi
 # else
 #     echo "Unknown architecture: ${arch_name}"
 # fi
-#
-# export ASDF_DATA_DIR=$LOCAL_ASDF_DATA_DIR
-# source "$ASDF_DATA_DIR/libexec/asdf.sh"
-# source "$HOME/.asdf/asdf.sh"
+
+source "$HOME/.asdf/asdf.sh"
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
 
 # oh-my-zsh
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting git bundler macos rake ruby asdf dotenv)

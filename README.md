@@ -138,6 +138,8 @@ I also user [tmuxinator](https://github.com/tmuxinator/tmuxinator) to manage my 
 
 You can find my tmuxinator config files in `config/tmuxinator/`
 
+Press `prefix + I` (capital i) to install configured tmux plugins such as tmux-resurrect and tmux-yank.
+
 ## Questions
 
 If you have questions, notice issues, or would like to see improvements, please open an [issue](https://github.com/borenho/dotfiles/issues/new) and I'm happy to help you out!
