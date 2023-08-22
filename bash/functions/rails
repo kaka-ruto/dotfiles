@@ -15,3 +15,21 @@ db_up() {
       bundle exec rails db:migrate:up VERSION="$1";
   fi
 }
+
+data_down() {
+  if [ -z "$1" ]
+    then
+      bundle exec rails data:rollback
+    else
+      bundle exec rails data:migrate:down VERSION="$1";
+  fi
+}
+
+data_up() {
+  if [ -z "$1" ]
+    then
+      bundle exec rails data:migrate
+    else
+      bundle exec rails data:migrate:up VERSION="$1";
+  fi
+}
