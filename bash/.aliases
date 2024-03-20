@@ -161,6 +161,7 @@ alias brds="bin/rails db:seed"
 alias bi="bundle install"
 alias tdl="tail log/development.log"
 alias ttl="tail log/test.log"
+alias groutes="bin/rails routes | fzf -e"
 
 # Rubocop
 alias rc='be rubocop'                      # Run rubocop
@@ -204,5 +205,10 @@ alias mp='fc -e - mix\ test=iex\ -S\ mix\ test\ --trace mix\ test'
 # Kubernetes
 alias k=kubectl
 
-# Smart
-alias smartaws=". /usr/local/bin/smartaws"
+# Kamal
+alias kaboot="kamal accessory boot"
+alias kareboot="kamal accessory reboot"
+alias ktreboot="kamal traefik reboot"
+alias karemove="kamal accessory remove"
+alias kalogs="kamal accessory logs"
+alias kaexecpostgres="kamal accessory exec postgres --reuse -i bash"

@@ -16,6 +16,19 @@ db_up() {
   fi
 }
 
+db_redo() {
+    if [ -z "$1" ]
+        then
+          bundle exec rails db:redo
+        else
+        bundle exec rails db:migrate:redo VERSION="$1"
+    fi
+}
+
+db_install_yaba_migrations() {
+    bin/rails yaba:install:migrations
+}
+
 data_down() {
   if [ -z "$1" ]
     then

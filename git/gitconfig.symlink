@@ -1,7 +1,7 @@
 # gitconfig
 [user]
 	name = Kaka Ruto
-	email = borecollins@gmail.com
+	email = kaka@collinsruto.com
 [github]
 	user = kaka-ruto
 [init]
@@ -188,9 +188,12 @@
     show = "diff-so-fancy | less --tabs=4 -RFX"
 [merge]
     conflictstyle = diff3
+[http]
+    postBuffer = 524288000
 
-[diff "rails_credentials"]
-	textconv = bin/rails credentials:diff
+[diff "enc"]
+	textconv = bin/rails encrypted:show
+	cachetextconv = false
 
-# Written by Corey Haines, Bore Collins
+# Written by Corey Haines, Kaka Ruto
 # Scriptified by Gary Bernhardt
