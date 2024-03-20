@@ -140,6 +140,14 @@ You can find my tmuxinator config files in `config/tmuxinator/`
 
 Press `prefix + I` (capital i) to install configured tmux plugins such as tmux-resurrect and tmux-yank.
 
-## Questions
+## New Setup
 
-If you have questions, notice issues, or would like to see improvements, please open an [issue](https://github.com/borenho/dotfiles/issues/new) and I'm happy to help you out!
+I have required files in the folder `neodotfiles`, and astronvim configuration at `neodotfiles/config/astronvim`, where astronvim is a git submodule with it's own [git repository](https://github.com/kaka-ruto/astronvim)
+
+To make changes to the astronvim submodule, make them as you would any file, and then, if you're making the changes from within the `neodotfiles` dir, don't commit astronvim changes from here.
+
+Switch to the `astronvim` dir and commit and push there, which will push to the `astronvim` repo on Github
+
+Then switch back to your `neodotfiles` dir and git add the astronvim changes and also make a second commit. This second commit will be set to track the recently commited changes you made to astronvim.
+
+And now if you push, from within the `neoditfiles` dir, it will create a commit showing what changed in the `astronvim` folder and point to the astronvim dir!
