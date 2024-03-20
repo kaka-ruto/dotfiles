@@ -9,6 +9,7 @@
 # PATH="$HOME/.neovim/bin:$PATH"
 PATH="/usr/local/bin/nvim:$PATH"
 PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+PATH="/opt/homebrew/bin/yamllint:$PATH"
 
 export -U PATH
 
@@ -181,13 +182,13 @@ autoload -Uz compinit && compinit
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting git bundler macos rake ruby asdf dotenv)
 
 # Python
-if [[ -d "$HOME/.virtualenvs" ]]
-then
-    local PYTHON_PATH=$(asdf where python)
-    export WORKON_HOME=$HOME/.virtualenvs
-    export VIRTUALENVWRAPPER_VIRTUALENV="$PYTHON_PATH/bin/virtualenv"
-    source "$PYTHON_PATH/bin/virtualenvwrapper.sh"
-fi
+# if [[ -d "$HOME/.virtualenvs" ]]
+# then
+#     local PYTHON_PATH=$(asdf where python)
+#     export WORKON_HOME=$HOME/.virtualenvs
+#     export VIRTUALENVWRAPPER_VIRTUALENV="$PYTHON_PATH/bin/virtualenv"
+#     source "$PYTHON_PATH/bin/virtualenvwrapper.sh"
+# fi
 
 # Kitty
 export KITTY_CONFIG_DIRECTORY="$DOTFILES/config/kitty/kitty.sym.conf"
