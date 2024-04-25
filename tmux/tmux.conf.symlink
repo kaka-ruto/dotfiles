@@ -78,6 +78,8 @@ setw -g pane-base-index 1
 set-option -g set-titles on
 set-option -g set-titles-string "#T - #W"
 # set-window-option -g automatic-rename on
+# Do not exit tmux when a session is killed
+set-option -g detach-on-destroy off
 
 ######################
 #### Key Bindings ####

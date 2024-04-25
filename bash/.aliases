@@ -162,6 +162,7 @@ alias bi="bundle install"
 alias tdl="tail log/development.log"
 alias ttl="tail log/test.log"
 alias groutes="bin/rails routes | fzf -e"
+alias latest_migrations="ls -haltr db/migrate/*.rb | tac | head -n 10 | awk '{print $NF}'"
 
 # Rubocop
 alias rc='be rubocop'                      # Run rubocop
@@ -212,3 +213,7 @@ alias ktreboot="kamal traefik reboot"
 alias karemove="kamal accessory remove"
 alias kalogs="kamal accessory logs"
 alias kaexecpostgres="kamal accessory exec postgres --reuse -i bash"
+alias ktlogs="kamal traefik logs"
+alias kwlogs="kamal app logs -r web"
+alias kexecapp="kamal app exec -r web --reuse -i bash"
+alias kwrc="kamal app exec -r web --reuse -i 'bin/rails console'"

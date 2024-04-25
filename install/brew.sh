@@ -39,6 +39,7 @@ formulas=(
     gawk
     redis
     "jesseduffield/lazygit/lazygit"
+    btop
 )
 
 for formula in "${formulas[@]}"; do
