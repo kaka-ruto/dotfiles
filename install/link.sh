@@ -46,6 +46,22 @@ for file in $linkables; do
     fi
 done
 
+echo -e "\\n\\n Getting ready to setup Neovim with Astronvim"
+echo "=============================="
+if [ -d "$HOME/.config/nvim" ]; then
+    echo "Creating a backup of current nvim setup to ~/.config/nvim.bak"
+    mv "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
+fi
+if [ -d "$HOME/.local/share/nvim" ]; then
+    mv "$HOME/.local/share/nvim" "$HOME/.local/share/nvim.bak"
+fi
+if [ -d "$HOME/.local/state/nvim" ]; then
+    mv "$HOME/.local/state/nvim" "$HOME/.local/state/nvim.bak"
+fi
+if [ -d "$HOME/.cache/nvim" ]; then
+    mv "$HOME/.cache/nvim" "$HOME/.cache/nvim.bak"
+fi
+
 echo -e "\\n\\nCreating the ~/.config dir if it doesn't exist"
 echo "=============================="
 if [ ! -d "$HOME/.config" ]; then
@@ -53,12 +69,14 @@ if [ ! -d "$HOME/.config" ]; then
     mkdir -p "$HOME/.config"
 fi
 
-echo -e "\\n\\nCloning Neovim with Astronvim"
+echo -e "\\n\\nCloning and setting up Astronvim"
 echo "=============================="
 
 if [ ! -d "$HOME/.config/nvim" ]; then
     echo "Cloning astronvim into ~/.config/nvim"
-    git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+    git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
+    # remove template's git connection to set up your own later
+    rm -rf ~/.config/nvim/.git
 else
     echo "Astronvim already cloned... Skipping."
 fi
