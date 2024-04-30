@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES=$HOME/Code/Vim/neodotfiles
+DOTFILES=$HOME/Code/lua/neodotfiles
 
 # TODO: break down each of these blocks into their own files
 #

@@ -2,7 +2,7 @@
 
 # Backup files that are provided by the dotfiles into a ~/dotfiles-backup directory
 
-DOTFILES=$HOME/Code/Vim/neodotfiles
+DOTFILES=$HOME/Code/lua/neodotfiles
 BACKUP_DIR=$HOME/dotfiles-backup
 
 set -e # Exit immediately if a command exits with a non-zero status.

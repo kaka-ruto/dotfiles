@@ -42,7 +42,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"`
 Then, clone the dotfiles repository to your home directory as `~/.dotfiles`.
 
 ```bash
-➜ mkdir -p ~/Code/Vim && cd ~/Code/Vim
+➜ mkdir -p ~/Code/lua && cd ~/Code/lua
 ➜ git clone --recursive https://github.com/kaka-ruto/neodotfiles.git
 ➜ cd ~/neodotfiles
 ➜ ./install.sh

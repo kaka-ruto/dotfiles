@@ -1,7 +1,7 @@
 # /Users/kaka/.config/tmuxinator/dotfiles.yml
 
-name: dotfiles
-root: ~/Code/Vim/neodotfiles
+name: neodotfiles
+root: ~/Code/lua/neodotfiles
 
 # Optional tmux socket
 # socket_name: foo

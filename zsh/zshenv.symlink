@@ -1,4 +1,4 @@
-export DOTFILES=$HOME/Code/Vim/neodotfiles
+export DOTFILES=$HOME/Code/lua/neodotfiles
 export CACHEDIR="$HOME/.local/share"
 export INITVIM="$DOTFILES/config/astronvim/init.lua"
 

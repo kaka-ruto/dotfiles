@@ -172,7 +172,7 @@ set-option -g focus-events on
 ### Color & Style Settings ###
 ##############################
 
-source ~/Code/Vim/neodotfiles/tmux/base16.sh
+source ~/Code/lua/neodotfiles/tmux/base16.sh
 
 ######## Tmux Plugins #########
 # Save tmux sessions

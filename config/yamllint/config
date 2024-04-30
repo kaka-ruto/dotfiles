@@ -1,5 +1,5 @@
 # Create a symlink of this file to the location yamllint expects to find it
-# mac: ln -sf /Users/kaka/Code/Vim/neodotfiles/config/yamllint/config /Users/kaka/.config/yamllint/config
+# mac: ln -sf /Users/kaka/Code/lua/neodotfiles/config/yamllint/config /Users/kaka/.config/yamllint/config
 # This file extends the default conf by adjusting some options.
 ---
 extends: default

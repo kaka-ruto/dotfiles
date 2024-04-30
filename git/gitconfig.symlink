@@ -5,7 +5,7 @@
 [github]
 	user = kaka-ruto
 [init]
-    templatedir = ~/Code/Vim/neodotfiles/git/templates
+    templatedir = ~/Code/lua/neodotfiles/git/templates
 	defaultBranch = main
 [alias]
     # list all aliases
