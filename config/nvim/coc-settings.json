@@ -1,0 +1,37 @@
+{
+    "suggest.enablePreview": true,
+    "codeLens.enable": true,
+    "git.addedSign.text": "┃",
+    "git.removedSign.text": "┃",
+    "git.changedSign.text": "┃",
+    "git.changeRemovedSign.text": "┃",
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.errorSign": "✖",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.infoSign": "●",
+    "diagnostic.hintSign": "○",
+    "diagnostic.enable": false,
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    "git.addGBlameToBufferVar": true,
+
+    "solargraph.hover": false,
+    "solargraph.completion": true,
+    "solargraph.autoformat": true,
+    "solargraph.formatting": true,
+    "solargraph.folding": true,
+    "solargraph.symbols": true,
+    "solargraph.definitions": true,
+    "solargraph.rename": true,
+    "solargraph.references": true,
+    "solargraph.diagnostics": true
+    "languageserver": {
+        "sorbet": {
+            "command": "srb",
+            "args": ["tc", "--lsp", "--enable-all-experimental-lsp-features"],
+            "filetypes": ["ruby"],
+            "rootPatterns": ["sorbet/config"],
+            "initializationOptions": {},
+            "settings": {}
+        }
+    }
+}

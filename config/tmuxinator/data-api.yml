@@ -1,8 +1,8 @@
-# /Users/kaka/.config/tmuxinator/autohaven.yml
+# /Users/kaka/.config/tmuxinator/data-api.yml
 
-name: autohaven
-root: ~/Code/ruby/autohaven
- 
+name: data-api
+root: ~/Code/clients/betty/data-api
+
 # Optional tmux socket
 # socket_name: foo
 
@@ -41,24 +41,19 @@ root: ~/Code/ruby/autohaven
 
 windows:
   - editor:
-      panes: vim Gemfile
+      panes: vim mix.exs
 
   - console:
       layout: even-horizontal
       panes:
         - git status
 
-  - server:
+  - docker:
       layout: even-horizontal
       panes:
         - echo "Hi there"
 
-  - db:
+  - database:
       layout: even-horizontal
       panes:
-        - gs
-
-  - git:
-      layout: even-horizontal
-      panes:
-        - gs
+        - echo "I think TablePlus is better"

@@ -19,6 +19,9 @@ if [ "$(uname)" == "Darwin" ]; then
     source install/osx.sh
 fi
 
+echo "creating vim directories"
+mkdir -p ~/.vim-tmp
+
 if ! command_exists zsh; then
     echo "zsh not found. Please install and then re-run installation scripts"
     exit 1

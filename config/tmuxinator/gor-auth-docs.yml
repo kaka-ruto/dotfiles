@@ -1,7 +1,7 @@
-# /Users/kaka/.config/tmuxinator/headportfolio.yml
+# /Users/kaka/.config/tmuxinator/gor-auth-docs.yml
 
-name: headportfolio
-root: ~/Code/ruby/headportfolio
+name: gor-auth-docs
+root: ~/Code/gor/graphql-on-rails-auth-docs
 
 # Optional tmux socket
 # socket_name: foo
@@ -41,9 +41,9 @@ root: ~/Code/ruby/headportfolio
 
 windows:
   - editor:
-      panes: vim Gemfile
+      panes: vim nuxt.config.js
 
-  - console:
+  - terminal:
       layout: even-horizontal
       panes:
         - git status
@@ -51,14 +51,4 @@ windows:
   - server:
       layout: even-horizontal
       panes:
-        - echo "Hi there"
-
-  - db:
-      layout: even-horizontal
-      panes:
-        - gs
-
-  - git:
-      layout: even-horizontal
-      panes:
-        - gs
+        - npm run dev

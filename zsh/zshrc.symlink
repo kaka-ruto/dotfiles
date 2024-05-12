@@ -9,7 +9,6 @@
 # PATH="$HOME/.neovim/bin:$PATH"
 PATH="/usr/local/bin/nvim:$PATH"
 PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-PATH="/opt/homebrew/bin/yamllint:$PATH"
 
 export -U PATH
 
@@ -161,35 +160,29 @@ if hash brew 2>/dev/null; then
 fi
 
 # Architecture-based exports {
-# arch_name="$(uname -m)"
-#
-# if [ "${arch_name}" = "x86_64" ]; then
-#     echo "Running on Rosetta 2"
-#     local LOCAL_ASDF_DATA_DIR=$(xbrew --prefix asdf)
-# elif [ "${arch_name}" = "arm64" ]; then
-#     echo "Running on ARM"
-#     local LOCAL_ASDF_DATA_DIR=$(brew --prefix asdf)
-# else
-#     echo "Unknown architecture: ${arch_name}"
-# fi
+arch_name="$(uname -m)"
 
-source "$HOME/.asdf/asdf.sh"
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+if [ "${arch_name}" = "x86_64" ]; then
+    echo "Running on Rosetta 2"
+    local LOCAL_ASDF_DATA_DIR=$(xbrew --prefix asdf)
+elif [ "${arch_name}" = "arm64" ]; then
+    echo "Running on ARM"
+    local LOCAL_ASDF_DATA_DIR=$(brew --prefix asdf)
+else
+    echo "Unknown architecture: ${arch_name}"
+fi
 
-# oh-my-zsh
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting git bundler macos rake ruby asdf dotenv)
+export ASDF_DATA_DIR=$LOCAL_ASDF_DATA_DIR
+source "$ASDF_DATA_DIR/libexec/asdf.sh"
 
 # Python
-# if [[ -d "$HOME/.virtualenvs" ]]
-# then
-#     local PYTHON_PATH=$(asdf where python)
-#     export WORKON_HOME=$HOME/.virtualenvs
-#     export VIRTUALENVWRAPPER_VIRTUALENV="$PYTHON_PATH/bin/virtualenv"
-#     source "$PYTHON_PATH/bin/virtualenvwrapper.sh"
-# fi
+if [[ -d "$HOME/.virtualenvs" ]]
+then
+    local PYTHON_PATH=$(asdf where python)
+    export WORKON_HOME=$HOME/.virtualenvs
+    export VIRTUALENVWRAPPER_VIRTUALENV="$PYTHON_PATH/bin/virtualenv"
+    source "$PYTHON_PATH/bin/virtualenvwrapper.sh"
+fi
 
 # Kitty
 export KITTY_CONFIG_DIRECTORY="$DOTFILES/config/kitty/kitty.sym.conf"

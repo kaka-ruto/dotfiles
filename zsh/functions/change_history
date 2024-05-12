@@ -1,0 +1,4 @@
+change_history() {
+  # Update the path to point to the absolute path of the script on your computer
+  bash /Users/kaka/.dotfiles/bin/change_history.sh "$@"
+}
