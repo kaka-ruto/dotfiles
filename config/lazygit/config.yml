@@ -1,5 +1,5 @@
 # Create a symlink of this file to the location LG expects to find it
-# mac: ln -sf /Users/kaka/Code/Vim/neodotfiles/config/lazygit/config.yml /Users/kaka/Library/Application\ Support/lazygit/config.yml
+# mac: ln -sf /Users/<name>/.dotfiles/config/lazygit/config.yml /Users/<name>/Library/Application\ Support/lazygit/config.yml
 ---
 gui:
   showIcons: true

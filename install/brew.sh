@@ -9,18 +9,19 @@ echo -e "\\n\\nInstalling homebrew packages..."
 echo "=============================="
 
 formulas=(
+    asdf
     bat
     ccat
     diff-so-fancy
     dnsmasq
     fzf
-    fd
     git
     grep
     highlight
     hub
     markdown
     mas
+    --HEAD neovim
     reattach-to-user-namespace
     the_silver_searcher
     shellcheck
@@ -29,26 +30,13 @@ formulas=(
     trash
     tree
     wget
-    curl
     z
     zsh
     ripgrep
     git-standup
     entr
+    yarn
     universal-ctags
-    gpg
-    gawk
-    redis
-    "jesseduffield/lazygit/lazygit"
-    btop
-    overmind
-    # Postgres dependencies - https://github.com/smashedtoatoms/asdf-postgres?tab=readme-ov-file#mac
-    zlib
-    ossp-uuid
-    icu4c
-    pkg-config
-    act # Run github actions locally
-    orbstack # Lighter, smaller and faster docker
 )
 
 for formula in "${formulas[@]}"; do
@@ -56,23 +44,22 @@ for formula in "${formulas[@]}"; do
     if brew list "$formula_name" > /dev/null 2>&1; then
         echo "$formula_name already installed... skipping."
     else
-        brew install "$formula"
-        # arch_name="$(uname -m)"
+        arch_name="$(uname -m)"
  
-        # if [ "${arch_name}" = "x86_64" ]; then
-        #     if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
-        #         echo "Running on Rosetta 2"
-        #         arch -x86_64 brew install "$formula"
-        #     else
-        #         echo "Running on native Intel"
-        #         brew install "$formula"
-        #     fi 
-        # elif [ "${arch_name}" = "arm64" ]; then
-        #     echo "Running on ARM"
-        #     arch -arm64 brew install "$formula"
-        # else
-        #     echo "Unknown architecture: ${arch_name}"
-        # fi
+        if [ "${arch_name}" = "x86_64" ]; then
+            if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
+                echo "Running on Rosetta 2"
+                arch -x86_64 brew install "$formula"
+            else
+                echo "Running on native Intel"
+                brew install "$formula"
+            fi 
+        elif [ "${arch_name}" = "arm64" ]; then
+            echo "Running on ARM"
+            arch -arm64 brew install "$formula"
+        else
+            echo "Unknown architecture: ${arch_name}"
+        fi
     fi
 done
 
@@ -82,8 +69,8 @@ echo "=============================="
 /usr/local/opt/fzf/install --all --no-bash --no-fish
 
 # after the install, install neovim python libraries
-# echo -e "\\n\\nRunning Neovim Python install"
-# echo "=============================="
+echo -e "\\n\\nRunning Neovim Python install"
+echo "=============================="
 # pip3 install pynvim
 
 # Change the default shell to zsh
@@ -98,6 +85,6 @@ if [[ "$SHELL" != "$zsh_path" ]]; then
     echo "default shell changed to $zsh_path"
 
     # Source zshrc
-    echo "source $DOTFILES/zsh/zshenv.symlink" >> ~/.zshrc
-    echo "source $DOTFILES/zsh/zshrc.symlink" >> ~/.zshrc
+    echo "source ~/.dotfiles/zsh/zshenv.symlink" >> ~/.zshrc
+    echo "source ~/.dotfiles/zsh/zshrc.symlink" >> ~/.zshrc
 fi

@@ -1,11 +1,11 @@
 # gitconfig
 [user]
 	name = Kaka Ruto
-	email = kaka@collinsruto.com
+	email = borecollins@gmail.com
 [github]
 	user = kaka-ruto
 [init]
-    templatedir = ~/Code/lua/neodotfiles/git/templates
+    templatedir = ~/.dotfiles/git/templates
 	defaultBranch = main
 [alias]
     # list all aliases
@@ -166,7 +166,7 @@
 [core]
     excludesfile = ~/.gitignore_global
     pager = less -FXRS -x2
-    editor = vim
+    editor = nvim
     whitespace = cr-at-eol
 [rerere]
     enabled = true
@@ -188,12 +188,9 @@
     show = "diff-so-fancy | less --tabs=4 -RFX"
 [merge]
     conflictstyle = diff3
-[http]
-    postBuffer = 524288000
 
-[diff "enc"]
-	textconv = bin/rails encrypted:show
-	cachetextconv = false
+[diff "rails_credentials"]
+	textconv = bin/rails credentials:diff
 
-# Written by Corey Haines, Kaka Ruto
+# Written by Corey Haines, Bore Collins
 # Scriptified by Gary Bernhardt

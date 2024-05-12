@@ -1,7 +1,7 @@
 # /Users/kaka/.config/tmuxinator/dotfiles.yml
 
-name: neodotfiles
-root: ~/Code/lua/neodotfiles
+name: dotfiles
+root: ~/.dotfiles
 
 # Optional tmux socket
 # socket_name: foo
@@ -43,15 +43,7 @@ windows:
   - editor:
       layout: even-horizontal
       panes:
-        - vim bash/.aliases
-  - bash:
-      layout: even-horizontal
-      panes:
-        - git update
-  - editor:
-      layout: even-horizontal
-      panes:
-        - vim config/astronvim/mappings.lua
+        - vim config/nvim/init.vim
   - bash:
       layout: even-horizontal
       panes:

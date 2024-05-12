@@ -1,6 +1,6 @@
-export DOTFILES=$HOME/Code/lua/neodotfiles
+export DOTFILES=$HOME/.dotfiles
 export CACHEDIR="$HOME/.local/share"
-export INITVIM="$DOTFILES/config/astronvim/init.lua"
+export INITVIM="$DOTFILES/config/nvim/init.vim"
 
 [[ -d "$CACHEDIR" ]] || mkdir -p "$CACHEDIR"
 
@@ -14,3 +14,4 @@ typeset -aU path
 
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
+. "$HOME/.cargo/env"
