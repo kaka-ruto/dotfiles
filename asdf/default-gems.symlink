@@ -1,6 +1,5 @@
 # Automatically install a set of default gems right after installing a new Ruby version, in asdf
 bundler
-pry
 
 # Intellisense for Ruby
 solargraph
@@ -12,4 +11,4 @@ hirb
 awesome_print
 
 # Neovim
-# neovim
+neovim

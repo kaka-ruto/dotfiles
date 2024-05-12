@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # use nvim, but don't make me think about it
-alias vim="/opt/homebrew/opt/asdf/shims/nvim"
-alias vi="/opt/homebrew/opt/asdf/shims/nvim"
-alias v="/opt/homebrew/opt/asdf/shims/nvim"
+alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
 
 # Easier navigation
 alias ..="cd .."
@@ -34,6 +34,7 @@ alias undo="git reset HEAD~"
 alias hard-reset="git reset --hard HEAD~"
 alias remote-reset="git reset --hard @{upstream}"
 alias discard="git checkout ."
+alias lg="lazygit"
 
 # Detect which `ls` flavor is in use
 if ls --color >/dev/null 2>&1; then # GNU `ls`
@@ -45,16 +46,16 @@ else # macOS `ls`
 fi
 
 # List all files colorized in long format
-alias l="ls -lF ${colorflag}"
+alias l='ls -lF ${colorflag}'
 
 # List all files colorized in long format, excluding . and ..
-alias la="ls -lAF ${colorflag}"
+alias la='ls -lAF ${colorflag}'
 
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
 # Always use color output for `ls`
-alias ls="command ls ${colorflag}"
+alias ls='command ls ${colorflag}'
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
@@ -145,7 +146,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias path='echo -e ${PATH//:/\\n}'
 
 # Reload the shell (i.e. invoke as a login shell)
-alias reload_shell="exec ${SHELL} -l"
+alias reload_shell='exec ${SHELL} -l'
 
 # Ruby and Rails
 alias be="bundle exec"
@@ -158,9 +159,12 @@ alias brdm="bin/rails db:migrate"
 alias brgm="bin/rails g migration"
 alias brdr="bin/rails db:rollback"
 alias brds="bin/rails db:seed"
+alias brgad="bin/rails g administrate:dashboard"
 alias bi="bundle install"
 alias tdl="tail log/development.log"
 alias ttl="tail log/test.log"
+alias groutes="bin/rails routes | fzf -e"
+alias latest_migrations="ls -haltr db/migrate/*.rb | tac | head -n 10 | awk '{print $NF}'"
 
 # Rubocop
 alias rc='be rubocop'                      # Run rubocop
@@ -204,5 +208,14 @@ alias mp='fc -e - mix\ test=iex\ -S\ mix\ test\ --trace mix\ test'
 # Kubernetes
 alias k=kubectl
 
-# Smart
-alias smartaws=". /usr/local/bin/smartaws"
+# Kamal
+alias kaboot="kamal accessory boot"
+alias kareboot="kamal accessory reboot"
+alias ktreboot="kamal traefik reboot"
+alias karemove="kamal accessory remove"
+alias kalogs="kamal accessory logs"
+alias kaexecpostgres="kamal accessory exec postgres --reuse -i bash"
+alias ktlogs="kamal traefik logs"
+alias kwlogs="kamal app logs -r web"
+alias kexecapp="kamal app exec -r web --reuse -i bash"
+alias kwrc="kamal app exec -r web --reuse -i 'bin/rails console'"

@@ -1,3 +1,23 @@
 $LOAD_PATH << "~/.asdf/installs/ruby/2.6.4/lib/ruby/gems/2.6.0/gems/awesome_print-1.8.0/lib/"
 require "awesome_print"
 AwesomePrint.irb!
+
+if defined?(Rails)
+  env = Rails.env
+  env_color = if env.production?
+                "\e[31m#{env}\e[0m"
+              else
+                env
+              end
+
+  IRB.conf[:PROMPT] ||= {}
+  IRB.conf[:PROMPT][:RAILS_APP] = {
+    PROMPT_I: "#{Rails.application.class.module_parent_name} (#{env_color}) > ",
+    PROMPT_N: "#{Rails.application.class.module_parent_name} (#{env_color}) > ",
+    PROMPT_S: "#{Rails.application.class.module_parent_name} (#{env_color}) > ",
+    PROMPT_C: "#{Rails.application.class.module_parent_name} (#{env_color}) > ",
+    RETURN: "=> %s\n"
+  }
+
+  IRB.conf[:PROMPT_MODE] = :RAILS_APP
+end
