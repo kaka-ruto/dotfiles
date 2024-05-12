@@ -29,6 +29,7 @@ formulas=(
     trash
     tree
     wget
+    curl
     z
     zsh
     ripgrep
@@ -40,6 +41,14 @@ formulas=(
     redis
     "jesseduffield/lazygit/lazygit"
     btop
+    overmind
+    # Postgres dependencies - https://github.com/smashedtoatoms/asdf-postgres?tab=readme-ov-file#mac
+    zlib
+    ossp-uuid
+    icu4c
+    pkg-config
+    act # Run github actions locally
+    orbstack # Lighter, smaller and faster docker
 )
 
 for formula in "${formulas[@]}"; do

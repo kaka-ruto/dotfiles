@@ -1,8 +1,8 @@
-# /Users/kaka/.config/tmuxinator/portfolio.yml
+# /Users/kaka/.config/tmuxinator/ogb.yml
 
-name: portfolio
-root: ~/Code/portfolio
-
+name: ogb
+root: ~/Code/ruby/ourgivingboard-api
+ 
 # Optional tmux socket
 # socket_name: foo
 
@@ -41,14 +41,43 @@ root: ~/Code/portfolio
 
 windows:
   - editor:
-      panes: vim README.md
+      panes: vim app/models/user.rb
 
-  - terminal:
+  - console:
       layout: even-horizontal
       panes:
         - git status
 
-  - server:
+  - dev-server:
       layout: even-horizontal
       panes:
-        - yarn start
+        - echo "Hi there"
+
+  # - staging-server:
+  #     layout: even-horizontal
+  #     panes:
+  #       # - export AWS_PROFILE=givingboard && saw watch /docker-compose/ourgivingboard-staging --raw
+  #       - saw watch /docker-compose/ourgivingboard-staging --raw
+
+  # - staging-console:
+  #     layout: even-horizontal
+  #     panes:
+  #       # - be rails c -e staging
+  #       # - export AWS_PROFILE=givingboard
+  #       - git update
+
+  # - prod-server:
+  #     layout: even-horizontal
+  #     panes:
+  #       - echo "Hi there"
+
+  # - prod-console:
+  #     layout: even-horizontal
+  #     panes:
+  #     - gl -5
+
+  - database:
+      layout: even-horizontal
+      panes:
+        - gs
+

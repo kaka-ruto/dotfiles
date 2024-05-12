@@ -34,6 +34,7 @@ alias undo="git reset HEAD~"
 alias hard-reset="git reset --hard HEAD~"
 alias remote-reset="git reset --hard @{upstream}"
 alias discard="git checkout ."
+alias lg="lazygit"
 
 # Detect which `ls` flavor is in use
 if ls --color >/dev/null 2>&1; then # GNU `ls`
@@ -158,6 +159,7 @@ alias brdm="bin/rails db:migrate"
 alias brgm="bin/rails g migration"
 alias brdr="bin/rails db:rollback"
 alias brds="bin/rails db:seed"
+alias brgad="bin/rails g administrate:dashboard"
 alias bi="bundle install"
 alias tdl="tail log/development.log"
 alias ttl="tail log/test.log"

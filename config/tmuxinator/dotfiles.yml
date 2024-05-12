@@ -43,6 +43,14 @@ windows:
   - editor:
       layout: even-horizontal
       panes:
+        - vim bash/.aliases
+  - bash:
+      layout: even-horizontal
+      panes:
+        - git update
+  - editor:
+      layout: even-horizontal
+      panes:
         - vim config/astronvim/mappings.lua
   - bash:
       layout: even-horizontal

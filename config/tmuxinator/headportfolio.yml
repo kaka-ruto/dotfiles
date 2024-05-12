@@ -1,8 +1,8 @@
-# /Users/kaka/.config/tmuxinator/autopaye.yml
+# /Users/kaka/.config/tmuxinator/headportfolio.yml
 
-name: autopaye
-root: ~/Code/clients/autopaye/autopaye
- 
+name: headportfolio
+root: ~/Code/ruby/headportfolio
+
 # Optional tmux socket
 # socket_name: foo
 
@@ -41,42 +41,24 @@ root: ~/Code/clients/autopaye/autopaye
 
 windows:
   - editor:
-      panes: vim app/models/user.rb
+      panes: vim Gemfile
 
   - console:
       layout: even-horizontal
       panes:
         - git status
 
-  - dev-server:
+  - server:
       layout: even-horizontal
       panes:
         - echo "Hi there"
 
-  # - staging-server:
-  #     layout: even-horizontal
-  #     panes:
-  #       # - export AWS_PROFILE=givingboard && saw watch /docker-compose/ourgivingboard-staging --raw
-  #       - saw watch /docker-compose/ourgivingboard-staging --raw
+  - db:
+      layout: even-horizontal
+      panes:
+        - gs
 
-  # - staging-console:
-  #     layout: even-horizontal
-  #     panes:
-  #       # - be rails c -e staging
-  #       # - export AWS_PROFILE=givingboard
-  #       - git update
-
-  # - prod-server:
-  #     layout: even-horizontal
-  #     panes:
-  #       - echo "Hi there"
-
-  # - prod-console:
-  #     layout: even-horizontal
-  #     panes:
-  #     - gl -5
-
-  - database:
+  - git:
       layout: even-horizontal
       panes:
         - gs
